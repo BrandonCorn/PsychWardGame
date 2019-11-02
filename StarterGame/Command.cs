@@ -15,16 +15,17 @@ namespace StarterGame
         private string fourthWord; 
         public string FourthWord { get { return fourthWord; } set { fourthWord = value; } }
 
-        private List<string> words;
-        public List<string> Words { get { return words; } set { words = value; } }
-        
+        //Added a list for the words in the command for unlimited words in players command statement
+        private Queue<string> words;
+        public Queue<string> Words { get { return words; } set { words = value; } }
+
         public Command()
         {
             this.name = "";
             this.secondWord = null;
             this.thirdWord = null;
             this.fourthWord = null;
-            this.words = new List<string>();
+            this.words = null;
         }
 
         public bool hasSecondWord()
@@ -41,6 +42,8 @@ namespace StarterGame
         {
             return this.fourthWord != null;
         }
+    
+
 
         public abstract bool execute(Player player);
     }

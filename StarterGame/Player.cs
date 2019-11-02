@@ -37,6 +37,7 @@ namespace StarterGame
             else
             {
                 this.outputMessage("\nThere is no door on " + direction);
+                this.outputMessage("\n" + this._currentRoom.description());
             }
         }
 

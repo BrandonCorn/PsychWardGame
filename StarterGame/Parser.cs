@@ -18,7 +18,7 @@ namespace StarterGame
             commands = newCommands;
         }
 
-        public Command parseCommand(string commandString)
+        /*public Command parseCommand(string commandString)
         {
             Command command = null;
             string[] words = commandString.Split(' ');
@@ -65,6 +65,33 @@ namespace StarterGame
                 Console.WriteLine("No words parsed!");
             }
             return command;
+        }*/
+
+        /*
+         * This function is a alternative parser that allows the users commands to be as many words as 
+         * they want without the need to keep writing new variables for additional words
+        */
+        public Command parseCommand(string commandString)
+        {
+            Command command = null;
+            string[] check = commandString.Split(" ");
+            Queue<string> allWords = new Queue<string>(commandString.Split(" "));
+
+            if (allWords.Count > 0)
+            {
+                string commandName = allWords.Peek();
+                command = commands.get(allWords.Dequeue());
+                command.Words = new Queue<string>(allWords);
+                if (command.Words.Count == 0)
+                {
+                    Console.WriteLine(">>>Did not find the command " + commandName);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No words parsed");
+            }
+            return command; 
         }
 
         public string description()

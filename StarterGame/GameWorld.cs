@@ -41,6 +41,7 @@ namespace StarterGame
             Room universityHall = new Room("in University Hall","University Hall");
             Room schuster = new Room("in the Schuster Center", "Schuster");
 
+
             //outside.setExit("west", outsideBoulevard);
             //boulevard.setExit("east", outsideBoulevard);
 
