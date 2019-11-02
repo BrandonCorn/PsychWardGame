@@ -1,0 +1,11 @@
+ Volume in drive H is Home Drives
+ Volume Serial Number is 2EF8-9607
+
+ Directory of H:\Courses2019\CPSC3175\Fall\StarterGame\StarterGame\bin
+
+10/16/2019  02:16 PM    <DIR>          .
+10/16/2019  02:16 PM    <DIR>          ..
+10/06/2019  09:51 PM    <DIR>          Debug
+10/16/2019  02:16 PM                 0 output.txt
+               1 File(s)              0 bytes
+               3 Dir(s)  618,633,793,536 bytes free
