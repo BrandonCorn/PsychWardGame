@@ -17,8 +17,10 @@ namespace StarterGame
         private Room _entrance;
         public Room Entrance { get { return _entrance; } }
         private Room trigger;
+        private string triggerWord;
         private Room connectionRoom;
         private List<Room> hotList;
+        private Merchant ladyMerchant;
 
         private GameWorld()
         {
@@ -31,63 +33,26 @@ namespace StarterGame
 
         private Room createWorld()
         {
-            Room outside = new Room("outside the main entrance of the university", "outside");
-            Room cctparking = new Room("in the parking lot at CCT", "CCT Parking");
-            Room boulevard = new Room("on the boulevard", "boulevard");
-            Room universityParking = new Room("in the parking lot at University Hall", "University Hall Parking");
-            Room parkingDeck = new Room("in the parking deck", "Parking Deck");
-            Room cct = new Room("in the CCT building", "CCT");
-            Room theGreen = new Room("in the green in from of Schuster Center", "The Green");
-            Room universityHall = new Room("in University Hall","University Hall");
-            Room schuster = new Room("in the Schuster Center", "Schuster");
+            Room entrance = new Room("entrance to PsychWard", "Entrance");
+            Room merch = new Room("in the Merchant Room", "Merchant Room");
+            Room mainHall = new Room("in the Main Hall", "Main Hall");
+            Room cafeteria = new Room("in the Cafeteria", "Cafeteria");
+            Room maleWard = new Room("in the Male Ward", "Male Ward");
+            Room femaleWard = new Room("in the Female Ward", "Female Ward");
+            Room maleShowers = new Room("in the Male Showers", "Male Showers");
+            Room femaleShowers = new Room("in the Female Showers", "Female Showers");
+            Room room1 = new Room("in male game room", "Male Game Room");
+            Room room3 = new Room("in female game room", "Female Game Room");
+            Room hallway = new Room("in the Hallway outside Male Ward", "Male Ward Hallway");
+            Room room2 = new Room("in the Meeting Room", "Meeting Room");
+            Room therapyRoom = new Room("in the therapyRoom", "Therapy Room");
 
 
-            //outside.setExit("west", outsideBoulevard);
-            //boulevard.setExit("east", outsideBoulevard);
+            ladyMerchant = new Merchant(merch);
+            HowToPlay task1 = new HowToPlay(mainHall);
+            ladyMerchant.addTask(task1);
 
-            Door door = Door.createDoor(outside, boulevard);
-            //boulevard.setExit("south", cctparking);
-            //cctparking.setExit("north", boulevard);
-
-            door = Door.createDoor(boulevard, theGreen);
-            //boulevard.setExit("west", theGreen);
-            //theGreen.setExit("east", boulevard);
-
-            door = Door.createDoor(universityParking, boulevard);
-            //boulevard.setExit("north", universityParking);
-            //universityParking.setExit("south", boulevard);
-
-            door = Door.createDoor(cct, cctparking);
-            //cctparking.setExit("west", cct);
-            //cct.setExit("east", cctparking);
-
-            door = Door.createDoor(schuster, cct);
-            //cct.setExit("north", schuster);
-            //schuster.setExit("south", cct);
-
-            door = Door.createDoor(universityHall, schuster);
-            //schuster.setExit("north", universityHall);
-            //universityHall.setExit("south", schuster);
-
-            door = Door.createDoor(theGreen, schuster);
-            //schuster.setExit("east", theGreen);
-            //theGreen.setExit("west", schuster);
-
-            door = Door.createDoor(universityParking, universityHall);
-            //universityHall.setExit("east", universityParking);
-            //universityParking.setExit("west", universityHall);
-
-            door = Door.createDoor(universityParking, parkingDeck);
-            //universityParking.setExit("north", parkingDeck);
-            //parkingDeck.setExit("south", universityParking);
-
-            connectionRoom = schuster;
-            trigger = parkingDeck;
-
-            hotList.Add(parkingDeck);
-            hotList.Add(universityHall);
-            hotList.Add(cct);
-            return outside;
+            return entrance;
         }
 
         //Create door
@@ -99,9 +64,9 @@ namespace StarterGame
             Player player = (Player)notification.Object;
             if(player.currentRoom == trigger)
             {
-                Console.WriteLine("Player entered the trigger room");
+                Console.WriteLine("Player entered the trigger room\n");
             }
-            if (hotList.Count > 0 && hotList[0] == player.currentRoom)
+            /*if (hotList.Count > 0 && hotList[0] == player.currentRoom)
             {
                 hotList.Remove(player.currentRoom);
                 if (hotList.Count == 0)
@@ -109,7 +74,13 @@ namespace StarterGame
                     player.outputMessage("\nAll the rooms have been visited!>>>\n");
                 }
                 
+            }*/
+            if (player.currentRoom == ladyMerchant.MerchantRoom)
+            {
+                Console.WriteLine("\nYou have entered the Merchants room\n");
             }
+
+                       
         }
         
         //callback method for player speak word
@@ -119,7 +90,10 @@ namespace StarterGame
             if (player.currentRoom == trigger)
             {
                 Dictionary<String, Object> userInfo = notification.userInfo;
-                String word = (String)userInfo["word"];
+                Console.WriteLine(notification.Name);
+                //String word = (String)userInfo["boom"];
+                //Console.WriteLine(userInfo.Keys);
+                
 
             }
         }

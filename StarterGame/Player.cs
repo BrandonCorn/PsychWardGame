@@ -45,8 +45,6 @@ namespace StarterGame
         {
             outputMessage(word);
             NotificationCenter.Instance.postNotification(new Notification("Player has spoken", this));
-
-
         }
 
         public void outputMessage(string message)

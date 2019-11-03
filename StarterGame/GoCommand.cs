@@ -11,7 +11,7 @@ namespace StarterGame
             this.name = "go";
         }
 
-        /*override
+        override
         public bool execute(Player player)
         {
             if (this.hasSecondWord() && this.hasThirdWord() && this.hasFourthWord())
@@ -31,12 +31,12 @@ namespace StarterGame
                 player.outputMessage("\nGo Where?");
             }
             return false;
-        }*/
+        }
 
         //this alternative execute makes it so that we don't need to keep adding if statements when 
         //our locations have more and more words
-        override
-        public bool execute(Player player)
+        
+        /*public override bool execute(Player player)
         {
             string location = "";
             if (this.Words.Count == 0)
@@ -57,6 +57,6 @@ namespace StarterGame
             }
             player.waltTo(location);
             return false;
-        }
+        } */
     }
 }
