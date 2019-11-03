@@ -59,7 +59,7 @@ namespace StarterGame
 
         public string welcome()
         {
-            return "Welcome to the World of CSU!\n\n The World of CSU is a new, incredibly boring adventure game.\n\nType 'help' if you need help." + player.currentRoom.description();
+            return "Welcome to the PsychWard!\n\n The PsychWard is a crazy abandoned hospital filled with mysteries.\n\nType 'help' if you need help." + player.currentRoom.description();
         }
 
         public string goodbye()

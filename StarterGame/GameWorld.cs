@@ -33,20 +33,47 @@ namespace StarterGame
 
         private Room createWorld()
         {
-            Room entrance = new Room("entrance to PsychWard", "Entrance");
-            Room merch = new Room("in the Merchant Room", "Merchant Room");
-            Room mainHall = new Room("in the Main Hall", "Main Hall");
-            Room cafeteria = new Room("in the Cafeteria", "Cafeteria");
-            Room maleWard = new Room("in the Male Ward", "Male Ward");
-            Room femaleWard = new Room("in the Female Ward", "Female Ward");
-            Room maleShowers = new Room("in the Male Showers", "Male Showers");
-            Room femaleShowers = new Room("in the Female Showers", "Female Showers");
-            Room room1 = new Room("in male game room", "Male Game Room");
-            Room room3 = new Room("in female game room", "Female Game Room");
-            Room hallway = new Room("in the Hallway outside Male Ward", "Male Ward Hallway");
-            Room room2 = new Room("in the Meeting Room", "Meeting Room");
-            Room therapyRoom = new Room("in the therapyRoom", "Therapy Room");
+            Room entrance = new Room(" at the entrance of the PsychWard", "entrance");
+            Room merch = new Room("in the merchant's room", "merchant room");
+            Room mainHall = new Room("in the main hall", "main hall");
+            Room cafeteria = new Room("in the cafeteria", "cafeteria");
+            Room maleWard = new Room("in the male ward", "male ward");
+            Room femaleWard = new Room("in the female ward", "female ward");
+            Room maleShowers = new Room("in the male showers", "male showers");
+            Room femaleShowers = new Room("in the female showers", "female showers");
+            Room maleGame = new Room("in male game room", "male game room");
+            Room femaleGame = new Room("in female game room", "female game room");
+            Room hallway = new Room("in the hallway outside the male ward", "male ward hallway");
+            Room maleMeetingRoom = new Room("in the male's meeting room", "male meeting room");
+            Room maleTherapy = new Room("in the therapy room", "male therapy room");
+            Room femaleTherapy = new Room("in female ward therapy room", "female therapy room");
+            Room alley = new Room("outside in the alley", "alley");
+            Room kitchen = new Room("in the kitchen", "kitchen");
+            Room mainCourtYard = new Room("outside in main courtyard", "main courtyard");
+            Room westCourtYard = new Room("in west courtyard", "west courtyard");
+            Room eastCourtYard = new Room("in east courtyard", "east courtyard");
+            Room shed = new Room("in the shed", "shed");
 
+            Door door = Door.createDoor(entrance, merch);
+            door = Door.createDoor(entrance, mainHall);
+            door = Door.createDoor(mainHall, maleWard);
+            door = Door.createDoor(mainHall, femaleWard);
+            door = Door.createDoor(mainHall, cafeteria);
+            door = Door.createDoor(maleWard, maleGame);
+            door = Door.createDoor(maleWard, maleShowers);
+            door = Door.createDoor(maleWard, hallway);
+            door = Door.createDoor(hallway, maleMeetingRoom);
+            door = Door.createDoor(hallway, maleTherapy);
+            door = Door.createDoor(femaleWard, femaleGame);
+            door = Door.createDoor(femaleWard, femaleShowers);
+            door = Door.createDoor(femaleWard, femaleTherapy);
+            door = Door.createDoor(femaleTherapy, alley);
+            door = Door.createDoor(cafeteria, kitchen);
+            door = Door.createDoor(kitchen, alley);
+            door = Door.createDoor(cafeteria, mainCourtYard);
+            door = Door.createDoor(mainCourtYard, westCourtYard);
+            door = Door.createDoor(mainCourtYard, eastCourtYard);
+            door = Door.createDoor(eastCourtYard, shed);
 
             ladyMerchant = new Merchant(merch);
             HowToPlay task1 = new HowToPlay(mainHall);
@@ -55,7 +82,7 @@ namespace StarterGame
             return entrance;
         }
 
-        //Create door
+        
         
 
         // callback method for PlayerEnteredRoom

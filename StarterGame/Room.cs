@@ -56,9 +56,18 @@ namespace StarterGame
         {
             string exitNames = "Exits: ";
             Dictionary<string, Door>.KeyCollection keys = exits.Keys;
+            int count = 0;
             foreach (string exitName in keys)
             {
-                exitNames += " " + exitName + ", ";
+                count += 1;
+                if (keys.Count == count)
+                {
+                    exitNames += " " + exitName;
+                }
+                else
+                {
+                    exitNames += " " + exitName + ", ";
+                }
             }
 
             return exitNames;
