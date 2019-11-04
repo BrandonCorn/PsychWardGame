@@ -18,10 +18,14 @@ namespace StarterGame
                 _currentRoom = value;
             }
         }
+        private ITask currentTask; 
+        public ITask CurrentTask { get { return currentTask; } }
 
         public Player(Room room)//, GameOutput output)
         {
             _currentRoom = room;
+            currentTask = null;
+            NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
         }
 
         public void waltTo(string direction)
@@ -31,8 +35,9 @@ namespace StarterGame
             {
                 this._currentRoom = door.room(this.currentRoom);
                 // Player posts a notification PlayerEnteredRoom
-                NotificationCenter.Instance.postNotification(new Notification("PlayerEnteredRoom", this));
                 this.outputMessage("\n" + this._currentRoom.description());
+                NotificationCenter.Instance.postNotification(new Notification("PlayerEnteredRoom", this));
+                
             }
             else
             {
@@ -45,6 +50,17 @@ namespace StarterGame
         {
             outputMessage(word);
             NotificationCenter.Instance.postNotification(new Notification("Player has spoken", this));
+        }
+
+        public void TaskSet(Notification notification)
+        {
+             Console.WriteLine("\nA task has been set! (You can view the task description with the \"task\" command");
+            
+        }
+
+        public void setCurrentTask(ITask task)
+        {
+            this.currentTask = task;
         }
 
         public void outputMessage(string message)

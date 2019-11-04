@@ -10,7 +10,7 @@ namespace StarterGame
         public string Name { get; }
 
         private bool active;
-        public bool Active { get; }
+        public bool Active { get; set; }
 
         private bool complete; 
         public bool Complete { get; }
@@ -19,7 +19,7 @@ namespace StarterGame
         public Room TaskRoom { get; }
 
         private string description; 
-        public string Description { get; }
+        public string Description { get { return description; } }
 
         public HowToPlay(Room room)
         {
@@ -31,5 +31,6 @@ namespace StarterGame
                 " from selecting commands to fighting enemies.";
             
         }
+
     }
 }

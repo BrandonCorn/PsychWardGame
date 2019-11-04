@@ -18,9 +18,9 @@ namespace StarterGame
         public Room Entrance { get { return _entrance; } }
         private Room trigger;
         private string triggerWord;
-        private Room connectionRoom;
         private List<Room> hotList;
         private Merchant ladyMerchant;
+        public Merchant LadyMerchant { get; }
 
         private GameWorld()
         {
@@ -67,7 +67,8 @@ namespace StarterGame
             door = Door.createDoor(femaleWard, femaleGame);
             door = Door.createDoor(femaleWard, femaleShowers);
             door = Door.createDoor(femaleWard, femaleTherapy);
-            door = Door.createDoor(femaleTherapy, alley);
+            //need to create this door as task, will say it's a window. 
+            //door = Door.createDoor(femaleTherapy, alley);
             door = Door.createDoor(cafeteria, kitchen);
             door = Door.createDoor(kitchen, alley);
             door = Door.createDoor(cafeteria, mainCourtYard);
@@ -93,36 +94,30 @@ namespace StarterGame
             {
                 Console.WriteLine("Player entered the trigger room\n");
             }
-            /*if (hotList.Count > 0 && hotList[0] == player.currentRoom)
-            {
-                hotList.Remove(player.currentRoom);
-                if (hotList.Count == 0)
-                {
-                    player.outputMessage("\nAll the rooms have been visited!>>>\n");
-                }
-                
-            }*/
+
             if (player.currentRoom == ladyMerchant.MerchantRoom)
             {
-                Console.WriteLine("\nYou have entered the Merchants room\n");
+                NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", this));
+                player.setCurrentTask(ladyMerchant.TaskList.Dequeue());
+                //NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
+                Console.WriteLine("\n\nHere's an updated set of commands: ");
+                CommandWords commands = new CommandWords();
+                //commands.addMerchantCommands();
+                Console.WriteLine(commands.description());
             }
 
-                       
         }
         
         //callback method for player speak word
         public void playerSpeak(Notification notification)
         {
             Player player = (Player)notification.Object;
-            if (player.currentRoom == trigger)
+            if (player.currentRoom == ladyMerchant.MerchantRoom)
             {
                 Dictionary<String, Object> userInfo = notification.userInfo;
                 Console.WriteLine(notification.Name);
-                //String word = (String)userInfo["boom"];
-                //Console.WriteLine(userInfo.Keys);
-                
-
             }
         }
+
     }
 }

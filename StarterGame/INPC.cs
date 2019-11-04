@@ -7,6 +7,6 @@ namespace StarterGame
     public interface INPC
     {
         string Name { get; }
-        string description { get; }
+        string Description { get; }
     }
 }

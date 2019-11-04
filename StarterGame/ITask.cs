@@ -10,7 +10,7 @@ namespace StarterGame
         //it can be removed, it needs to be set to a room. When the player enters the correct room the task
         //can be active and the user will be able to participate or forced into participation. 
         string Name { get; }
-        bool Active { get; }
+        bool Active { get; set; }
         bool Complete { get; }
         Room TaskRoom { get; }
         string Description { get; }
