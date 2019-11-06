@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PsychWard
+namespace StarterGame
 {
     public class Hammer : I_Item, IWeapon
     {
-        private String name;
+        private readonly String name = "Hammer";
         public String Name { get; }
         private float weight;
         public float Weight { get; }
+        private int numItems;
+        public int NumItems { get; } 
+        
         private String description;
         public String Description { get; }
         private Boolean keyItem;
@@ -22,6 +25,10 @@ namespace PsychWard
         private int uses;
         public int Uses { get; }
 
+        public Hammer()
+        {
+           
+        }
        public void useItem()
         {
             //work on. player>item>useItem()>COMMAND

@@ -4,14 +4,38 @@ using System.Text;
 
 namespace StarterGame
 {
-    public interface I_Items
+    public interface I_Item
     {
-        int Weight { get; }
+        //weight is going to be used for items in the bookbag, weapons can have a weight of 0. 
+        //It will be written in such a way that you can only hold two. 
+        float Weight { get; }
+
+        //NumItems references how many of an item you have, this will be necessary for our inventory with the
+        //merchant. There is a difference between having multiple sets of batteries and those batteries each 
+        //being usable a certain # of times. 
+        int NumItems { get; }
+        
+        //The name should be initialized in the constructor of the items and should be readonly. The name of 
+        //items should not change. 
         string Name { get; }
+
+        //A simple item description. This can be displayed when the user picks it upneeds to know when it 
+        //may be used. **For instance we won't outright say rope will be used at the window to the alley
+        //but the player needs to know it will have a use down the road. 
         string Description { get; }
+
+        //KeyItem will keep the player from selling the item, if they try to we can give an indication that
+        //it is a key item and serves a purpose. 
         bool KeyItem { get; }
+
+        //How many times the item can be used. 
         int Uses { get; }
+
+        //How much the item is worth. 
         int Value { get; }
+
+        //A command will link to this when a player needs to use an item. A general command can allow a user
+        //to use an item at any time so long as it is necessary and makes sense. 
         void useItem(); 
     }
 }

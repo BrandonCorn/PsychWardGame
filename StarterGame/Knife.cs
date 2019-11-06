@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PsychWard
+namespace StarterGame
 {
     public class Knife : I_Item, IWeapon
     {
-        private String name;
+        private readonly String name = "Knife";
         public String Name { get; }
         private float weight;
         public float Weight { get; }
+        private int numItems;
+        public int NumItems { get; }
         private String description;
         public String Description { get; }
         private Boolean keyItem;
