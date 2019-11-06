@@ -84,12 +84,12 @@ namespace StarterGame
                 command.Words = new Queue<string>(allWords);
                 if (command.Words.Count == 0)
                 {
-                    Console.WriteLine(">>>Did not find the command " + commandName);
+                    Console.WriteLine("No words parsed");
                 }
             }
             else
             {
-                Console.WriteLine("No words parsed");
+                //Console.WriteLine(">>>Did not find the command " + commandName);
             }
             return command; 
         }
