@@ -99,7 +99,7 @@ namespace StarterGame
             {
                 NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", this));
                 player.setCurrentTask(ladyMerchant.TaskList.Dequeue());
-                //NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
+                NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
                 Console.WriteLine("\n\nHere's an updated set of commands: ");
                 CommandWords commands = new CommandWords();
                 //commands.addMerchantCommands();
