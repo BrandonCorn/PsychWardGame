@@ -20,7 +20,7 @@ namespace StarterGame
         private string triggerWord;
         private List<Room> hotList;
         private Merchant ladyMerchant;
-        public Merchant LadyMerchant { get; }
+        //public Merchant LadyMerchant { get; }
 
         private GameWorld()
         {
@@ -94,12 +94,16 @@ namespace StarterGame
             {
                 Console.WriteLine("Player entered the trigger room\n");
             }
-
+            //Notifies the merchant when a player enters the room, 
             if (player.currentRoom == ladyMerchant.MerchantRoom)
             {
                 NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", this));
-                player.setCurrentTask(ladyMerchant.TaskList.Dequeue());
-                NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
+                if (player.CurrentTask == null || player.CurrentTask.Complete == true)
+                {
+                    player.setCurrentTask(ladyMerchant.TaskList.Dequeue());
+                    NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
+                }
+                
                 Console.WriteLine("\n\nHere's an updated set of commands: ");
                 CommandWords commands = new CommandWords();
                 //commands.addMerchantCommands();

@@ -60,7 +60,9 @@ namespace StarterGame
 
         public void setCurrentTask(ITask task)
         {
-            this.currentTask = task;
+           
+                this.currentTask = task;
+            
         }
 
         public void outputMessage(string message)

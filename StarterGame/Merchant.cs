@@ -7,7 +7,7 @@ namespace StarterGame
     public class Merchant : INPC
     {
 
-        private string name; 
+        private readonly string name = "Merchant"; 
         public string Name { get; }
         private string description;
         public string Description { get; }
@@ -27,6 +27,7 @@ namespace StarterGame
         public Room MerchantRoom { get { return this.merchantRoom; } }
         public Merchant(Room room)
         {
+           
             this.merchantRoom = room;
             this.taskList = new Queue<ITask>();
             NotificationCenter.Instance.addObserver("EnteredMerchantRoom", enteredMerchantRoom);
