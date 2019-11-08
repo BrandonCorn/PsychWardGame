@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    class ZombiePatient :IEnemy
+    class Rat: IEnemy
     {
-        public readonly EnemyType enemyType = EnemyType.ZombiePatient; 
+        public readonly EnemyType enemyType = EnemyType.Rat;
         public EnemyType EnemyType { get { return enemyType; } }
         private int level; 
         public int Level { get { return level; } }
@@ -18,16 +18,16 @@ namespace StarterGame
         public int Health { get { return health; } }
         private float hitProbability;
         public float HitProbability { get { return hitProbability; } }
-        public String AttackDescription ()
+        public String AttackDescription()
         {
-            return "";
+            return ""; 
         }
-        
-        public ZombiePatient()
+
+        public Rat()
         {
             level = 1;
-            attack = 4;
-            health = 14;
+            attack = 3;
+            health = 12; 
             hitProbability = 1 / 3;
         }
     }

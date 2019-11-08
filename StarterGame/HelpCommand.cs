@@ -27,11 +27,11 @@ namespace StarterGame
             }
             else if (player.currentRoom.shortName == "merchant room")
             {
-                //player.outputMessage.("\n\n\nYour available commands " + )
+                player.outputMessage("\n\n\nYour available commands: " + words.description(CommandType.MerchantCommand));
             }
             else 
             {
-                player.outputMessage("\n\n\nYour available commands are " + words.description());
+                player.outputMessage("\n\n\nYour available commands are: " + words.description(CommandType.BasicCommand));
             }
 
             return false;

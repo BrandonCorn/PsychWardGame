@@ -35,7 +35,7 @@ namespace StarterGame
         {
             Room entrance = new Room(" at the entrance of the PsychWard", "entrance");
             Room merch = new Room("in the merchant's room", "merchant room");
-            Room mainHall = new Room("in the main hall", "main hall");
+            Room mainHall = new Room("in the main hall", "main hall",1/3);
             Room cafeteria = new Room("in the cafeteria", "cafeteria");
             Room maleWard = new Room("in the male ward", "male ward");
             Room femaleWard = new Room("in the female ward", "female ward");
@@ -44,7 +44,7 @@ namespace StarterGame
             Room maleGame = new Room("in male game room", "male game room");
             Room femaleGame = new Room("in female game room", "female game room");
             Room hallway = new Room("in the hallway outside the male ward", "male ward hallway");
-            Room maleMeetingRoom = new Room("in the male's meeting room", "male meeting room");
+            Room lounge = new Room("in the guy's lounge", "male lounge");
             Room maleTherapy = new Room("in the therapy room", "male therapy room");
             Room femaleTherapy = new Room("in female ward therapy room", "female therapy room");
             Room alley = new Room("outside in the alley", "alley");
@@ -62,7 +62,7 @@ namespace StarterGame
             door = Door.createDoor(maleWard, maleGame);
             door = Door.createDoor(maleWard, maleShowers);
             door = Door.createDoor(maleWard, hallway);
-            door = Door.createDoor(hallway, maleMeetingRoom);
+            door = Door.createDoor(hallway, lounge);
             door = Door.createDoor(hallway, maleTherapy);
             door = Door.createDoor(femaleWard, femaleGame);
             door = Door.createDoor(femaleWard, femaleShowers);
@@ -105,11 +105,14 @@ namespace StarterGame
                 }
                 
                 Console.WriteLine("\n\nHere's an updated set of commands: ");
-                CommandWords commands = new CommandWords();
-                //commands.addMerchantCommands();
-                Console.WriteLine(commands.description());
+                Console.WriteLine(new CommandWords().description(CommandType.MerchantCommand));   
             }
-
+            //Here we are notifying the room the player has entered so that a possible battle can occur. 
+            //The room needs to be responsible fo the battle since it is occurring inside of there. 
+            else
+            {
+                NotificationCenter.Instance.postNotification(new Notification("BattleSequence", player));
+            }
         }
         
         //callback method for player speak word

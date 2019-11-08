@@ -8,9 +8,9 @@ namespace StarterGame
     {
 
         private readonly string name = "Merchant"; 
-        public string Name { get; }
+        public string Name { get { return name; } }
         private string description;
-        public string Description { get; }
+        public string Description { get { return description; } }
 
         //The tasks can be assigned to rooms by the GameWorld, but the Merchant has control of them
         //only she can take away from the taskList, or access them to mark them as completed to move through 

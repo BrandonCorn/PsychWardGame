@@ -6,11 +6,12 @@ namespace StarterGame
 {
     public interface IEnemy
     {
+        EnemyType EnemyType {get;}
         int Level { get; }
         int Attack { get; }
-        int Defense { get; }
+        int Health { get; }
         float HitProbability { get; }
 
-        string AttackDescription { get; }
+        string AttackDescription();
     }
 }

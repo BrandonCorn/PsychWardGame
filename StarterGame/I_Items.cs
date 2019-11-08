@@ -9,11 +9,6 @@ namespace StarterGame
         //weight is going to be used for items in the bookbag, weapons can have a weight of 0. 
         //It will be written in such a way that you can only hold two. 
         float Weight { get; }
-
-        //NumItems references how many of an item you have, this will be necessary for our inventory with the
-        //merchant. There is a difference between having multiple sets of batteries and those batteries each 
-        //being usable a certain # of times. 
-        int NumItems { get; }
         
         //The name should be initialized in the constructor of the items and should be readonly. The name of 
         //items should not change. 

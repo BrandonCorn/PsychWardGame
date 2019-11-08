@@ -8,38 +8,37 @@ namespace StarterGame
 {
     public class Hammer : I_Item, IWeapon
     {
-        private readonly String name = "Hammer";
-        public String Name { get; }
+        public readonly String name = "Hammer";
+     
+        public String Name { get { return name; } }
         private float weight;
-        public float Weight { get; }
-        private int numItems;
-        public int NumItems { get; } 
-        
-        private String description;
-        public String Description { get; }
+        public float Weight { get { return weight; } }
+
+        public readonly string description = "An awesome hammer to bash people's brains in with";
+        public String Description { get { return description; } }
         private Boolean keyItem;
-        public Boolean KeyItem { get; }
+        public Boolean KeyItem { get { return keyItem; } }
         private int value;
-        public int Value { get; }
+        public int Value { get { return value; } }
 
         private int uses;
-        public int Uses { get; }
-
+        public int Uses { get { return uses; } }
+        private int attack; 
+        public int Attack { get; }
         public Hammer()
         {
-           
+            weight = 0;
+            keyItem = false;
+            uses = 10;
         }
-       public void useItem()
-        {
-            //work on. player>item>useItem()>COMMAND
-        }
-        public int Attack { get; }
-
-        private int strength;
-        public int Strength { get; }
         public void getStrength(Player player)
         {
             
+        }
+
+        public void useItem()
+        {
+            //work on. player>item>useItem()>COMMAND
         }
 
     }

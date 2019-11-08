@@ -9,20 +9,20 @@ namespace StarterGame
     public class Knife : I_Item, IWeapon
     {
         private readonly String name = "Knife";
-        public String Name { get; }
+        public String Name { get { return name; } }
         private float weight;
-        public float Weight { get; }
+        public float Weight { get { return weight; } }
         private int numItems;
-        public int NumItems { get; }
+        public int NumItems { get { return numItems; } }
         private String description;
-        public String Description { get; }
+        public String Description { get { return description; } }
         private Boolean keyItem;
-        public Boolean KeyItem { get; }
+        public Boolean KeyItem { get { return keyItem; } }
         private int value;
-        public int Value { get; }
+        public int Value { get { return value; } }
 
         private int uses;
-        public int Uses { get; }
+        public int Uses { get { return uses; } }
 
         public void useItem()
         {

@@ -78,13 +78,16 @@ namespace StarterGame
             Queue<string> allWords = new Queue<string>(commandString.Split(" "));
 
             if (allWords.Count > 0)
-            {
+            {              
                 string commandName = allWords.Peek();
                 command = commands.get(allWords.Dequeue());
-                command.Words = new Queue<string>(allWords);
-                if (command.Words.Count == 0)
+                if (command != null)
                 {
-                    Console.WriteLine("No words parsed");
+                    command.Words = new Queue<string>(allWords);
+                }
+                else
+                {
+                    Console.WriteLine(">>>Did not find the command " + commandName);
                 }
             }
             else

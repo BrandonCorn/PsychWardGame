@@ -7,28 +7,29 @@ namespace StarterGame
     public class Player
     {
         private Room _currentRoom = null;
-        public Room currentRoom
-        {
-            get
-            {
-                return _currentRoom;
-            }
-            set
-            {
-                _currentRoom = value;
-            }
-        }
+        public Room currentRoom { get { return _currentRoom; } set { _currentRoom = value; } }
+
+        private int attack; 
+        public int Attack { get { return attack;} set { attack = value; } }
+
+        private int health; 
+        public int Health { get { return health; } set { health = value; } }
+        
+        //Current Task is simply that, the task the player is currently trying to complete given by the merchant.
         private ITask currentTask; 
         public ITask CurrentTask { get { return currentTask; } }
-        private bool inBattle; 
+        
         //The in battle status will allow us to know when certain commands should be available and not available.
         //Look at help command for example. 
+        private bool inBattle; 
         public bool InBattle { get { return inBattle; } set { inBattle = value; } }
 
         public Player(Room room)//, GameOutput output)
         {
             _currentRoom = room;
             currentTask = null;
+            attack = 6;
+            health = 100; 
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
         }
 
