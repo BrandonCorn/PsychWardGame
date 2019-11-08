@@ -7,6 +7,7 @@ namespace StarterGame
         public SpeakCommand()
         {
             this.name = "speak";
+            this.CommandType = CommandType.BasicCommand;
         }
 
         public override bool execute(Player player)

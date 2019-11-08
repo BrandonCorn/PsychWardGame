@@ -19,6 +19,11 @@ namespace StarterGame
         private Queue<string> words;
         public Queue<string> Words { get { return words; } set { words = value; } }
 
+        //Giving each Command a type will allow us to make it so they are only displayed and usable in 
+        //given situations. It will be assigned in each new commands constructor 
+        private CommandType commandType; 
+        public CommandType CommandType { get { return commandType; } set { commandType = value; } }
+
         public Command()
         {
             this.name = "";
@@ -26,6 +31,7 @@ namespace StarterGame
             this.thirdWord = null;
             this.fourthWord = null;
             this.words = null;
+           
         }
 
         public bool hasSecondWord()

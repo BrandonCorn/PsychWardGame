@@ -15,6 +15,7 @@ namespace StarterGame
         {
             words = commands;
             this.name = "help";
+            this.CommandType = CommandType.BasicCommand;
         }
 
         override
@@ -24,7 +25,10 @@ namespace StarterGame
             {
                 player.outputMessage("\nI cannot help you with " + this.secondWord);
             }
-            
+            else if (player.currentRoom.shortName == "merchant room")
+            {
+                //player.outputMessage.("\n\n\nYour available commands " + )
+            }
             else 
             {
                 player.outputMessage("\n\n\nYour available commands are " + words.description());

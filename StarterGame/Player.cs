@@ -20,6 +20,10 @@ namespace StarterGame
         }
         private ITask currentTask; 
         public ITask CurrentTask { get { return currentTask; } }
+        private bool inBattle; 
+        //The in battle status will allow us to know when certain commands should be available and not available.
+        //Look at help command for example. 
+        public bool InBattle { get { return inBattle; } set { inBattle = value; } }
 
         public Player(Room room)//, GameOutput output)
         {

@@ -10,6 +10,7 @@ namespace StarterGame
         public BuyCommand()
         {
             this.name = "buy";
+            this.CommandType = CommandType.MerchantCommand;
         }
         public override bool execute(Player player)
         {

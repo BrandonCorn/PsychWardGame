@@ -8,7 +8,8 @@ namespace StarterGame
     {
         public SellCommand()
         {
-            this.name = "sell"; 
+            this.name = "sell";
+            this.CommandType = CommandType.MerchantCommand;
         }
 
         public override bool execute(Player player)

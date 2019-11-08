@@ -9,6 +9,7 @@ namespace StarterGame
         public GoCommand() : base()
         {
             this.name = "go";
+            this.CommandType = CommandType.BasicCommand;
         }
 
         /*override
