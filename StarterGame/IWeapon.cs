@@ -6,7 +6,7 @@ namespace StarterGame
 {
     public interface IWeapon
     {
-        int Attack { get; }
-        void getStrength(Player player);
+        int Attack { get; set; }
+        int getStrength(Player player);
     }
 }

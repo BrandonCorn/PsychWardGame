@@ -16,6 +16,7 @@ namespace StarterGame
             playing = false;
             parser = new Parser(new CommandWords());
             player = new Player(GameWorld.Instance.Entrance);
+            
         }
 
 
@@ -66,6 +67,7 @@ namespace StarterGame
         {
             return "\nThank you for playing, Goodbye. \n";
         }
+
 
     }
 }

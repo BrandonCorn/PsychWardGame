@@ -128,10 +128,30 @@ namespace StarterGame
             Player player = (Player)notification.Object;
             if (player.currentRoom.ChanceEnemy != 0)
             {
-                if (Room.runIntoEnemy(player))
+                IEnemy enemy = Room.getAnEnemy(player);
+                if (enemy != null)
                 {
-                    IEnemy enemy = Room.getAnEnemy();
-                    Console.WriteLine("\n\n" + enemy.battleGreeting() + "\nThe battle begins!");
+                    player.InBattle = true;
+                    Console.WriteLine("\n****************************************************");
+                    Console.WriteLine("\n" + enemy.battleGreeting() + "\nThe battle begins!");
+                    Console.WriteLine("\nHere are your battle commands: \n" +
+                        new CommandWords().description(CommandType.BattleCommand));
+                    while (player.InBattle)
+                    {
+                        //This will change the commands available for the sake of battle. 
+                        CommandWords commands = new CommandWords();
+                        commands.setBattleCommands();
+                        Parser parser = new Parser(commands);
+                        Console.WriteLine("Choose a command!");
+                        Console.Write("\n>");
+                        Command command = parser.parseCommand(Console.ReadLine());
+                        while (command == null)
+                        {
+                            Console.WriteLine("I don't understand...");
+                            command = parser.parseCommand(Console.ReadLine());
+                        }
+                        player.InBattle = command.execute(player);
+                    }
                 }
             }
         }

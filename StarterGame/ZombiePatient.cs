@@ -8,7 +8,7 @@ namespace StarterGame
 {
     class ZombiePatient :IEnemy
     {
-        public readonly EnemyType enemyType = EnemyType.ZombiePatient; 
+        private readonly EnemyType enemyType = EnemyType.ZombiePatient; 
         public EnemyType EnemyType { get { return enemyType; } }
         private int level; 
         public int Level { get { return level; } }

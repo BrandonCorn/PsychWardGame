@@ -15,7 +15,9 @@ namespace StarterGame
         {
             words = commands;
             this.name = "help";
-            this.CommandType = CommandType.BasicCommand;
+            this.CommandTypes = new Dictionary<CommandType,string>();
+            CommandTypes.Add( CommandType.BasicCommand, "Help Basic Command");
+            CommandTypes.Add(CommandType.BattleCommand,"Help Battle Command");
         }
 
         override
@@ -29,11 +31,16 @@ namespace StarterGame
             {
                 player.outputMessage("\n\n\nYour available commands: " + words.description(CommandType.MerchantCommand));
             }
+            //Player returns true here because he must remain in the battle
+            else if (player.InBattle)
+            {
+                player.outputMessage("\n\n\nYour available commands: " + words.description(CommandType.BattleCommand));
+                return true;
+            }
             else 
             {
                 player.outputMessage("\n\n\nYour available commands are: " + words.description(CommandType.BasicCommand));
             }
-
             return false;
         }
     }

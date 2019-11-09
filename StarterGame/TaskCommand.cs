@@ -9,7 +9,8 @@ namespace StarterGame
         public TaskCommand()
         {
             this.name = "task";
-            this.CommandType = CommandType.BasicCommand; 
+            this.CommandTypes = new Dictionary<CommandType,string>();
+            CommandTypes.Add(CommandType.BasicCommand,"Task Basic Command");
         }
 
         public override bool execute(Player player)

@@ -24,13 +24,22 @@ namespace StarterGame
         private bool inBattle; 
         public bool InBattle { get { return inBattle; } set { inBattle = value; } }
 
+        //The player will be capable of holding one weapon at a time. The players weapon attack will 
+        //stack onto the players attack damage and each battle will degrade the weapons use by one. 
+        private IWeapon weapon; 
+        public IWeapon Weapon { get { return weapon; } set { weapon = value; } }
+
+        
         public Player(Room room)//, GameOutput output)
         {
             _currentRoom = room;
             currentTask = null;
             attack = 6;
-            health = 100; 
+            health = 100;
+            inBattle = false;
+            weapon = null;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
+            NotificationCenter.Instance.addObserver("UseWeapon", useWeapon);
         }
 
         public void waltTo(string direction)
@@ -57,17 +66,18 @@ namespace StarterGame
             NotificationCenter.Instance.postNotification(new Notification("Player has spoken", this));
         }
 
+        public void useWeapon(Notification notification)
+        {
+            IEnemy enemy = (IEnemy)notification.Object;
+        }
         public void TaskSet(Notification notification)
         {
              Console.WriteLine("\nA task has been set! (You can view the task description with the \"task\" command");
-            
         }
 
         public void setCurrentTask(ITask task)
-        {
-           
-                this.currentTask = task;
-            
+        {   
+                this.currentTask = task; 
         }
 
         public void outputMessage(string message)

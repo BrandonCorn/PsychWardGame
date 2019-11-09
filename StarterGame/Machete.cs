@@ -11,32 +11,35 @@ namespace StarterGame
         private readonly String name = "Machete";
         public String Name { get { return name; } }
         private float weight;
-        public float Weight { get { return weight; } }
-        private int numItems;
-        public int NumItems { get { return numItems; } }
-        private String description;
-        public String Description { get { return description; } }
+        public float Weight { get { return weight; } set { weight = value; } }
+
+        private readonly string description = "A rusty machete to slice up foes!";
+        public string Description { get { return description + "\nAttack: " + Attack; } }
         private Boolean keyItem;
         public Boolean KeyItem { get { return keyItem; } }
         private int value;
-        public int Value { get { return value; } }
+        public int Value { get { return value; } set { this.value = value; } }
 
         private int uses;
-        public int Uses { get { return uses; } }
+        public int Uses { get { return uses; } set { uses = value; } }
+        private int attack; 
+        public int Attack { get { return attack; } set { attack = value; } }
 
+        public Machete()
+        {
+            Weight = 8;
+            Value = 100;
+            keyItem = false;
+            Uses = 10;
+            Attack = 3;
+        }
+        public int getStrength(Player player)
+        {
+            return player.Attack + Attack;
+        }
         public void useItem()
         {
             //work on. player>item>useItem()>COMMAND
         }
-        public int Attack { get; }
-
-        private int strength;
-        public int Strength { get; }
-        public void getStrength(Player player)
-        {
-           
-        }
-
-
     }
 }

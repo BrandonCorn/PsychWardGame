@@ -83,30 +83,22 @@ namespace StarterGame
             return "You are " + this.tag + ".\n *** " + this.getExits();
         }
 
-        //Method will calculate likelihood that you run into an enemy. Made static since it pertains to rooms
-        //but want gameworld to have access to dictate battles. 
-        public static bool runIntoEnemy(Player player)
+        //Method will calculate the chance of running into an enemy and the random numbers match a 
+        //random enemy will be spawned and presented in the game world. 
+        public static IEnemy getAnEnemy(Player player)
         {
             int chance1 = new Random().Next(1, player.currentRoom.ChanceEnemy + 1);
             int chance2 = new Random().Next(1, player.currentRoom.ChanceEnemy + 1);
             if (chance1 == chance2)
             {
-                return true; 
+                int chance = new Random().Next(1, 3);
+                if (chance == 1)
+                {
+                    return new Rat();
+                }
+                return new ZombiePatient();
             }
-            return false;
+            return null;
         }
-
-        //Method will randomly spawn an enemy for you. This can be tweaked to take into account level, room
-        //and other circumstances. method is static to give game world access. 
-        public static IEnemy getAnEnemy()
-        {
-            int chance = new Random().Next(1, 3); 
-            if (chance == 1)
-            {
-                return new Rat();
-            }
-            return new ZombiePatient();
-        }
-
     }
 }

@@ -8,7 +8,7 @@ namespace StarterGame
 {
     class Rat: IEnemy
     {
-        public readonly EnemyType enemyType = EnemyType.Rat;
+        private readonly EnemyType enemyType = EnemyType.Rat;
         public EnemyType EnemyType { get { return enemyType; } }
         private int level; 
         public int Level { get { return level; } }
