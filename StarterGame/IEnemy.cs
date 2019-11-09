@@ -11,7 +11,8 @@ namespace StarterGame
         int Attack { get; }
         int Health { get; }
         float HitProbability { get; }
-
+        string battleGreeting();
         string AttackDescription();
+
     }
 }

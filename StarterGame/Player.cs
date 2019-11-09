@@ -42,7 +42,7 @@ namespace StarterGame
                 // Player posts a notification PlayerEnteredRoom
                 this.outputMessage("\n" + this._currentRoom.description());
                 NotificationCenter.Instance.postNotification(new Notification("PlayerEnteredRoom", this));
-                
+                NotificationCenter.Instance.postNotification(new Notification("BattleSequence", this));
             }
             else
             {

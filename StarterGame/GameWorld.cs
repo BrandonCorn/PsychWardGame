@@ -29,13 +29,14 @@ namespace StarterGame
             // GameWorld subscribes to the notification PlayerEnteredRoom
             NotificationCenter.Instance.addObserver("PlayerEnteredRoom", playerEnteredRoom);
             NotificationCenter.Instance.addObserver("Player has spoken", playerSpeak);
+            NotificationCenter.Instance.addObserver("BattleSequence", battleSequence);
         }
 
         private Room createWorld()
         {
             Room entrance = new Room(" at the entrance of the PsychWard", "entrance");
             Room merch = new Room("in the merchant's room", "merchant room");
-            Room mainHall = new Room("in the main hall", "main hall",1/3);
+            Room mainHall = new Room("in the main hall", "main hall",3);
             Room cafeteria = new Room("in the cafeteria", "cafeteria");
             Room maleWard = new Room("in the male ward", "male ward");
             Room femaleWard = new Room("in the female ward", "female ward");
@@ -90,11 +91,10 @@ namespace StarterGame
         public void playerEnteredRoom(Notification notification)
         {
             Player player = (Player)notification.Object;
-            if(player.currentRoom == trigger)
-            {
-                Console.WriteLine("Player entered the trigger room\n");
-            }
-            //Notifies the merchant when a player enters the room, 
+
+            //Notifies the merchant when a player enters the room, a task is set by the merchant. The player
+            //is notified that they have received a task. An updated set of commands are given if they player 
+            //interacts with the merchant. 
             if (player.currentRoom == ladyMerchant.MerchantRoom)
             {
                 NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", this));
@@ -103,16 +103,11 @@ namespace StarterGame
                     player.setCurrentTask(ladyMerchant.TaskList.Dequeue());
                     NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
                 }
-                
+                //Need to put an option to interact with merchant to allow buy/sell commands
                 Console.WriteLine("\n\nHere's an updated set of commands: ");
                 Console.WriteLine(new CommandWords().description(CommandType.MerchantCommand));   
             }
-            //Here we are notifying the room the player has entered so that a possible battle can occur. 
-            //The room needs to be responsible fo the battle since it is occurring inside of there. 
-            else
-            {
-                NotificationCenter.Instance.postNotification(new Notification("BattleSequence", player));
-            }
+
         }
         
         //callback method for player speak word
@@ -123,6 +118,21 @@ namespace StarterGame
             {
                 Dictionary<String, Object> userInfo = notification.userInfo;
                 Console.WriteLine(notification.Name);
+            }
+        }
+
+        //This method is callback method from player entering a room, it will initiate and conduct a battle
+        //between a player and randomly generated enemy.
+        public void battleSequence(Notification notification)
+        {
+            Player player = (Player)notification.Object;
+            if (player.currentRoom.ChanceEnemy != 0)
+            {
+                if (Room.runIntoEnemy(player))
+                {
+                    IEnemy enemy = Room.getAnEnemy();
+                    Console.WriteLine("\n\n" + enemy.battleGreeting() + "\nThe battle begins!");
+                }
             }
         }
 

@@ -18,7 +18,11 @@ namespace StarterGame
         public int Health { get { return health; } }
         private float hitProbability;
         public float HitProbability { get { return hitProbability; } }
-        public String AttackDescription ()
+        public string battleGreeting()
+        {
+            return "A mummified zombie patient blindsides you out of no where!";
+        }
+        public string AttackDescription ()
         {
             return "";
         }

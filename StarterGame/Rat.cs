@@ -18,6 +18,10 @@ namespace StarterGame
         public int Health { get { return health; } }
         private float hitProbability;
         public float HitProbability { get { return hitProbability; } }
+        public String battleGreeting()
+        {
+            return "A rabid Rat wants you dead. It lunges at you in fury!"; 
+        }
         public String AttackDescription()
         {
             return ""; 
