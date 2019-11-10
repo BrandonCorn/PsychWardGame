@@ -20,6 +20,7 @@ namespace StarterGame
             else if (choice == 2) { return "Player escapes a terrible fate!"; }
             else { return "Player has no options left. Peace Oooouuuuttt!"; }
         }
+        //The run command returns false so the player can exit the battle sequence
         public override bool execute(Player player)
         {
             player.outputMessage("\n" + runStatement());

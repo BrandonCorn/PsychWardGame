@@ -13,12 +13,18 @@ namespace StarterGame
             CommandTypes.Add(CommandType.BattleCommand,"Fight Battle Command");
             
         }
-
+        //If the player fights the enemy, if they kill the enemy then this returns false to exit the 
+        //battle sequence in the GameWorld, otherwise it remains true. 
         public override bool execute(Player player)
         {
             if (player.InBattle)
             {
-                Console.WriteLine("This is a test, the fight sequence is working.");
+                player.useWeapon();
+            }
+            if (player.CurrentEnemy.Health <= 0)
+            {
+                player.outputMessage("\nYou win!!!\n");
+                return false;
             }
             return true;
         }

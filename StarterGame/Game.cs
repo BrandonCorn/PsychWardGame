@@ -9,14 +9,15 @@ namespace StarterGame
         Player player;
         Parser parser;
         bool playing;
-
+        bool finished;
         public Game()
         {
             //GameWorld gameWorld = new GameWorld();
             playing = false;
             parser = new Parser(new CommandWords());
             player = new Player(GameWorld.Instance.Entrance);
-            
+            finished = false;
+            NotificationCenter.Instance.addObserver("PlayerDied", PlayerDied);
         }
 
 
@@ -29,7 +30,8 @@ namespace StarterGame
             // Enter the main command loop.  Here we repeatedly read commands and
             // execute them until the game is over.
 
-            bool finished = false;
+            //This bool has been made a value to the game so that it can be updated if the player dies.
+            //bool finished = false;
             while (!finished)
             {
                 Console.Write("\n>");
@@ -68,6 +70,11 @@ namespace StarterGame
             return "\nThank you for playing, Goodbye. \n";
         }
 
-
+        //If the player dies the game is ended. 
+        public void PlayerDied(Notification notification)
+        {
+            Console.WriteLine("You have died, better luck next time!");
+            this.finished = true;
+        }
     }
 }

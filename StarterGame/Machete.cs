@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    class Machete: I_Item, IWeapon
+    class Machete: IWeapon
     {
         private readonly String name = "Machete";
         public String Name { get { return name; } }
-        private float weight;
-        public float Weight { get { return weight; } set { weight = value; } }
+        private Dictionary<string, ItemType> itemTypes;
+        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+        private int weight;
+        public int Weight { get { return weight; } set { weight = value; } }
 
         private readonly string description = "A rusty machete to slice up foes!";
         public string Description { get { return description + "\nAttack: " + Attack; } }
-        private Boolean keyItem;
-        public Boolean KeyItem { get { return keyItem; } }
+
         private int value;
         public int Value { get { return value; } set { this.value = value; } }
 
@@ -29,17 +30,14 @@ namespace StarterGame
         {
             Weight = 8;
             Value = 100;
-            keyItem = false;
+            itemTypes = new Dictionary<string, ItemType>();
+            itemTypes.Add(name, ItemType.WeaponItem);
             Uses = 10;
             Attack = 3;
         }
         public int getStrength(Player player)
         {
             return player.Attack + Attack;
-        }
-        public void useItem()
-        {
-            //work on. player>item>useItem()>COMMAND
         }
     }
 }
