@@ -20,7 +20,7 @@ namespace StarterGame
         private string triggerWord;
         private List<Room> hotList;
         private Merchant ladyMerchant;
-        //public Merchant LadyMerchant { get; }
+        public Merchant LadyMerchant { get { return ladyMerchant; } }
 
         private GameWorld()
         {
@@ -95,8 +95,8 @@ namespace StarterGame
             //interacts with the merchant. 
             if (player.currentRoom == ladyMerchant.MerchantRoom)
             {
-                NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", this));
-                if (player.CurrentTask == null || player.CurrentTask.Complete == true)
+                NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", player));
+                /*if (player.CurrentTask == null || player.CurrentTask.Complete == true)
                 {
                     player.setCurrentTask(ladyMerchant.TaskList.Dequeue());
                     NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
@@ -104,7 +104,8 @@ namespace StarterGame
                 //Need to put an option to interact with merchant to allow buy/sell commands
 
                 Console.WriteLine("\n\nHere's an updated set of commands: " + 
-                new CommandWords().description(CommandType.MerchantCommand));   
+                new CommandWords().description(CommandType.MerchantCommand));  
+                */
             }
 
         }
