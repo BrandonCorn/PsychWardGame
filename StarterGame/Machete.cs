@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    class Machete: IWeapon
+    class Machete: IWeapon, I_Item
     {
         private readonly String name = "Machete";
         public String Name { get { return name; } }
@@ -26,6 +26,8 @@ namespace StarterGame
         private int attack; 
         public int Attack { get { return attack; } set { attack = value; } }
 
+        public bool KeyItem => throw new NotImplementedException();
+
         public Machete()
         {
             Weight = 8;
@@ -38,6 +40,11 @@ namespace StarterGame
         public int getStrength(Player player)
         {
             return player.Attack + Attack;
+        }
+
+        public void useItem()
+        {
+            //No need for this. The player uses the weapon. 
         }
     }
 }

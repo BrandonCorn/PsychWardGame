@@ -19,9 +19,10 @@ namespace StarterGame
         //but the player needs to know it will have a use down the road. 
         string Description { get; }
 
-        //KeyItem will keep the player from selling the item, if they try to we can give an indication that
+        /*KeyItem will keep the player from selling the item, if they try to we can give an indication that
         //it is a key item and serves a purpose. 
         bool KeyItem { get; }
+        */
 
         //How many times the item can be used. 
         int Uses { get; }
