@@ -7,8 +7,8 @@ namespace StarterGame
     public class CommandWords
     {
         Dictionary<string, Command> commands;
-        private static Command[] commandArray = { new GoCommand(), new SpeakCommand(),
-            new TaskCommand(), new BuyCommand(), new SellCommand(), new FightCommand(),
+        private static Command[] commandArray = { new GoCommand(), new InteractCommand(),
+             new BuyCommand(), new SellCommand(), new TaskCommand(), new FightCommand(),
             new RunCommand(),new QuitCommand()};
 
         public CommandWords() : this(commandArray)
@@ -46,6 +46,20 @@ namespace StarterGame
                 }
             }
             
+        }
+
+        public void setMerchantCommands()
+        {
+            Dictionary<string, Command>.ValueCollection values = commands.Values;
+            commands = new Dictionary<string, Command>();
+            foreach (Command command in values)
+            {
+                if (command.CommandTypes.ContainsKey(CommandType.MerchantCommand))
+                {
+                    commands[command.name] = command;
+                }
+            }
+
         }
 
         public string description()

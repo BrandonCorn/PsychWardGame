@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    public class Knife : I_Item, IWeapon
+    public class Knife : IWeapon
     {
-        private readonly String name = "Knife";
-        public String Name { get { return name; } }
-        private float weight;
-        public float Weight { get { return weight; } set { weight = value; } }
+        private readonly string name = "Knife";
+        public string Name { get { return name; } }
+        private Dictionary<string, ItemType> itemTypes;
+        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+        private int weight;
+        public int Weight { get { return weight; } set { weight = value; } }
 
         private readonly string description = "A knife perfect for carving out zombie eyes!";
         public string Description { get { return description + "\nAttack: " + Attack; } }
-        private Boolean keyItem;
-        public Boolean KeyItem { get { return keyItem; } }
+ 
         private int value;
         public int Value { get { return value; } set { this.value = value; } }
 
@@ -30,19 +31,17 @@ namespace StarterGame
         public Knife()
         {
             Weight = 5;
+            itemTypes = new Dictionary<string, ItemType>();
+            itemTypes.Add(name, ItemType.WeaponItem);
             Value = 75; 
-            keyItem = false;
             Uses = 10;
-            Attack = 1;
+            Attack = 2;
         }
         public int getStrength(Player player)
         {
             return player.Attack + Attack;
         }
-        public void useItem()
-        {
-            //work on. player>item>useItem()>COMMAND
-        }
+
 
     }
 }
