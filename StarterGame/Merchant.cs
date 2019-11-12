@@ -39,6 +39,7 @@ namespace StarterGame
             this.taskList.Enqueue(task);
         }
 
+        //When the player enters the merchant room, the commands allowed in the merchant room are set. 
         private void enteredMerchantRoom(Notification notification)
         {
             Player player = (Player)notification.Object;

@@ -4,8 +4,10 @@ using System.Text;
 
 namespace StarterGame
 {
+    //These names can belong to key NPC that way there is a way to differentiate them from general NPC that
+    //just make pointless statements. 
     public enum  NpcName
     {
-        Brandon, Robert, Marissa, Mary, Kendall, Andrew, Sora, Kairi, Carie, Dro, Miguel, Minerva
+        Brandon, Ethan, Kayla
     }
 }

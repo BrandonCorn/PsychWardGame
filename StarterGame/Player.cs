@@ -39,7 +39,7 @@ namespace StarterGame
             _currentRoom = room;
             currentTask = null;
             attack = 6;
-            health = 100;
+            health = 1;
             inBattle = false;
             weapon = new Knife();
             currentEnemy = null;
@@ -65,6 +65,7 @@ namespace StarterGame
                 this.outputMessage("\n" + this._currentRoom.description());
             }
         }
+
         public void BattleOver(Notification notification)
         {
             Player player = (Player)notification.Object;

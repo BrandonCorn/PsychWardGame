@@ -19,9 +19,9 @@ namespace StarterGame
 
         //Contains all the NPCs that a player can interact with in a room. They Key will be the name they 
         //given, creator of the game chooses this when compiling. The value will be the enemy themselves. 
-        private Dictionary<NpcName, INPC> roomNpcs; 
+        private Dictionary<string, INPC> roomNpcs; 
         
-        public Dictionary<NpcName,INPC> RoomNpcs { get { return roomNpcs; } }
+        public Dictionary<string,INPC> RoomNpcs { get { return roomNpcs; } }
 
         public Room() : this("No Tag", "short", 0, 0)
         {
@@ -32,14 +32,14 @@ namespace StarterGame
         {
             exits = new Dictionary<string, Door>();
             this.tag = tag;
-            roomNpcs = new Dictionary<NpcName, INPC>();
+            roomNpcs = new Dictionary<string, INPC>();
         }
         public Room(string tag, string shortName) : this(tag, shortName, 0, 0)
         {
             exits = new Dictionary<string, Door>();
             this.tag = tag;
             this.shortName = shortName;
-            roomNpcs = new Dictionary<NpcName, INPC>();
+            roomNpcs = new Dictionary<string, INPC>();
         }
         public Room(String tag, string shortName, int chanceEnemy) : this(tag, shortName, chanceEnemy, 0)
         {
@@ -47,7 +47,7 @@ namespace StarterGame
             this.tag = tag;
             this.shortName = shortName;
             this.chanceEnemy = chanceEnemy;
-            roomNpcs = new Dictionary<NpcName, INPC>();
+            roomNpcs = new Dictionary<string, INPC>();
         }
         //In the case that the user tells us to place some NPC's in the room this can do some randomly and
         //we only need to give the number of them we want. A generic class will be created to give them
@@ -63,8 +63,8 @@ namespace StarterGame
             {
                 //This method adds a random npc from this enum of npc names and creates a generic npc 
                 //character to assign to it. 
-                roomNpcs.Add((NpcName)Enum.Parse(typeof(NpcName),Enum.GetName(typeof(NpcName), 
-                    new Random().Next(1, Enum.GetNames(typeof(NpcName)).Length))),new GenericNpc());
+                //roomNpcs.Add((NpcName)Enum.Parse(typeof(NpcName),Enum.GetName(typeof(NpcName), 
+                    //new Random().Next(1, Enum.GetNames(typeof(NpcName)).Length))),new GenericNpc());
             }
         }
 

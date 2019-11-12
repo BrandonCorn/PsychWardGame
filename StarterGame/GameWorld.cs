@@ -161,7 +161,9 @@ namespace StarterGame
                         //If the player dies the game world is notified so that the game can be ended. 
                         if (player.Health <= 0)
                         {
+                            player.InBattle = false; 
                             NotificationCenter.Instance.postNotification(new Notification("PlayerDied", this));
+                            
                         }
                         
                     }
