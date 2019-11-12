@@ -8,7 +8,7 @@ namespace StarterGame
     {
         //weight is going to be used for items in the bookbag, weapons can have a weight of 0. 
         //It will be written in such a way that you can only hold two. 
-        float Weight { get; }
+        int Weight { get; }
         
         //The name should be initialized in the constructor of the items and should be readonly. The name of 
         //items should not change. 

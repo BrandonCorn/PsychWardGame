@@ -20,7 +20,7 @@ namespace StarterGame
         private string triggerWord;
         private List<Room> hotList;
         private Merchant ladyMerchant;
-        //public Merchant LadyMerchant { get; }
+        public Merchant LadyMerchant { get { return ladyMerchant; } }
 
         private GameWorld()
         {
@@ -36,7 +36,7 @@ namespace StarterGame
         {
             Room entrance = new Room(" at the entrance of the PsychWard", "entrance");
             Room merch = new Room("in the merchant's room", "merchant room");
-            Room mainHall = new Room("in the main hall", "main hall",3);
+            Room mainHall = new Room("in the main hall", "main hall",2);
             Room cafeteria = new Room("in the cafeteria", "cafeteria");
             Room maleWard = new Room("in the male ward", "male ward");
             Room femaleWard = new Room("in the female ward", "female ward");
@@ -85,8 +85,6 @@ namespace StarterGame
         }
 
         
-        
-
         // callback method for PlayerEnteredRoom
         public void playerEnteredRoom(Notification notification)
         {
@@ -97,15 +95,17 @@ namespace StarterGame
             //interacts with the merchant. 
             if (player.currentRoom == ladyMerchant.MerchantRoom)
             {
-                NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", this));
-                if (player.CurrentTask == null || player.CurrentTask.Complete == true)
+                NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", player));
+                /*if (player.CurrentTask == null || player.CurrentTask.Complete == true)
                 {
                     player.setCurrentTask(ladyMerchant.TaskList.Dequeue());
                     NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
                 }
                 //Need to put an option to interact with merchant to allow buy/sell commands
-                Console.WriteLine("\n\nHere's an updated set of commands: ");
-                Console.WriteLine(new CommandWords().description(CommandType.MerchantCommand));   
+
+                Console.WriteLine("\n\nHere's an updated set of commands: " + 
+                new CommandWords().description(CommandType.MerchantCommand));  
+                */
             }
 
         }
@@ -121,6 +121,7 @@ namespace StarterGame
             }
         }
 
+
         //This method is callback method from player entering a room, it will initiate and conduct a battle
         //between a player and randomly generated enemy.
         public void battleSequence(Notification notification)
@@ -132,6 +133,7 @@ namespace StarterGame
                 if (enemy != null)
                 {
                     player.InBattle = true;
+                    player.CurrentEnemy = enemy;
                     Console.WriteLine("\n****************************************************");
                     Console.WriteLine("\n" + enemy.battleGreeting() + "\nThe battle begins!");
                     Console.WriteLine("\nHere are your battle commands: \n" +
@@ -142,6 +144,9 @@ namespace StarterGame
                         CommandWords commands = new CommandWords();
                         commands.setBattleCommands();
                         Parser parser = new Parser(commands);
+                        Console.WriteLine("\nBattle Stats: \n");
+                        player.currentStats();
+                        enemy.currentStats();
                         Console.WriteLine("Choose a command!");
                         Console.Write("\n>");
                         Command command = parser.parseCommand(Console.ReadLine());
@@ -150,8 +155,19 @@ namespace StarterGame
                             Console.WriteLine("I don't understand...");
                             command = parser.parseCommand(Console.ReadLine());
                         }
+                        
                         player.InBattle = command.execute(player);
+                        //enemy.attackPlayer(player);
+                        //If the player dies the game world is notified so that the game can be ended. 
+                        if (player.Health <= 0)
+                        {
+                            player.InBattle = false; 
+                            NotificationCenter.Instance.postNotification(new Notification("PlayerDied", this));
+                            
+                        }
+                        
                     }
+                    NotificationCenter.Instance.postNotification(new Notification("BattleOver", player));
                 }
             }
         }

@@ -29,17 +29,23 @@ namespace StarterGame
         private IWeapon weapon; 
         public IWeapon Weapon { get { return weapon; } set { weapon = value; } }
 
-        
+        private IEnemy currentEnemy; 
+        public IEnemy CurrentEnemy { get { return currentEnemy; } set { currentEnemy = value; } }
+        private int hitProbability;
+        public int HitProbability { get { return hitProbability; } }
+
         public Player(Room room)//, GameOutput output)
         {
             _currentRoom = room;
             currentTask = null;
             attack = 6;
-            health = 100;
+            health = 1;
             inBattle = false;
-            weapon = null;
+            weapon = new Knife();
+            currentEnemy = null;
+            hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
-            NotificationCenter.Instance.addObserver("UseWeapon", useWeapon);
+            NotificationCenter.Instance.addObserver("BattleOver", BattleOver);
         }
 
         public void waltTo(string direction)
@@ -60,15 +66,28 @@ namespace StarterGame
             }
         }
 
+        public void BattleOver(Notification notification)
+        {
+            Player player = (Player)notification.Object;
+            this.outputMessage("\n" + this._currentRoom.description());
+        }
+
         public void speak(String word)
         {
             outputMessage(word);
             NotificationCenter.Instance.postNotification(new Notification("Player has spoken", this));
         }
 
-        public void useWeapon(Notification notification)
+        public void useWeapon()
         {
-            IEnemy enemy = (IEnemy)notification.Object;
+            int discount = new Random().Next(1, (Attack / 2) + 1);
+            CurrentEnemy.Health -= (this.totalAttack()-discount);
+            NotificationCenter.Instance.postNotification(new Notification("EnemyRespondAttack",this));
+        }
+
+        public int totalAttack()
+        {
+            return this.Attack + weapon.Attack;
         }
         public void TaskSet(Notification notification)
         {
@@ -83,6 +102,11 @@ namespace StarterGame
         public void outputMessage(string message)
         {
             Console.WriteLine(message);
+        }
+
+        public void currentStats()
+        {
+            outputMessage("Player \nHealth: " + this.Health + "\nAttack: " + this.totalAttack());
         }
     }
 
