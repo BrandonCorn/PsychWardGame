@@ -33,7 +33,7 @@ namespace StarterGame
             Weight = .85f;
             Value = 350;
             itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.WeaponItem);
+            itemTypes.Add(name, ItemType.BattleItem);
             Uses = 10;
             Attack = 7;
         }

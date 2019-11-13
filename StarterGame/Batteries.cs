@@ -10,27 +10,28 @@ namespace StarterGame
         public float Weight { get; }
 
         private readonly string name = "Batteries";
-        public string Name { get; }
+        public string Name { get { return name; } }
 
-        private string description;
-        public string Description { get; }
 
-        private bool keyItem;
-        public bool KeyItem { get; }
-
-        private int uses;
-        public int Uses { get; }
+        private readonly string description = "A pair of batteries";
+        public string Description { get { return description; } }
 
         private int value;
-        public int Value { get; }
+        public int Value { get { return value; } set { this.value = value; } }
+
+        private int uses;
+        public int Uses { get { return uses; } set { uses = value; } }
+
+        private Dictionary<string, ItemType> itemTypes;
+        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
 
         public Batteries()
         {
             weight = 0.106f; //The weight of 2 AA batteries
-            description = "A pair of batteries";
-            keyItem = false;
             uses = 1;
             value = 200; //To be updated in accordance with $ system
+            itemTypes = new Dictionary<string, ItemType>();
+            itemTypes.Add(name, ItemType.BasicItem);
         }
 
         public void useItem(Flashlight o, Batteries b)

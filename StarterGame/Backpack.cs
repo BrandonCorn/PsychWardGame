@@ -14,25 +14,38 @@ namespace StarterGame
 
         private readonly string name = "Backpack";
 
-        public string Name { get; }
+        public string Name { get { return name; } }
 
-        private bool keyItem;
-        public string Description { get; }
-
-        public bool KeyItem { get; }
-
-        private int uses;
-        public int Uses { get; }
+        private readonly string description; 
+        public string Description { get { return description; }}
 
         private int value;
-        public int Value { get; }
+        public int Value { get { return value; } set { this.value = value; } }
+
+        private int uses;
+        public int Uses { get { return uses; } set { uses = value; } }
+
+        private Dictionary<string, ItemType> itemTypes;
+        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
 
         private int capacity;
-        public int Capacity { get; }
+        public int Capacity { get { return capacity; } }
 
-        private Dictionary<String, Object> inventory;
-        public Dictionary<String, Object> Inventory { get; }
-        public void AddItem(Dictionary<String, Object> inventory, String s, I_Item item)
+        private Dictionary<String, Queue<I_Item>> inventory;
+        public Dictionary<String, Queue<I_Item>> Inventory { get { return inventory; } }
+
+        public Backpack()
+        {
+            weight = 0; //Weight should be 0
+            uses = 1; //Doesn't matter
+            value = 0; //Unsellable anyways
+            description = "Pretty useful for holding items. \n\tCapacity: + " + capacity + "lbs";
+            capacity = 30;
+            itemTypes = new Dictionary<string, ItemType>();
+            itemTypes.Add(name, ItemType.BattleItem);
+
+        }
+        public void AddItem(I_Item item)
         {
             if (inventory.Count >= 30)
             {
@@ -40,16 +53,20 @@ namespace StarterGame
             }
             else
             {
-                inventory.Add(s, item);
+                inventory[item.Name].Enqueue(item);
             }
         }
 
-        public void RemoveItem(Dictionary<String, Object> inventory, String s)
+        public void RemoveItem(String itemName)
         {
-            inventory.Remove(s);
+            inventory[itemName].Dequeue();
         }
 
-        public void ItemsinBackpack (Dictionary<String, Object> inventory)
+        //The actual total number of items is going to be the count of the Queues in each position in the 
+        /// Dictionary 
+       
+
+        /*public void ItemsinBackpack (Dictionary<String, Object> inventory)
         {
             if (inventory.Count == 0)
             {
@@ -58,18 +75,8 @@ namespace StarterGame
                 Console.WriteLine("Total number of items: " + inventory.Count + "\n");
                 inventory.ToList().ForEach(x => Console.WriteLine(x.Key));
             }
-        }
-        public Backpack()
-        {
-            weight = 0; //Weight should be 0
-            keyItem = true;
-            Description = "Pretty useful for holding things, but can only hold" + capacity + "items.";
-            uses = 1; //Doesn't matter
-            value = 0; //Unsellable anyways
-            capacity = 30;
-            Dictionary<String, Object> inventory;
+        }*/
 
-        }
 
         public void useItem()
         {

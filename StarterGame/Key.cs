@@ -9,39 +9,26 @@ namespace StarterGame
         private float weight;
         public float Weight { get; }
 
-        private string name;
-        public string Name { get; }
+        private readonly string name = "Key";
+        public string Name { get { return name; } }
 
-        private string description;
-        public string Description { get; }
-
-        private bool keyItem;
-        public bool KeyItem { get; }
+        private readonly string description = "Unlocks doors";
+        public string Description { get { return description; } }
+        private int value;
+        public int Value { get { return value; } set { this.value = value; } }
 
         private int uses;
-        public int Uses { get; }
+        public int Uses { get { return uses; } set { uses = value; } }
 
-        private int value;
-        public int Value { get; }
-
+        private Dictionary<string, ItemType> itemTypes;
+        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
         public Key()
         {
             weight = 0; //Should they have weight?
-            name = "Key";
-            description = "Unlocks doors";
-            keyItem = true;
             uses = 1;
             value = 0;
-        }
-
-        public Key(string name) //This is in case we want to name keys specifically
-        {
-            weight = 0;
-            this.name = name;
-            description = "Unlocks doors";
-            keyItem = true;
-            uses = 1;
-            value = 0;
+            itemTypes = new Dictionary<string, ItemType>();
+            itemTypes.Add(name, ItemType.KeyItem);
         }
 
         public void useItem()

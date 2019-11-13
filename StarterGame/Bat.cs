@@ -30,6 +30,8 @@ namespace StarterGame
             weight = 1.8f;
             uses = 50; //Will change based on damage system
             value = 500;
+            itemTypes = new Dictionary<string, ItemType>();
+            itemTypes.Add(name, ItemType.BattleItem);
         }
 
         /*public Bat(Player player)
@@ -44,13 +46,12 @@ namespace StarterGame
 
         public int getStrength(Player player)
         {
-            //To be edited
-            return attack;
+            return player.Attack + Attack;
         }
 
         public void useItem()
         {
-            throw new NotImplementedException();
+            //No need for this the player will use the weapon 
         }
 
         override

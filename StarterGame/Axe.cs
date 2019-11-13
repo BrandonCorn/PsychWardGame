@@ -29,23 +29,14 @@ namespace StarterGame
             attack = 15;
             weight = 1.25f;
             itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.WeaponItem);
+            itemTypes.Add(name, ItemType.BattleItem);
             uses = 10;
             value = 850;
         }
 
-        /*public Axe(Player player)
-        {
-            attack = 15 + getStrength(player);
-            weight = 1.25f;
-            uses = 50;
-            //value = 850 * player.level;
-        }*/
-
         public int getStrength(Player player)
         {
-            //To be edited
-            return attack;
+            return player.Attack + Attack;
         }
 
         public void useItem()
@@ -53,10 +44,6 @@ namespace StarterGame
             throw new NotImplementedException();
         }
 
-        public void useItem(Player player, Axe axe)
-        {
-
-        }
 
         override
         public string ToString()

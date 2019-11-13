@@ -13,27 +13,28 @@ namespace StarterGame
         public float Weight { get; }
 
         private readonly string name = "Suture Kit";
-        public string Name { get; }
+        public string Name { get { return name; } }
 
-        private string description;
-        public string Description { get; }
-
-        private bool keyItem;
-        public bool KeyItem { get; }
-
-        private int uses;
-        public int Uses { get; }
+        private readonly string description = "Does more than your regular first aid kit";
+        public string Description { get { return description; } }
 
         private int value;
-        public int Value { get; }
+        public int Value { get { return value; } set { this.value = value; } }
+
+        private int uses;
+        public int Uses { get { return uses; } set { uses = value; } }
+
+        private Dictionary<string, ItemType> itemTypes;
+        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
 
         public SutureKit()
         {
             weight = 1.5f;
-            description = "Does more than your regular first aid kit";
-            keyItem = false;
             uses = 1;
             value = 500;
+            itemTypes = new Dictionary<string, ItemType>();
+            itemTypes.Add(name, ItemType.BattleItem);
+            itemTypes.Add(name, ItemType.BasicItem);
         }
 
         public void useItem()

@@ -26,14 +26,13 @@ namespace StarterGame
         private int attack; 
         public int Attack { get { return attack; } set { attack = value; } }
 
-        public bool KeyItem => throw new NotImplementedException();
 
         public Machete()
         {
             Weight = 2.5f;
             Value = 600;
             itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.WeaponItem);
+            itemTypes.Add(name, ItemType.BattleItem);
             Uses = 10;
             Attack = 12;
         }
