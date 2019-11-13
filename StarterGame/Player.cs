@@ -33,11 +33,19 @@ namespace StarterGame
             Door door = this._currentRoom.getExit(direction);
             if (door != null)
             {
-                this._currentRoom = door.room(this.currentRoom);
-                // Player posts a notification PlayerEnteredRoom
-                this.outputMessage("\n" + this._currentRoom.description());
-                NotificationCenter.Instance.postNotification(new Notification("PlayerEnteredRoom", this));
-                
+                if (door.Open)
+                {
+
+
+                    this._currentRoom = door.room(this.currentRoom);
+                    // Player posts a notification PlayerEnteredRoom
+                    this.outputMessage("\n" + this._currentRoom.description());
+                    NotificationCenter.Instance.postNotification(new Notification("PlayerEnteredRoom", this));
+                }
+                else
+                {
+                    this.outputMessage("\n the door to" + direction + " is closed.");
+                }
             }
             else
             {

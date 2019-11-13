@@ -56,6 +56,7 @@ namespace StarterGame
 
             Door door = Door.createDoor(entrance, merch);
             door = Door.createDoor(entrance, mainHall);
+            door.Closed = true; 
             door = Door.createDoor(mainHall, maleWard);
             door = Door.createDoor(mainHall, femaleWard);
             door = Door.createDoor(mainHall, cafeteria);
