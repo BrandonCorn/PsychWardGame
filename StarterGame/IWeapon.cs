@@ -8,11 +8,11 @@ namespace StarterGame
     {
         string Name { get; }
         Dictionary<string, ItemType> ItemTypes { get; }
-        int Weight { get; }
+        float Weight { get; set; }
         string Description { get; }
-        int Value { get; }
+        int Value { get; set; }
         int Attack { get; set; }
-        int Uses { get; }
+        int Uses { get; set; }
         int getStrength(Player player);
     }
 }

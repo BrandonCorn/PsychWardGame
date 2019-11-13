@@ -41,7 +41,7 @@ namespace StarterGame
             attack = 6;
             health = 1;
             inBattle = false;
-            weapon = new Knife();
+            //weapon = new Knife();
             currentEnemy = null;
             hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
@@ -87,6 +87,10 @@ namespace StarterGame
 
         public int totalAttack()
         {
+            if (weapon == null)
+            {
+                return this.Attack;
+            }
             return this.Attack + weapon.Attack;
         }
         public void TaskSet(Notification notification)
