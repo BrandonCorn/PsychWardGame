@@ -19,6 +19,9 @@ namespace StarterGame
         //but the player needs to know it will have a use down the road. 
         string Description { get; }
 
+        //Will hold a reference to all the item types that a particular item qualifies as. 
+        Dictionary<string, ItemType> ItemTypes { get; }
+
         /*KeyItem will keep the player from selling the item, if they try to we can give an indication that
         //it is a key item and serves a purpose. 
         bool KeyItem { get; }
