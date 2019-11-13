@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace StarterGame
 {
@@ -7,6 +9,8 @@ namespace StarterGame
         public SpeakCommand()
         {
             this.name = "speak";
+            this.CommandTypes = new Dictionary<CommandType,string>();
+            CommandTypes.Add(CommandType.BasicCommand, "Speak Basic Command" );
         }
 
         public override bool execute(Player player)

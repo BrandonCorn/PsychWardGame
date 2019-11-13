@@ -9,6 +9,10 @@ namespace StarterGame
         public QuitCommand() : base()
         {
             this.name = "quit";
+            this.CommandTypes = new Dictionary<CommandType,string>();
+            CommandTypes.Add( CommandType.BasicCommand, "Quit Basic Command");
+            CommandTypes.Add(CommandType.MerchantCommand, "Quit Merchant Command");
+            
         }
 
         override

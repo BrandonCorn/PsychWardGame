@@ -6,7 +6,13 @@ namespace StarterGame
 {
     public interface IWeapon
     {
-        int Attack { get; }
-        void getStrength(Player player);
+        string Name { get; }
+        Dictionary<string, ItemType> ItemTypes { get; }
+        float Weight { get; set; }
+        string Description { get; }
+        int Value { get; set; }
+        int Attack { get; set; }
+        int Uses { get; set; }
+        int getStrength(Player player);
     }
 }

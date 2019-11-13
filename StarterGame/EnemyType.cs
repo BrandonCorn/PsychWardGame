@@ -4,7 +4,8 @@ using System.Text;
 
 namespace StarterGame
 {
-    class test
+    public enum EnemyType
     {
+        Rat, ZombiePatient, InfectedNurse, InfectedDoctor, SecurityGuard
     }
 }

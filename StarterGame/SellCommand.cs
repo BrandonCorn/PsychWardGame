@@ -8,7 +8,9 @@ namespace StarterGame
     {
         public SellCommand()
         {
-            this.name = "sell"; 
+            this.name = "sell";
+            this.CommandTypes = new Dictionary<CommandType,string>();
+            CommandTypes.Add(CommandType.MerchantCommand, "Merchant sell");
         }
 
         public override bool execute(Player player)
