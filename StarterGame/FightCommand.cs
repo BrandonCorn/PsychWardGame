@@ -9,24 +9,31 @@ namespace StarterGame
         public FightCommand() : base()
         {
             this.name = "fight";
-            this.CommandTypes = new Dictionary<CommandType,string>();
-            CommandTypes.Add(CommandType.BattleCommand,"Fight Battle Command");
+            //this.CommandTypes = new Dictionary<CommandType,string>();
+            //CommandTypes.Add(CommandType.BattleCommand,"Fight Battle Command");
             
         }
         //If the player fights the enemy, if they kill the enemy then this returns false to exit the 
         //battle sequence in the GameWorld, otherwise it remains true. 
         public override bool execute(Player player)
         {
-            if (player.InBattle)
-            {
-                player.useWeapon();
-            }
+            player.useWeapon();
+            
             if (player.CurrentEnemy.Health <= 0)
             {
                 player.outputMessage("\nYou win!!!\n");
+                NotificationCenter.Instance.postNotification(new Notification("PopCommands", this));
+                player.outputMessage(player.currentRoom.description());
                 return false;
             }
-            return true;
+            else if(player.Health <= 0)
+            {
+                player.outputMessage("You died");
+                return true;
+            }
+            player.currentStats();
+            player.CurrentEnemy.currentStats();
+            return false;
         }
     }
 }

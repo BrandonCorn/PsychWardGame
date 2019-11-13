@@ -9,15 +9,15 @@ namespace StarterGame
         Player player;
         Parser parser;
         bool playing;
-        bool finished;
+        //bool finished;
         public Game()
         {
             //GameWorld gameWorld = new GameWorld();
             playing = false;
             parser = new Parser(new CommandWords());
             player = new Player(GameWorld.Instance.Entrance);
-            finished = false;
-            NotificationCenter.Instance.addObserver("PlayerDied", PlayerDied);
+            //finished = false;
+            //NotificationCenter.Instance.addObserver("UpdateCommands", UpdateCommands);
         }
 
 
@@ -31,7 +31,7 @@ namespace StarterGame
             // execute them until the game is over.
 
             //This bool has been made a value to the game so that it can be updated if the player dies.
-            //bool finished = false;
+            bool finished = false;
             while (!finished)
             {
                 Console.Write("\n>");
@@ -71,10 +71,11 @@ namespace StarterGame
         }
 
         //If the player dies the game is ended. 
-        public void PlayerDied(Notification notification)
+        /*public void PlayerDied(Notification notification)
         {
             Console.WriteLine("You have died, better luck next time!");
             this.finished = true;
-        }
+        }*/
+
     }
 }

@@ -31,6 +31,7 @@ namespace StarterGame
             this.merchantRoom = room;
             this.taskList = new Queue<ITask>();
             NotificationCenter.Instance.addObserver("EnteredMerchantRoom", enteredMerchantRoom);
+            NotificationCenter.Instance.addObserver("SpeakWithMerchant", SpeakWithMerchant);
         }
 
         //add tasks to the merchants list
@@ -40,12 +41,9 @@ namespace StarterGame
         }
 
         //When the player enters the merchant room, the commands allowed in the merchant room are set. 
-        private void enteredMerchantRoom(Notification notification)
+        private void SpeakWithMerchant(Notification notification)
         {
             Player player = (Player)notification.Object;
-            CommandWords commands = new CommandWords();
-            commands.setMerchantCommands();
-            Parser parser = new Parser(commands);
             if (player.CurrentTask == null || player.CurrentTask.Complete == true)
             {
                 player.setCurrentTask(GameWorld.Instance.LadyMerchant.TaskList.Dequeue());
@@ -58,15 +56,23 @@ namespace StarterGame
             Console.WriteLine("\nWould you like to:\n\tbuy goods" +
                 "\n\tsell goods");
             
-            while (player.currentRoom == GameWorld.Instance.LadyMerchant.MerchantRoom)
+        }
+
+        private void enteredMerchantRoom(Notification notification)
+        {
+            Player player = (Player)notification.Object;
+            if (player.CurrentTask == null || player.CurrentTask.Complete == true)
             {
-                Console.Write("\n>");
-                Command command = parser.parseCommand(Console.ReadLine());
-                if (command != null)
-                {
-                    command.execute(player);
-                }
-            } //Need command to Interact and Stop Interaction with Merchant 
+                player.setCurrentTask(GameWorld.Instance.LadyMerchant.TaskList.Dequeue());
+                NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
+            }
+            //Need to put an option to interact with merchant to allow buy/sell commands
+
+            Console.WriteLine("\n\nHere's an updated set of commands: " +
+            new CommandWords().description(CommandType.MerchantCommand));
+            Console.WriteLine("\nWould you like to:\n\tbuy goods" +
+                "\n\tsell goods");
+
         }
 
 

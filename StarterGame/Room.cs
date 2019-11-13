@@ -108,10 +108,10 @@ namespace StarterGame
 
         //Method will calculate the chance of running into an enemy and the random numbers match a 
         //random enemy will be spawned and presented in the game world. 
-        public static IEnemy getAnEnemy(Player player)
+        public static IEnemy getAnEnemy(Room currentRoom)
         {
-            int chance1 = new Random().Next(1, player.currentRoom.ChanceEnemy + 1);
-            int chance2 = new Random().Next(1, player.currentRoom.ChanceEnemy + 1);
+            int chance1 = new Random().Next(1, currentRoom.ChanceEnemy + 1);
+            int chance2 = new Random().Next(1, currentRoom.ChanceEnemy + 1);
             if (chance1 == chance2)
             {
                 int chance = new Random().Next(1, 3);

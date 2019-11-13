@@ -6,10 +6,19 @@ namespace StarterGame
 {
     public class CommandWords
     {
+
+
+        //Dictionary of commands is where they are stored so that they still have a key for an accessor. 
         Dictionary<string, Command> commands;
-        private static Command[] commandArray = { new GoCommand(), new InteractCommand(),
-             new BuyCommand(), new SellCommand(), new TaskCommand(), new FightCommand(),
-            new RunCommand(),new QuitCommand()};
+
+        private static Command[] commandArray = {new GoCommand(), new InteractCommand(), new TaskCommand(),
+            new QuitCommand()};
+
+        //These two arrays will be used in the stack implementation of the Commands, when a player enters a 
+        //scenario in which the commands must be changed, the corresponding array of commands can be pushed
+        //to the stack changing the available options. 
+        public static Command[] merchantCommands = { new BuyCommand(), new SellCommand(), new QuitCommand() };
+        public static Command[] battleCommands = { new FightCommand(), new RunCommand(), new QuitCommand()};
 
         public CommandWords() : this(commandArray)
         {
@@ -24,6 +33,7 @@ namespace StarterGame
             }
             Command help = new HelpCommand(this);
             commands[help.name] = help;
+            //Below is for Stack implementation of commands
         }
 
         public Command get(string word)
@@ -32,6 +42,7 @@ namespace StarterGame
             commands.TryGetValue(word, out command);
             return command;
         }
+        
 
         //A method to grab only commands that can be used during battle from the original commands list
         public void setBattleCommands()
@@ -48,6 +59,7 @@ namespace StarterGame
             
         }
 
+
         public void setMerchantCommands()
         {
             Dictionary<string, Command>.ValueCollection values = commands.Values;
@@ -62,6 +74,7 @@ namespace StarterGame
 
         }
 
+
         public string description()
         {
             string commandNames = "";
@@ -72,7 +85,6 @@ namespace StarterGame
             }
             return commandNames;
         }
-
 
 
         public string description(CommandType commandType)
