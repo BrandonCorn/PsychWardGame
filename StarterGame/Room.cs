@@ -114,12 +114,14 @@ namespace StarterGame
             int chance2 = new Random().Next(1, currentRoom.ChanceEnemy + 1);
             if (chance1 == chance2)
             {
-                int chance = new Random().Next(1, 3);
-                if (chance == 1)
+                int chance = new Random().Next(0, GameWorld.AllEnemies.Count);
+                /*if (chance == 1)
                 {
                     return new Rat();
                 }
-                return new ZombiePatient();
+                return new ZombiePatient(); */
+                return GameWorld.AllEnemies[chance];
+
             }
             return null;
         }

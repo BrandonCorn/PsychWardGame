@@ -14,6 +14,9 @@ namespace StarterGame
                 return _instance;
             }
         }
+        static private Dictionary<int, IEnemy> allEnemies; 
+        static public Dictionary<int,IEnemy> AllEnemies{ get { return allEnemies; } }
+
         private Room _entrance;
         public Room Entrance { get { return _entrance; } }
         private Room trigger;
@@ -34,11 +37,14 @@ namespace StarterGame
 
         private Room createWorld()
         {
+            allEnemies = new Dictionary<int, IEnemy>() {
+                { 0, new Rat() }, { 1, new ZombiePatient() }
+            }; 
             Room entrance = new Room(" at the entrance of the PsychWard", "entrance");
             Room merch = new Room("in the merchant's room", "merchant room");
-            Room mainHall = new Room("in the main hall", "main hall",2);
+            Room mainHall = new Room("in the main hall", "main hall",1);
             Room cafeteria = new Room("in the cafeteria", "cafeteria");
-            Room maleWard = new Room("in the male ward", "male ward");
+            Room maleWard = new Room("in the male ward", "male ward",1);
             Room femaleWard = new Room("in the female ward", "female ward");
             Room maleShowers = new Room("in the male showers", "male showers");
             Room femaleShowers = new Room("in the female showers", "female showers");
@@ -138,7 +144,7 @@ namespace StarterGame
                     player.CurrentEnemy = enemy;
                     NotificationCenter.Instance.postNotification(new Notification("PushBattleCommands", this));
                     Console.WriteLine("\n****************************************************");
-                    Console.WriteLine("\n" + enemy.battleGreeting() + "\nThe battle begins!");
+                    Console.WriteLine("\n" + enemy.battleGreeting() + "\n\nThe battle begins!\n");
                     player.currentStats();
                     enemy.currentStats();
                 }

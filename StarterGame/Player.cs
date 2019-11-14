@@ -39,7 +39,7 @@ namespace StarterGame
             _currentRoom = room;
             currentTask = null;
             attack = 6;
-            health = 1;
+            health = 100;
             inBattle = false;
             //weapon = new Knife();
             currentEnemy = null;
@@ -84,7 +84,11 @@ namespace StarterGame
         {
             int discount = new Random().Next(1, (Attack / 2) + 1);
             CurrentEnemy.Health -= (this.totalAttack()-discount);
-            NotificationCenter.Instance.postNotification(new Notification("EnemyRespondAttack",this));
+            if (CurrentEnemy.Health <= 0)
+            {
+                //NotificationCenter.Instance.postNotification(new Notification("EnemyRespondAttack", this));
+                //CurrentEnemy.attackPlayer(this);
+            }
         }
 
         public int totalAttack()

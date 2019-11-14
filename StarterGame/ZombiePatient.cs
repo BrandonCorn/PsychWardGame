@@ -26,7 +26,8 @@ namespace StarterGame
             level = 1;
             attack = 4;
             health = 14;
-            hitProbability = 1 / 3;
+            hitProbability = 2;
+            NotificationCenter.Instance.addObserver("EnemyRespondAttack", EnemyRespondAttack);
         }
 
         //
@@ -46,9 +47,10 @@ namespace StarterGame
             int chance = new Random().Next(1, HitProbability + 1);
             if (chance == 1 && this.Health > 0)
             {
-                Console.WriteLine(attackDescription());
+                Console.WriteLine("\n" + attackDescription()+"\n");
                 player.Health -= new Random().Next(1, Attack + 1);
             }
+            else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
         }
 
         public override void EnemyRespondAttack(Notification notification)

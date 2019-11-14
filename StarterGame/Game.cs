@@ -9,15 +9,12 @@ namespace StarterGame
         Player player;
         Parser parser;
         bool playing;
-        //bool finished;
         public Game()
         {
             //GameWorld gameWorld = new GameWorld();
             playing = false;
             parser = new Parser(new CommandWords());
             player = new Player(GameWorld.Instance.Entrance);
-            //finished = false;
-            //NotificationCenter.Instance.addObserver("UpdateCommands", UpdateCommands);
         }
 
 
@@ -70,12 +67,6 @@ namespace StarterGame
             return "\nThank you for playing, Goodbye. \n";
         }
 
-        //If the player dies the game is ended. 
-        /*public void PlayerDied(Notification notification)
-        {
-            Console.WriteLine("You have died, better luck next time!");
-            this.finished = true;
-        }*/
 
     }
 }
