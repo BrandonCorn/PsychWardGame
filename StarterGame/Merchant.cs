@@ -31,7 +31,7 @@ namespace StarterGame
             this.merchantRoom = room;
             this.taskList = new Queue<ITask>();
             NotificationCenter.Instance.addObserver("EnteredMerchantRoom", enteredMerchantRoom);
-            NotificationCenter.Instance.addObserver("SpeakWithMerchant", SpeakWithMerchant);
+            NotificationCenter.Instance.addObserver("PlayerSpeak_merchant", PlayerSpeak_merchant);
         }
 
         //add tasks to the merchants list
@@ -41,9 +41,10 @@ namespace StarterGame
         }
 
         //When the player enters the merchant room, the commands allowed in the merchant room are set. 
-        private void SpeakWithMerchant(Notification notification)
+        private void PlayerSpeak_merchant(Notification notification)
         {
             Player player = (Player)notification.Object;
+            NotificationCenter.Instance.postNotification(new Notification("PushMerchantCommands", this));
             if (player.CurrentTask == null || player.CurrentTask.Complete == true)
             {
                 player.setCurrentTask(GameWorld.Instance.LadyMerchant.TaskList.Dequeue());
@@ -51,11 +52,12 @@ namespace StarterGame
             }
             //Need to put an option to interact with merchant to allow buy/sell commands
 
-            Console.WriteLine("\n\nHere's an updated set of commands: " +
-            new CommandWords().description(CommandType.MerchantCommand));
+            //Console.WriteLine("\n\nHere's an updated set of commands: " 
+            
             Console.WriteLine("\nWould you like to:\n\tbuy goods" +
                 "\n\tsell goods");
             
+            //Need to add command to end interaction !!!!!
         }
 
         private void enteredMerchantRoom(Notification notification)

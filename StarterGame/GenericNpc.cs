@@ -11,12 +11,12 @@ namespace StarterGame
         private string description;
         public string Description { get { return description; } set { description = value; } }
 
-        public static Dictionary<int, string> npcList = new Dictionary<int, string>()
+        /*public static Dictionary<int, string> npcList = new Dictionary<int, string>()
         {
             { 1, "Robert" } , {2,"Marissa"}, {3,"Mary"}, {4, "Kendall" }, {5, "Andrew" }, {6, "Kairi" },
             {7, "Carie" }, {8, "Dro" }, {9, "Miguel" }, {10, "Minerva" }, {11,"Jackie" }, {12, "Amanda" },
             {13, "Charles" }, {14, "Wendy" }, {15, "Reggie" }
-        };
+        }; */
 
         public GenericNpc() : this("No name", "A dull player with no life")
         {

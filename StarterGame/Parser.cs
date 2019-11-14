@@ -21,6 +21,7 @@ namespace StarterGame
             allCommands = new Stack<CommandWords>();
             allCommands.Push(newCommands);
             NotificationCenter.Instance.addObserver("PushBattleCommands", PushBattleCommands);
+            NotificationCenter.Instance.addObserver("PushMerchantCommands", PushMerchantCommands);
             NotificationCenter.Instance.addObserver("PopCommands", PopCommands);
         }
 

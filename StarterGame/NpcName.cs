@@ -8,6 +8,6 @@ namespace StarterGame
     //just make pointless statements. 
     public enum  NpcName
     {
-        Brandon, Ethan, Kayla
+        Merchant, Brandon, Ethan, Kayla
     }
 }

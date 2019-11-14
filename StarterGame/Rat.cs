@@ -26,7 +26,7 @@ namespace StarterGame
             attack = 3;
             health = 12; 
             hitProbability = 2;
-            NotificationCenter.Instance.addObserver("EnemyRespondAttack", EnemyRespondAttack);
+            //NotificationCenter.Instance.addObserver("EnemyRespondAttack", EnemyRespondAttack);
         }
         public override string battleGreeting()
         {
@@ -54,7 +54,7 @@ namespace StarterGame
             else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
         }
 
-        public override void EnemyRespondAttack(Notification notification)
+        /*public override void EnemyRespondAttack(Notification notification)
         {
             Player player = (Player)notification.Object;
             int chance = new Random().Next(1, HitProbability + 1);
@@ -63,8 +63,7 @@ namespace StarterGame
                 Console.WriteLine(attackDescription());
                 player.Health -= new Random().Next(1, Attack + 1);
             }
-            
-        }
+        }*/
 
         public override void currentStats()
         {
