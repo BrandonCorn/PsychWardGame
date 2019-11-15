@@ -15,9 +15,9 @@ namespace StarterGame
         //The tasks can be assigned to rooms by the GameWorld, but the Merchant has control of them
         //only she can take away from the taskList, or access them to mark them as completed to move through 
         //the game. 
-        
+        //private ITask[] tasks = { new HowToPlay(mainHall) }; 
         private Queue<ITask> taskList;
-        public Queue<ITask> TaskList { get { return new Queue<ITask>(taskList); } }
+        public Queue<ITask> TaskList { get { return taskList; } }
         //created a merchant room, this can be changed in the game world
 
         private Room merchantRoom;
@@ -30,6 +30,7 @@ namespace StarterGame
            
             this.merchantRoom = room;
             this.taskList = new Queue<ITask>();
+        
             NotificationCenter.Instance.addObserver("EnteredMerchantRoom", enteredMerchantRoom);
             NotificationCenter.Instance.addObserver("PlayerSpeak_merchant", PlayerSpeak_merchant);
             NotificationCenter.Instance.addObserver("LeaveMerchant", LeaveMerchant);

@@ -61,10 +61,7 @@ namespace StarterGame
 
             for (int i = 0; i < numNpcs; i++)
             {
-                //This method adds a random npc from this enum of npc names and creates a generic npc 
-                //character to assign to it. 
-                //roomNpcs.Add((NpcName)Enum.Parse(typeof(NpcName),Enum.GetName(typeof(NpcName), 
-                    //new Random().Next(1, Enum.GetNames(typeof(NpcName)).Length))),new GenericNpc());
+                
             }
         }
 
@@ -103,7 +100,8 @@ namespace StarterGame
 
         public string description()
         {
-            return "You are " + this.tag + ".\n *** " + this.getExits();
+            return "You are " + this.tag + ".\n *** " + this.getExits() + 
+                "\n --- NPCs: " + displayNPCs();
         }
 
         //Method will calculate the chance of running into an enemy and the random numbers match a 
@@ -115,15 +113,32 @@ namespace StarterGame
             if (chance1 == chance2)
             {
                 int chance = new Random().Next(0, GameWorld.AllEnemies.Count);
-                /*if (chance == 1)
-                {
-                    return new Rat();
-                }
-                return new ZombiePatient(); */
+                
                 return GameWorld.AllEnemies[chance];
 
             }
             return null;
+        }
+
+        public void addNPC(INPC npc)
+        {
+            roomNpcs[npc.Name] = npc; 
+        }
+
+        public void removeNPC(INPC npc)
+        {
+            roomNpcs.Remove(npc.Name);
+        }
+
+        public string displayNPCs()
+        {
+            string list = "";
+            Dictionary<string, INPC>.KeyCollection names = roomNpcs.Keys;
+            foreach(string npc in names)
+            {
+                list += npc + "\n"; 
+            }
+            return list;
         }
     }
 }

@@ -29,6 +29,11 @@ namespace StarterGame
         {
             hotList = new List<Room>();
             _entrance = createWorld();
+
+            //all the enemies available to the rooms in the game. 
+            allEnemies = new Dictionary<int, IEnemy>() {
+                { 0, new Rat() }, { 1, new ZombiePatient() }
+            };
             // GameWorld subscribes to the notification PlayerEnteredRoom
             NotificationCenter.Instance.addObserver("PlayerEnteredRoom", playerEnteredRoom);
             NotificationCenter.Instance.addObserver("Player has spoken", playerSpeak);
@@ -37,9 +42,7 @@ namespace StarterGame
 
         private Room createWorld()
         {
-            allEnemies = new Dictionary<int, IEnemy>() {
-                { 0, new Rat() }, { 1, new ZombiePatient() }
-            }; 
+             
             Room entrance = new Room(" at the entrance of the PsychWard", "entrance");
             Room merch = new Room("in the merchant's room", "merchant room");
             Room mainHall = new Room("in the main hall", "main hall",1);
@@ -84,9 +87,12 @@ namespace StarterGame
             door = Door.createDoor(mainCourtYard, eastCourtYard);
             door = Door.createDoor(eastCourtYard, shed);
 
-            ladyMerchant = new Merchant(merch);
+            //ladyMerchant = new Merchant(merch);
+
+            merch.addNPC(new Merchant(merch));
+
             HowToPlay task1 = new HowToPlay(mainHall);
-            ladyMerchant.addTask(task1);
+            //ladyMerchant.addTask(task1);
 
             return entrance;
         }
@@ -100,19 +106,9 @@ namespace StarterGame
             //Notifies the merchant when a player enters the room, a task is set by the merchant. The player
             //is notified that they have received a task. An updated set of commands are given if they player 
             //interacts with the merchant. 
-            if (player.currentRoom == ladyMerchant.MerchantRoom)
+            //if (player.currentRoom == ladyMerchant.MerchantRoom)
             {
-                //NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", player));
-                /*if (player.CurrentTask == null || player.CurrentTask.Complete == true)
-                {
-                    player.setCurrentTask(ladyMerchant.TaskList.Dequeue());
-                    NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
-                }
-                //Need to put an option to interact with merchant to allow buy/sell commands
-
-                Console.WriteLine("\n\nHere's an updated set of commands: " + 
-                new CommandWords().description(CommandType.MerchantCommand));  
-                */
+               
             }
 
         }
