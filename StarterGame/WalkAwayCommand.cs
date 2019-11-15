@@ -4,12 +4,15 @@ using System.Text;
 
 namespace StarterGame
 {
-    public class SellCommand : Command
+    class WalkAwayCommand : Command
     {
-        public SellCommand()
+
+        public WalkAwayCommand()
         {
-            this.name = "sell";
+            this.name = "Walk Away"; 
+            this. 
         }
+
 
         public override bool execute(Player player)
         {

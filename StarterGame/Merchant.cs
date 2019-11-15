@@ -50,7 +50,6 @@ namespace StarterGame
                 player.setCurrentTask(GameWorld.Instance.LadyMerchant.TaskList.Dequeue());
                 NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
             }
-            //Need to put an option to interact with merchant to allow buy/sell commands
 
             //Console.WriteLine("\n\nHere's an updated set of commands: " 
             

@@ -15,10 +15,6 @@ namespace StarterGame
         {
             words = commands;
             this.name = "help";
-            this.CommandTypes = new Dictionary<CommandType,string>();
-            CommandTypes.Add( CommandType.BasicCommand, "Help Basic Command");
-            CommandTypes.Add(CommandType.BattleCommand,"Help Battle Command");
-            CommandTypes.Add(CommandType.MerchantCommand, "Help Merchant Command");
         }
 
         /*override

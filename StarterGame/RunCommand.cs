@@ -9,8 +9,6 @@ namespace StarterGame
         public RunCommand()
         {
             this.name = "run";
-            this.CommandTypes = new Dictionary<CommandType,string>();
-            CommandTypes.Add(CommandType.BattleCommand, "Run Battle Command" );
         }
 
         public string runStatement()

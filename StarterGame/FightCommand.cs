@@ -9,8 +9,6 @@ namespace StarterGame
         public FightCommand() : base()
         {
             this.name = "fight";
-            //this.CommandTypes = new Dictionary<CommandType,string>();
-            //CommandTypes.Add(CommandType.BattleCommand,"Fight Battle Command");
             
         }
         //If the player fights the enemy, if they kill the enemy then this returns false to exit the 
