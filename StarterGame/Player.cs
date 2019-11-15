@@ -70,8 +70,10 @@ namespace StarterGame
 
         public void BattleOver(Notification notification)
         {
-            Player player = (Player)notification.Object;
-            this.outputMessage("\n" + this._currentRoom.description());
+            //Player player = (Player)notification.Object;
+            CurrentEnemy = null; 
+            
+            this.outputMessage("\n" + currentRoom.description());
         }
 
         public void speak(String word)

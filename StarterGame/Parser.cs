@@ -87,7 +87,7 @@ namespace StarterGame
             if (allWords.Count > 0)
             {              
                 string commandName = allWords.Peek();
-                //command = commands.get(allWords.Dequeue());
+                
                 command = allCommands.Peek().get(allWords.Dequeue());
                 if (command != null)
                 {

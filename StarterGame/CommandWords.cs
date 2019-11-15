@@ -17,7 +17,8 @@ namespace StarterGame
         //These two arrays will be used in the stack implementation of the Commands, when a player enters a 
         //scenario in which the commands must be changed, the corresponding array of commands can be pushed
         //to the stack changing the available options. 
-        public static Command[] merchantCommands = { new BuyCommand(), new SellCommand(), new QuitCommand() };
+        public static Command[] merchantCommands = { new BuyCommand(), new SellCommand(),new LeaveCommand(),
+            new QuitCommand() };
         public static Command[] battleCommands = { new FightCommand(), new RunCommand(), new QuitCommand()};
 
         public CommandWords() : this(commandArray)
@@ -33,7 +34,7 @@ namespace StarterGame
             }
             Command help = new HelpCommand(this);
             commands[help.name] = help;
-            //Below is for Stack implementation of commands
+            
         }
 
         public Command get(string word)

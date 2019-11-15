@@ -32,6 +32,7 @@ namespace StarterGame
             this.taskList = new Queue<ITask>();
             NotificationCenter.Instance.addObserver("EnteredMerchantRoom", enteredMerchantRoom);
             NotificationCenter.Instance.addObserver("PlayerSpeak_merchant", PlayerSpeak_merchant);
+            NotificationCenter.Instance.addObserver("LeaveMerchant", LeaveMerchant);
         }
 
         //add tasks to the merchants list
@@ -72,6 +73,12 @@ namespace StarterGame
             Console.WriteLine("\nWould you like to:\n\tbuy goods" +
                 "\n\tsell goods");
 
+        }
+
+        public void LeaveMerchant(Notification notification)
+        {
+            Console.WriteLine("\n\nThank's for your business. Come again soon!\n\n");
+            
         }
 
 

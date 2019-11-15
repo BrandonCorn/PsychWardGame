@@ -20,7 +20,8 @@ namespace StarterGame
             {
                 player.outputMessage("\nYou win!!!\n");
                 NotificationCenter.Instance.postNotification(new Notification("PopCommands", this));
-                player.outputMessage(player.currentRoom.description());
+                NotificationCenter.Instance.postNotification(new Notification("BattleOver", this));
+                
                 return false;
             }
             else {
