@@ -8,7 +8,7 @@ namespace StarterGame
     {
         //weight is going to be used for items in the bookbag, weapons can have a weight of 0. 
         //It will be written in such a way that you can only hold two. 
-        int Weight { get; }
+        float Weight { get; }
         
         //The name should be initialized in the constructor of the items and should be readonly. The name of 
         //items should not change. 
@@ -19,9 +19,13 @@ namespace StarterGame
         //but the player needs to know it will have a use down the road. 
         string Description { get; }
 
-        //KeyItem will keep the player from selling the item, if they try to we can give an indication that
+        //Will hold a reference to all the item types that a particular item qualifies as. 
+        Dictionary<string, ItemType> ItemTypes { get; }
+
+        /*KeyItem will keep the player from selling the item, if they try to we can give an indication that
         //it is a key item and serves a purpose. 
         bool KeyItem { get; }
+        */
 
         //How many times the item can be used. 
         int Uses { get; }

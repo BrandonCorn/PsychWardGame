@@ -26,7 +26,8 @@ namespace StarterGame
             level = 1;
             attack = 4;
             health = 14;
-            hitProbability = 1 / 3;
+            hitProbability = 2;
+            //NotificationCenter.Instance.addObserver("EnemyRespondAttack", EnemyRespondAttack);
         }
 
         //
@@ -39,6 +40,7 @@ namespace StarterGame
         {
             return "\nThe Zombie leaps forward and bites you!";
         }
+
         //As long as the enemy has health and the enemies attack hitting are true the enemy will attack
         //the player
         public override void attackPlayer(Player player)
@@ -46,12 +48,13 @@ namespace StarterGame
             int chance = new Random().Next(1, HitProbability + 1);
             if (chance == 1 && this.Health > 0)
             {
-                Console.WriteLine(attackDescription());
+                Console.WriteLine("\n" + attackDescription()+"\n");
                 player.Health -= new Random().Next(1, Attack + 1);
             }
+            else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
         }
 
-        public override void EnemyRespondAttack(Notification notification)
+        /*public override void EnemyRespondAttack(Notification notification)
         {
             Player player = (Player)notification.Object;
             int chance = new Random().Next(1, HitProbability + 1);
@@ -60,7 +63,8 @@ namespace StarterGame
                 Console.WriteLine(attackDescription());
                 player.Health -= new Random().Next(1, Attack + 1);
             }
-        }
+        }*/
+
         public override void currentStats()
         {
             Console.WriteLine("\n" + this.Name + "\nHealth: " + this.Health + "\nAttack: " + 

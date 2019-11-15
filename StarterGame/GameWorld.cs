@@ -14,6 +14,9 @@ namespace StarterGame
                 return _instance;
             }
         }
+        static private Dictionary<int, IEnemy> allEnemies; 
+        static public Dictionary<int,IEnemy> AllEnemies{ get { return allEnemies; } }
+
         private Room _entrance;
         public Room Entrance { get { return _entrance; } }
         private Room trigger;
@@ -26,6 +29,11 @@ namespace StarterGame
         {
             hotList = new List<Room>();
             _entrance = createWorld();
+
+            //all the enemies available to the rooms in the game. 
+            allEnemies = new Dictionary<int, IEnemy>() {
+                { 0, new Rat() }, { 1, new ZombiePatient() }
+            };
             // GameWorld subscribes to the notification PlayerEnteredRoom
             NotificationCenter.Instance.addObserver("PlayerEnteredRoom", playerEnteredRoom);
             NotificationCenter.Instance.addObserver("Player has spoken", playerSpeak);
@@ -34,11 +42,12 @@ namespace StarterGame
 
         private Room createWorld()
         {
+             
             Room entrance = new Room(" at the entrance of the PsychWard", "entrance");
             Room merch = new Room("in the merchant's room", "merchant room");
-            Room mainHall = new Room("in the main hall", "main hall",2);
+            Room mainHall = new Room("in the main hall", "main hall",1);
             Room cafeteria = new Room("in the cafeteria", "cafeteria");
-            Room maleWard = new Room("in the male ward", "male ward");
+            Room maleWard = new Room("in the male ward", "male ward",1);
             Room femaleWard = new Room("in the female ward", "female ward");
             Room maleShowers = new Room("in the male showers", "male showers");
             Room femaleShowers = new Room("in the female showers", "female showers");
@@ -57,6 +66,7 @@ namespace StarterGame
 
             Door door = Door.createDoor(entrance, merch);
             door = Door.createDoor(entrance, mainHall);
+            door.Closed = true; 
             door = Door.createDoor(mainHall, maleWard);
             door = Door.createDoor(mainHall, femaleWard);
             door = Door.createDoor(mainHall, cafeteria);
@@ -77,9 +87,12 @@ namespace StarterGame
             door = Door.createDoor(mainCourtYard, eastCourtYard);
             door = Door.createDoor(eastCourtYard, shed);
 
-            ladyMerchant = new Merchant(merch);
+            //ladyMerchant = new Merchant(merch);
+
+            merch.addNPC(new Merchant(merch));
+
             HowToPlay task1 = new HowToPlay(mainHall);
-            ladyMerchant.addTask(task1);
+            //ladyMerchant.addTask(task1);
 
             return entrance;
         }
@@ -93,19 +106,9 @@ namespace StarterGame
             //Notifies the merchant when a player enters the room, a task is set by the merchant. The player
             //is notified that they have received a task. An updated set of commands are given if they player 
             //interacts with the merchant. 
-            if (player.currentRoom == ladyMerchant.MerchantRoom)
+            //if (player.currentRoom == ladyMerchant.MerchantRoom)
             {
-                NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", player));
-                /*if (player.CurrentTask == null || player.CurrentTask.Complete == true)
-                {
-                    player.setCurrentTask(ladyMerchant.TaskList.Dequeue());
-                    NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
-                }
-                //Need to put an option to interact with merchant to allow buy/sell commands
-
-                Console.WriteLine("\n\nHere's an updated set of commands: " + 
-                new CommandWords().description(CommandType.MerchantCommand));  
-                */
+               
             }
 
         }
@@ -127,47 +130,22 @@ namespace StarterGame
         public void battleSequence(Notification notification)
         {
             Player player = (Player)notification.Object;
+
             if (player.currentRoom.ChanceEnemy != 0)
             {
-                IEnemy enemy = Room.getAnEnemy(player);
+                IEnemy enemy = Room.getAnEnemy(player.currentRoom); 
+
                 if (enemy != null)
                 {
-                    player.InBattle = true;
                     player.CurrentEnemy = enemy;
+                    NotificationCenter.Instance.postNotification(new Notification("PushBattleCommands", this));
                     Console.WriteLine("\n****************************************************");
-                    Console.WriteLine("\n" + enemy.battleGreeting() + "\nThe battle begins!");
-                    Console.WriteLine("\nHere are your battle commands: \n" +
-                        new CommandWords().description(CommandType.BattleCommand));
-                    while (player.InBattle)
-                    {
-                        //This will change the commands available for the sake of battle. 
-                        CommandWords commands = new CommandWords();
-                        commands.setBattleCommands();
-                        Parser parser = new Parser(commands);
-                        Console.WriteLine("\nBattle Stats: \n");
-                        player.currentStats();
-                        enemy.currentStats();
-                        Console.WriteLine("Choose a command!");
-                        Console.Write("\n>");
-                        Command command = parser.parseCommand(Console.ReadLine());
-                        while (command == null)
-                        {
-                            Console.WriteLine("I don't understand...");
-                            command = parser.parseCommand(Console.ReadLine());
-                        }
-                        
-                        player.InBattle = command.execute(player);
-                        //enemy.attackPlayer(player);
-                        //If the player dies the game world is notified so that the game can be ended. 
-                        if (player.Health <= 0)
-                        {
-                            NotificationCenter.Instance.postNotification(new Notification("PlayerDied", this));
-                        }
-                        
-                    }
-                    NotificationCenter.Instance.postNotification(new Notification("BattleOver", player));
+                    Console.WriteLine("\n" + enemy.battleGreeting() + "\n\nThe battle begins!\n");
+                    player.currentStats();
+                    enemy.currentStats();
                 }
             }
+
         }
 
     }

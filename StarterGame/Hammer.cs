@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    public class Hammer : IWeapon
+    public class Hammer : IWeapon, I_Item
     {
         private readonly string name = "Hammer";
      
         public string Name { get { return name; } }
+        //The itemTypes is a Dictionary of what all an item qualifies as, for instance health items 
+        //can be used in and out of battle there fore should be of use in both circumstances. 
         private Dictionary<string, ItemType> itemTypes;
         public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
-        private int weight;
-        public int Weight { get { return weight; } set { weight = value; } }
+        private float weight;
+        public float Weight { get { return weight; } set { weight = value; } }
 
         public readonly string description = "An awesome hammer to bash people's brains in with";
         public String Description { get { return description + "\nAttack: " + Attack; } }
@@ -28,17 +30,21 @@ namespace StarterGame
         public int Attack { get { return attack; } set { attack = value; } }
         public Hammer()
         {
-            Weight = 10;
-            Value = 100;
+            Weight = .85f;
+            Value = 350;
             itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.WeaponItem);
+            itemTypes.Add(name, ItemType.BattleItem);
             Uses = 10;
-            Attack = 3;
+            Attack = 7;
         }
         public int getStrength(Player player)
         {
             return player.Attack + Attack;
         }
 
+        public void useItem()
+        {
+            //theres no need for this. The player uses the weapon. 
+        }
     }
 }

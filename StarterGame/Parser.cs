@@ -6,16 +6,23 @@ namespace StarterGame
 {
     public class Parser
     {
-        private CommandWords commands;
+        //private CommandWords commands;
+        private Stack<CommandWords> allCommands;
 
         public Parser() : this(new CommandWords())
         {
-
+            //NotificationCenter.Instance.addObserver("PushBattleCommands", PushBattleCommands);
+            //NotificationCenter.Instance.addObserver("BattleSequence", battleSequence);
         }
 
         public Parser(CommandWords newCommands)
         {
-            commands = newCommands;
+            //commands = newCommands;
+            allCommands = new Stack<CommandWords>();
+            allCommands.Push(newCommands);
+            NotificationCenter.Instance.addObserver("PushBattleCommands", PushBattleCommands);
+            NotificationCenter.Instance.addObserver("PushMerchantCommands", PushMerchantCommands);
+            NotificationCenter.Instance.addObserver("PopCommands", PopCommands);
         }
 
         /*public Command parseCommand(string commandString)
@@ -80,7 +87,8 @@ namespace StarterGame
             if (allWords.Count > 0)
             {              
                 string commandName = allWords.Peek();
-                command = commands.get(allWords.Dequeue());
+                
+                command = allCommands.Peek().get(allWords.Dequeue());
                 if (command != null)
                 {
                     command.Words = new Queue<string>(allWords);
@@ -99,9 +107,25 @@ namespace StarterGame
 
         public string description()
         {
-            return commands.description();
+            return allCommands.Peek().description();
         }
 
+        //Add the group of battle commands as the available commands 
+        public void PushBattleCommands(Notification notification)
+        {
+            allCommands.Push(new CommandWords(CommandWords.battleCommands));            
+        }
+
+        //Remove battle commands as the available commands
+        public void PopCommands(Notification notification)
+        {
+            allCommands.Pop();
+        }
+
+        public void PushMerchantCommands(Notification notification)
+        {
+            allCommands.Push(new CommandWords(CommandWords.merchantCommands));
+        }
 
     }
 }

@@ -24,9 +24,9 @@ namespace StarterGame
 
         public IEnemy()
         {
-            NotificationCenter.Instance.addObserver("EnemyRespondAttack", EnemyRespondAttack);
+            //NotificationCenter.Instance.addObserver("EnemyRespondAttack", EnemyRespondAttack);
         }
 
-        public abstract void EnemyRespondAttack(Notification notification);
+        //public abstract void EnemyRespondAttack(Notification notification);
     }
 }

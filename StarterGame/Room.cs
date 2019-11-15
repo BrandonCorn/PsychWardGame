@@ -17,32 +17,52 @@ namespace StarterGame
         private int chanceEnemy;
         public int ChanceEnemy { get { return chanceEnemy; } }
 
-        public Room() : this("No Tag", "short", 0)
+        //Contains all the NPCs that a player can interact with in a room. They Key will be the name they 
+        //given, creator of the game chooses this when compiling. The value will be the enemy themselves. 
+        private Dictionary<string, INPC> roomNpcs; 
+        
+        public Dictionary<string,INPC> RoomNpcs { get { return roomNpcs; } }
+
+        public Room() : this("No Tag", "short", 0, 0)
         {
             
         }
 
-        public Room(string tag) : this(tag,"short", 0)
+        public Room(string tag) : this(tag, "short", 0, 0)
         {
             exits = new Dictionary<string, Door>();
             this.tag = tag;
-           
+            roomNpcs = new Dictionary<string, INPC>();
         }
-        public Room(string tag, string shortName) : this(tag, shortName, 0)
+        public Room(string tag, string shortName) : this(tag, shortName, 0, 0)
         {
             exits = new Dictionary<string, Door>();
             this.tag = tag;
             this.shortName = shortName;
-            
+            roomNpcs = new Dictionary<string, INPC>();
         }
-        public Room(String tag, string shortName, int chanceEnemy)
+        public Room(String tag, string shortName, int chanceEnemy) : this(tag, shortName, chanceEnemy, 0)
         {
+            exits = new Dictionary<String, Door>();
             this.tag = tag;
             this.shortName = shortName;
             this.chanceEnemy = chanceEnemy;
+            roomNpcs = new Dictionary<string, INPC>();
+        }
+        //In the case that the user tells us to place some NPC's in the room this can do some randomly and
+        //we only need to give the number of them we want. A generic class will be created to give them
+        //their own characterstics 
+        public Room(String tag, string shortName, int chanceEnemy, int numNpcs)
+        {
             exits = new Dictionary<String, Door>();
-            
+            this.tag = tag;
+            this.shortName = shortName;
+            this.chanceEnemy = chanceEnemy;
 
+            for (int i = 0; i < numNpcs; i++)
+            {
+                
+            }
         }
 
         public void setExit(string exitName, Door door)
@@ -80,25 +100,45 @@ namespace StarterGame
 
         public string description()
         {
-            return "You are " + this.tag + ".\n *** " + this.getExits();
+            return "You are " + this.tag + ".\n *** " + this.getExits() + 
+                "\n --- NPCs: " + displayNPCs();
         }
 
         //Method will calculate the chance of running into an enemy and the random numbers match a 
         //random enemy will be spawned and presented in the game world. 
-        public static IEnemy getAnEnemy(Player player)
+        public static IEnemy getAnEnemy(Room currentRoom)
         {
-            int chance1 = new Random().Next(1, player.currentRoom.ChanceEnemy + 1);
-            int chance2 = new Random().Next(1, player.currentRoom.ChanceEnemy + 1);
+            int chance1 = new Random().Next(1, currentRoom.ChanceEnemy + 1);
+            int chance2 = new Random().Next(1, currentRoom.ChanceEnemy + 1);
             if (chance1 == chance2)
             {
-                int chance = new Random().Next(1, 3);
-                if (chance == 1)
-                {
-                    return new Rat();
-                }
-                return new ZombiePatient();
+                int chance = new Random().Next(0, GameWorld.AllEnemies.Count);
+                
+                return GameWorld.AllEnemies[chance];
+
             }
             return null;
+        }
+
+        public void addNPC(INPC npc)
+        {
+            roomNpcs[npc.Name] = npc; 
+        }
+
+        public void removeNPC(INPC npc)
+        {
+            roomNpcs.Remove(npc.Name);
+        }
+
+        public string displayNPCs()
+        {
+            string list = "";
+            Dictionary<string, INPC>.KeyCollection names = roomNpcs.Keys;
+            foreach(string npc in names)
+            {
+                list += npc + "\n"; 
+            }
+            return list;
         }
     }
 }

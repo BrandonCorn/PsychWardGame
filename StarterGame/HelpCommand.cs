@@ -15,13 +15,9 @@ namespace StarterGame
         {
             words = commands;
             this.name = "help";
-            this.CommandTypes = new Dictionary<CommandType,string>();
-            CommandTypes.Add( CommandType.BasicCommand, "Help Basic Command");
-            CommandTypes.Add(CommandType.BattleCommand,"Help Battle Command");
-            CommandTypes.Add(CommandType.MerchantCommand, "Help Merchant Command");
         }
 
-        override
+        /*override
         public bool execute(Player player)
         {
             if (this.hasSecondWord())
@@ -41,6 +37,19 @@ namespace StarterGame
             else 
             {
                 player.outputMessage("\n\n\nYour available commands are: " + words.description(CommandType.BasicCommand));
+            }
+            return false;
+        }*/
+
+        public override bool execute(Player player)
+        {
+            if (this.hasSecondWord())
+            {
+                player.outputMessage("\nI cannot help you with " + this.secondWord);
+            }
+            else
+            {
+                player.outputMessage("\n\n\nYour available commands are: " + words.description());
             }
             return false;
         }

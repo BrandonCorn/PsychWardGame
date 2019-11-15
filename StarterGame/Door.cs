@@ -8,13 +8,36 @@ namespace StarterGame
 
         private Room roomA;
         private Room roomB;
-        private bool locked;
+        private bool closed;
+        public bool Closed
+        {
+            get
+            {
+                return closed;
+            }
+            set
+            {
+                closed = value; 
+            }
+        }
+        public bool Open
+        {
+            get
+            {
+                return !closed;
+            }
+            set
+            {
+                closed = !value;
+            }
+        }
 
        
         public Door(Room roomA, Room roomB)
         {
             this.roomA = roomA;
             this.roomB = roomB;
+            closed = false;
             
         }
 

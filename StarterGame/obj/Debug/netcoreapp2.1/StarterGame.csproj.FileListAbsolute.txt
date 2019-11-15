@@ -31,3 +31,14 @@ C:\Users\corn_\source\repos\StarterGame\StarterGame\obj\Debug\netcoreapp2.1\Star
 C:\Users\corn_\source\repos\StarterGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.AssemblyInfo.cs
 C:\Users\corn_\source\repos\StarterGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.dll
 C:\Users\corn_\source\repos\StarterGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.pdb
+D:\PsychWardGame\StarterGame\bin\Debug\netcoreapp2.1\StarterGame.deps.json
+D:\PsychWardGame\StarterGame\bin\Debug\netcoreapp2.1\StarterGame.runtimeconfig.json
+D:\PsychWardGame\StarterGame\bin\Debug\netcoreapp2.1\StarterGame.runtimeconfig.dev.json
+D:\PsychWardGame\StarterGame\bin\Debug\netcoreapp2.1\StarterGame.dll
+D:\PsychWardGame\StarterGame\bin\Debug\netcoreapp2.1\StarterGame.pdb
+D:\PsychWardGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.csprojAssemblyReference.cache
+D:\PsychWardGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.csproj.CoreCompileInputs.cache
+D:\PsychWardGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.AssemblyInfoInputs.cache
+D:\PsychWardGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.AssemblyInfo.cs
+D:\PsychWardGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.dll
+D:\PsychWardGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.pdb

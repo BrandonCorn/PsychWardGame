@@ -9,8 +9,6 @@ namespace StarterGame
         public RunCommand()
         {
             this.name = "run";
-            this.CommandTypes = new Dictionary<CommandType,string>();
-            CommandTypes.Add(CommandType.BattleCommand, "Run Battle Command" );
         }
 
         public string runStatement()
@@ -24,6 +22,8 @@ namespace StarterGame
         public override bool execute(Player player)
         {
             player.outputMessage("\n" + runStatement());
+            NotificationCenter.Instance.postNotification(new Notification("BattleOver", this));
+            NotificationCenter.Instance.postNotification(new Notification("PopCommands", this));
             return false;
         } 
     }

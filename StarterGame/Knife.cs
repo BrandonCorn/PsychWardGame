@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    public class Knife : IWeapon
+    public class Knife : IWeapon, I_Item
     {
         private readonly string name = "Knife";
         public string Name { get { return name; } }
         private Dictionary<string, ItemType> itemTypes;
         public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
-        private int weight;
-        public int Weight { get { return weight; } set { weight = value; } }
+        private float weight;
+        public float Weight { get { return weight; } set { weight = value; } }
 
         private readonly string description = "A knife perfect for carving out zombie eyes!";
         public string Description { get { return description + "\nAttack: " + Attack; } }
@@ -25,23 +25,25 @@ namespace StarterGame
         public int Uses { get { return uses; } set { uses = value; } }
         private int attack; 
         public int Attack { get { return attack; } set { attack = value; } }
-        
 
 
         public Knife()
         {
-            Weight = 5;
+            Weight = .25f;
             itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.WeaponItem);
-            Value = 75; 
+            itemTypes.Add(name, ItemType.BattleItem);
+            Value = 250; 
             Uses = 10;
-            Attack = 2;
+            Attack = 5;
         }
         public int getStrength(Player player)
         {
             return player.Attack + Attack;
         }
 
-
+        public void useItem()
+        {
+            //Don't need this. the player will call the use of weapon. 
+        }
     }
 }

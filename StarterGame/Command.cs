@@ -22,8 +22,8 @@ namespace StarterGame
         //Giving each Command a type will allow us to make it so they are only displayed and usable in 
         //given situations. A dictionary is used so that commands can be of different types for instance
         //health items should be commands that can be used in and out of battle. 
-        private Dictionary<CommandType,string> commandTypes; 
-        public Dictionary<CommandType,string> CommandTypes { get { return commandTypes; } set { commandTypes = value; } }
+        //private Dictionary<CommandType,string> commandTypes; 
+        //public Dictionary<CommandType,string> CommandTypes { get { return commandTypes; } set { commandTypes = value; } }
 
         public Command()
         {

@@ -41,7 +41,7 @@ namespace StarterGame
             attack = 6;
             health = 100;
             inBattle = false;
-            weapon = new Knife();
+            //weapon = new Knife();
             currentEnemy = null;
             hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
@@ -53,11 +53,13 @@ namespace StarterGame
             Door door = this._currentRoom.getExit(direction);
             if (door != null)
             {
+
                 this._currentRoom = door.room(this.currentRoom);
                 // Player posts a notification PlayerEnteredRoom
                 this.outputMessage("\n" + this._currentRoom.description());
                 NotificationCenter.Instance.postNotification(new Notification("PlayerEnteredRoom", this));
                 NotificationCenter.Instance.postNotification(new Notification("BattleSequence", this));
+
             }
             else
             {
@@ -65,10 +67,13 @@ namespace StarterGame
                 this.outputMessage("\n" + this._currentRoom.description());
             }
         }
+
         public void BattleOver(Notification notification)
         {
-            Player player = (Player)notification.Object;
-            this.outputMessage("\n" + this._currentRoom.description());
+            //Player player = (Player)notification.Object;
+            CurrentEnemy = null; 
+            
+            this.outputMessage("\n" + currentRoom.description());
         }
 
         public void speak(String word)
@@ -81,11 +86,19 @@ namespace StarterGame
         {
             int discount = new Random().Next(1, (Attack / 2) + 1);
             CurrentEnemy.Health -= (this.totalAttack()-discount);
-            NotificationCenter.Instance.postNotification(new Notification("EnemyRespondAttack",this));
+            if (CurrentEnemy.Health <= 0)
+            {
+                //NotificationCenter.Instance.postNotification(new Notification("EnemyRespondAttack", this));
+                //CurrentEnemy.attackPlayer(this);
+            }
         }
 
         public int totalAttack()
         {
+            if (weapon == null)
+            {
+                return this.Attack;
+            }
             return this.Attack + weapon.Attack;
         }
         public void TaskSet(Notification notification)

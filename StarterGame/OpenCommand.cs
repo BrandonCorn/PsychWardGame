@@ -4,8 +4,7 @@ using System.Text;
 
 namespace StarterGame
 {
-    public enum CommandType
+    class OpenCommand
     {
-        BasicCommand, BattleCommand, MerchantCommand
     }
 }

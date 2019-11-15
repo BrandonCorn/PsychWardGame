@@ -9,8 +9,6 @@ namespace StarterGame
         public GoCommand() : base()
         {
             this.name = "go";
-            this.CommandTypes = new Dictionary<CommandType,string>();
-            CommandTypes.Add(CommandType.BasicCommand,"Go Basic Command");
         }
 
         /*override
