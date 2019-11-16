@@ -49,7 +49,9 @@ namespace StarterGame
             NotificationCenter.Instance.postNotification(new Notification("PushMerchantCommands", this));
             if (player.CurrentTask == null || player.CurrentTask.Complete == true)
             {
-                player.setCurrentTask(GameWorld.Instance.LadyMerchant.TaskList.Dequeue());
+                //Need to find method for setting tasks 
+                //player.setCurrentTask(GameWorld.Instance.LadyMerchant.TaskList.Dequeue());
+                //player.setCurrentTask(TaskList.Dequeue());
                 NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
             }
 
@@ -58,7 +60,7 @@ namespace StarterGame
             Console.WriteLine("\nWould you like to:\n\tbuy goods" +
                 "\n\tsell goods");
             
-            //Need to add command to end interaction !!!!!
+            
         }
 
         private void enteredMerchantRoom(Notification notification)

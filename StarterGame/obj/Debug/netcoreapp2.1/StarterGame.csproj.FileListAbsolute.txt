@@ -26,7 +26,6 @@ C:\Users\corn_\source\repos\StarterGame\StarterGame\bin\Debug\netcoreapp2.1\Star
 C:\Users\corn_\source\repos\StarterGame\StarterGame\bin\Debug\netcoreapp2.1\StarterGame.dll
 C:\Users\corn_\source\repos\StarterGame\StarterGame\bin\Debug\netcoreapp2.1\StarterGame.pdb
 C:\Users\corn_\source\repos\StarterGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.csprojAssemblyReference.cache
-C:\Users\corn_\source\repos\StarterGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.csproj.CoreCompileInputs.cache
 C:\Users\corn_\source\repos\StarterGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.AssemblyInfoInputs.cache
 C:\Users\corn_\source\repos\StarterGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.AssemblyInfo.cs
 C:\Users\corn_\source\repos\StarterGame\StarterGame\obj\Debug\netcoreapp2.1\StarterGame.dll

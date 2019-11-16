@@ -85,10 +85,19 @@ namespace StarterGame
             Queue<string> allWords = new Queue<string>(commandString.Split(" "));
 
             if (allWords.Count > 0)
-            {              
-                string commandName = allWords.Peek();
+            {
+                //string commandName = allWords.Peek();
+                string commandName = "";
+                int commandCount = parseMore(allWords);
+                while(allWords.Count != commandCount)
+                {
+                    commandName += allWords.Dequeue() + " ";
+                    
+                }
+                commandName = commandName.TrimEnd();
                 
-                command = allCommands.Peek().get(allWords.Dequeue());
+                command = allCommands.Peek().get(commandName);
+                //command = allCommands.Peek().get(allWords.Dequeue());
                 if (command != null)
                 {
                     command.Words = new Queue<string>(allWords);
@@ -103,6 +112,23 @@ namespace StarterGame
                 //Console.WriteLine(">>>Did not find the command " + commandName);
             }
             return command; 
+        }
+
+        public int parseMore(Queue<string> words)
+        {
+            
+            Queue<string> newWords = new Queue<string>(words);
+            //Command command = allCommands.Peek().get(findName);
+            string findName = newWords.Dequeue();
+            Command command = allCommands.Peek().get(findName);
+            int count = 0;
+            while (newWords.Count != 0 && command != null)
+            {
+                command = allCommands.Peek().get(findName);
+                findName += newWords.Dequeue();
+                count++;
+            }
+            return count; 
         }
 
         public string description()
