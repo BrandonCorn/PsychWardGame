@@ -84,14 +84,13 @@ namespace StarterGame
             int count = 0;
             foreach (string exitName in keys)
             {
-                count += 1;
-                if (keys.Count == count)
-                {
-                    exitNames += " " + exitName;
+                count++;
+                if (keys.Count == count) 
+                { 
+                    exitNames += " " + exitName; 
                 }
-                else
-                {
-                    exitNames += " " + exitName + ", ";
+                else { 
+                    exitNames += " " + exitName + ", "; 
                 }
             }
 
@@ -133,10 +132,19 @@ namespace StarterGame
         public string displayNPCs()
         {
             string list = "";
-            Dictionary<string, INPC>.KeyCollection names = roomNpcs.Keys;
-            foreach(string npc in names)
+            Dictionary<string, INPC>.KeyCollection keys = roomNpcs.Keys;
+            int count = 0; 
+            foreach(string npc in keys)
             {
-                list += npc + "\n"; 
+                count++;
+                if (keys.Count == count)
+                {
+                    list += npc;
+                }
+                else
+                {
+                    list += npc + ", ";
+                }
             }
             return list;
         }

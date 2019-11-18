@@ -128,6 +128,7 @@ namespace StarterGame
                 findName += newWords.Dequeue();
                 count++;
             }
+            
             return count; 
         }
 

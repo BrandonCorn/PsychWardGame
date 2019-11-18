@@ -4,12 +4,12 @@ using System.Text;
 
 namespace StarterGame
 {
-    class LeaveCommand : Command
+    class WalkAwayCommand : Command
     {
 
-        public LeaveCommand()
+        public WalkAwayCommand()
         {
-            this.name = "leave"; 
+            this.name = "walk away"; 
             
         }
 

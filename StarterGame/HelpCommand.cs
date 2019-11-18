@@ -43,14 +43,14 @@ namespace StarterGame
 
         public override bool execute(Player player)
         {
-            if (this.hasSecondWord())
+            /*if (this.hasSecondWord())
             {
-                player.outputMessage("\nI cannot help you with " + this.secondWord);
+                player.outputMessage("\nI cannot help you with that!" );
             }
             else
-            {
-                player.outputMessage("\n\n\nYour available commands are: " + words.description());
-            }
+            {*/
+                player.outputMessage("\n\n\nYour available commands are => " + words.description());
+            //}
             return false;
         }
     }

@@ -17,7 +17,7 @@ namespace StarterGame
         //These two arrays will be used in the stack implementation of the Commands, when a player enters a 
         //scenario in which the commands must be changed, the corresponding array of commands can be pushed
         //to the stack changing the available options. 
-        public static Command[] merchantCommands = { new BuyCommand(), new SellCommand(),new LeaveCommand(),
+        public static Command[] merchantCommands = { new BuyCommand(), new SellCommand(),new WalkAwayCommand(),
             new QuitCommand() };
         public static Command[] battleCommands = { new FightCommand(), new RunCommand(), new QuitCommand()};
 
@@ -51,9 +51,18 @@ namespace StarterGame
         {
             string commandNames = "";
             Dictionary<string, Command>.KeyCollection keys = commands.Keys;
+            int count = 0; 
             foreach (string commandName in keys)
             {
-                commandNames += " " + commandName;
+                count++;
+                if (keys.Count == count)
+                {
+                    commandNames += commandName;
+                }
+                else
+                {
+                    commandNames += commandName + ", ";
+                }
             }
             return commandNames;
         }
