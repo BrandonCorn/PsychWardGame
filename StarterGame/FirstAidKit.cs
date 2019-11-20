@@ -11,7 +11,7 @@ namespace StarterGame
         private float weight;
         public float Weight { get; }
 
-        private readonly string name = "First aid kit";
+        private readonly string name = "first aid kit";
         public string Name { get { return name; } }
 
         private readonly string description = "Heals you, if you know what you're doing";
@@ -36,7 +36,7 @@ namespace StarterGame
             itemTypes.Add(name, ItemType.BattleItem);
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             throw new NotImplementedException();
         }

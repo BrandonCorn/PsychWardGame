@@ -9,7 +9,7 @@ namespace StarterGame
         private float weight;
         public float Weight { get; }
 
-        private readonly string name = "Rat tail";
+        private readonly string name = "rat tail";
         public string Name { get { return name; } }
 
         private readonly string description = "Can be mixed with other ingredients to make something useful";
@@ -38,7 +38,7 @@ namespace StarterGame
             rt.uses--;
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             throw new NotImplementedException();
         }

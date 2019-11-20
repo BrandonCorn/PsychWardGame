@@ -16,7 +16,7 @@ namespace StarterGame
         {
             if (player.Backpack != null)
             {
-                player.outputMessage("Backpack Items => " + player.Backpack.displayItems());
+                player.outputMessage(player.Backpack.displayItems()); 
                 return false;
             }
             else

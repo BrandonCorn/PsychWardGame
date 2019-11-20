@@ -9,7 +9,7 @@ namespace StarterGame
         private float weight;
         public float Weight { get; }
 
-        private readonly string name = "Lockpick";
+        private readonly string name = "lockpick";
         public string Name { get { return name; } }
 
         private readonly string description = "Picks locks, but know some doors can't be picked";
@@ -33,7 +33,7 @@ namespace StarterGame
             itemTypes.Add(name, ItemType.BasicItem);
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             throw new NotImplementedException();
         }

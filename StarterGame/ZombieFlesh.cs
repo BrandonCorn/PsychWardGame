@@ -9,7 +9,7 @@ namespace StarterGame
         private float weight;
         public float Weight { get; }
 
-        private readonly string name = "Zombie flesh";
+        private readonly string name = "zombie flesh";
         public string Name { get { return name; } }
 
         private readonly string description = "Nasty. Smells. Makes a nastier posion if mixed correctly";
@@ -38,7 +38,7 @@ namespace StarterGame
             z.uses--;
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             throw new NotImplementedException();
         }

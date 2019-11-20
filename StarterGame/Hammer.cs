@@ -8,7 +8,7 @@ namespace StarterGame
 {
     public class Hammer : IWeapon, I_Item
     {
-        private readonly string name = "Hammer";
+        private readonly string name = "hammer";
      
         public string Name { get { return name; } }
         //The itemTypes is a Dictionary of what all an item qualifies as, for instance health items 

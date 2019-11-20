@@ -10,9 +10,9 @@ namespace StarterGame
 
 
         private float weight;
-        public float Weight { get; }
+        public float Weight { get { return weight; } }
 
-        private readonly string name = "Suture Kit";
+        private readonly string name = "suture Kit";
         public string Name { get { return name; } }
 
         private readonly string description = "Does more than your regular first aid kit";

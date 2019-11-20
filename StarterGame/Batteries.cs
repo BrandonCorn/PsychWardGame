@@ -9,7 +9,7 @@ namespace StarterGame
         private float weight;
         public float Weight { get; }
 
-        private readonly string name = "Batteries";
+        private readonly string name = "batteries";
         public string Name { get { return name; } }
 
 
@@ -47,7 +47,7 @@ namespace StarterGame
             }
         }
 
-        public void useItem(){ throw new NotImplementedException(); }
+        public void useItem(Player player){ throw new NotImplementedException(); }
 
         override
         public string ToString()

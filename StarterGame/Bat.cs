@@ -6,7 +6,7 @@ namespace StarterGame
 {
     class Bat : I_Item, IWeapon
     {
-        private readonly string name = "Bat";
+        private readonly string name = "bat";
         public string Name { get { return name; } }
         private Dictionary<string, ItemType> itemTypes;
         public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
@@ -49,7 +49,7 @@ namespace StarterGame
             return player.Attack + Attack;
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             //No need for this the player will use the weapon 
         }

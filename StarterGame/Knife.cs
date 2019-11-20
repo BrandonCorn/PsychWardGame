@@ -8,7 +8,7 @@ namespace StarterGame
 {
     public class Knife : IWeapon, I_Item
     {
-        private readonly string name = "Knife";
+        private readonly string name = "knife";
         public string Name { get { return name; } }
         private Dictionary<string, ItemType> itemTypes;
         public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
@@ -41,7 +41,7 @@ namespace StarterGame
             return player.Attack + Attack;
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             //Don't need this. the player will call the use of weapon. 
         }

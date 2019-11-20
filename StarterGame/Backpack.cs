@@ -113,24 +113,16 @@ namespace StarterGame
             string list = "";
             Dictionary<string, LinkedList<I_Item>>.ValueCollection values = Inventory.Values;
             int count = 0;
+            list += "\nWeight in Bag: " + weightInBag() + "lbs\n\t";
             foreach (LinkedList<I_Item> item in values)
             {
-                list += item.First.Value.Name + ": " + item.Count + "\n";
-                /*count++;
-                if (values.Count == count)
-                {
-                    list += item.First.Value.Name + ": " + item.Count + "\n";
-                }
-                else
-                {
-                    list += item.First.Value.Name + ": " + item.Count + ", ";
-                }*/
+                list += item.First.Value.Name + ": " + item.Count + "\n\t";
             }
             return list;
         }
 
 
-        public void useItem()
+        public void useItem(Player player)
         {
             Console.WriteLine("Can't really do all that.");
         }
