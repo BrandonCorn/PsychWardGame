@@ -9,13 +9,13 @@ namespace StarterGame
 
         private readonly string name = "Merchant"; 
         public string Name { get { return name; } }
-        private string description;
+        private readonly string description = "Nice person who wants to trade with you!";
         public string Description { get { return description; } }
 
         //The tasks can be assigned to rooms by the GameWorld, but the Merchant has control of them
         //only she can take away from the taskList, or access them to mark them as completed to move through 
         //the game. 
-        //private ITask[] tasks = { new HowToPlay(mainHall) }; 
+        
         private Queue<ITask> taskList;
         public Queue<ITask> TaskList { get { return taskList; } }
         //created a merchant room, this can be changed in the game world
@@ -29,11 +29,12 @@ namespace StarterGame
         {
             this.merchantRoom = room;
             this.taskList = new Queue<ITask>();
-        
+
             //NotificationCenter.Instance.addObserver("EnteredMerchantRoom", enteredMerchantRoom);
             NotificationCenter.Instance.addObserver("PlayerSpeak_merchant", PlayerSpeak_merchant);
             NotificationCenter.Instance.addObserver("LeaveMerchant", LeaveMerchant);
         }
+
 
         //add tasks to the merchants list
         public void addTask(ITask task)
@@ -45,6 +46,14 @@ namespace StarterGame
         private void PlayerSpeak_merchant(Notification notification)
         {
             Player player = (Player)notification.Object;
+            if (player.Backpack == null)
+            {
+                Console.WriteLine("Oh a new traveler. You're going to have trouble carrying things around in " +
+                "your arms. Take this, it will help!");
+                player.Backpack = new Backpack();
+                player.Backpack.giveItem(new SutureKit());
+                Console.WriteLine(player.Backpack.Description);
+            }
             NotificationCenter.Instance.postNotification(new Notification("PushMerchantCommands", this));
             if (player.CurrentTask == null || player.CurrentTask.Complete == true)
             {
@@ -58,7 +67,6 @@ namespace StarterGame
             
             Console.WriteLine("\nWould you like to:\n\tbuy goods" +
                 "\n\tsell goods");
-            
             
         }
 

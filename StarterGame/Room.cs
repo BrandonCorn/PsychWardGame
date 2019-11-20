@@ -197,10 +197,10 @@ namespace StarterGame
         {
             LinkedList<I_Item> check = null;
             RoomItems.TryGetValue(item, out check);
-            if (check != null)
+            if (check != null && check.Count != 0)
             {
                 I_Item temp = check.First.Value;
-                check.RemoveFirst();
+                RoomItems[item].RemoveFirst();
                 return temp;
             }
             else
@@ -218,13 +218,13 @@ namespace StarterGame
             foreach (LinkedList<I_Item> item in values)
             {
                 count++;
-                //Console.WriteLine(item.Count);
                 if (values.Count == count)
                 {
                     list += item.First.Value.Name + ": " + item.Count;
                 }
                 else
                 {
+                    //Missing value in in this room once it was taken from the room. 
                     list += item.First.Value.Name + ": " + item.Count + ", ";
                 }
             }

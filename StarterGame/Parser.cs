@@ -86,9 +86,8 @@ namespace StarterGame
 
             if (allWords.Count > 0)
             {
-                //string commandName = allWords.Peek();
                 string commandName = "";
-                int commandCount = parseMore(allWords);
+                /*int commandCount = parseMore(allWords);
                 while(allWords.Count != commandCount)
                 {
                     commandName += allWords.Dequeue() + " ";
@@ -97,6 +96,8 @@ namespace StarterGame
                 commandName = commandName.TrimEnd();
                 
                 command = allCommands.Peek().get(commandName);
+                */
+                command = giveCommand(allWords);
                 //command = allCommands.Peek().get(allWords.Dequeue());
                 if (command != null)
                 {
@@ -131,6 +132,24 @@ namespace StarterGame
             
             return count; 
         }
+
+        public Command giveCommand(Queue<string> words)
+        {
+            Command command = null;
+            string commandName = "";
+            Queue<string> newWords = words;
+            while(newWords.Count > 0 && command == null)
+            {
+                commandName += newWords.Dequeue();
+                command = allCommands.Peek().get(commandName);
+                if (command == null)
+                {
+                    commandName += " "; 
+                }
+            }
+            return command; 
+        }
+         
 
         public string description()
         {

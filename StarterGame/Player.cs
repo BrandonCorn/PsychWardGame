@@ -19,18 +19,14 @@ namespace StarterGame
         private ITask currentTask; 
         public ITask CurrentTask { get { return currentTask; } }
         
-        //The in battle status will allow us to know when certain commands should be available and not available.
-        //Look at help command for example. 
-        private bool inBattle; 
-        public bool InBattle { get { return inBattle; } set { inBattle = value; } }
 
         //The player will be capable of holding one weapon at a time. The players weapon attack will 
         //stack onto the players attack damage and each battle will degrade the weapons use by one. 
         private IWeapon weapon; 
         public IWeapon Weapon { get { return weapon; } set { weapon = value; } }
 
-        private IEnemy currentEnemy; 
-        public IEnemy CurrentEnemy { get { return currentEnemy; } set { currentEnemy = value; } }
+        private Backpack backpack; 
+        public Backpack Backpack { get { return backpack; } set { backpack = value; } }
         private int hitProbability;
         public int HitProbability { get { return hitProbability; } }
 
@@ -40,12 +36,12 @@ namespace StarterGame
             currentTask = null;
             attack = 6;
             health = 100;
-            inBattle = false;
-            //weapon = new Knife();
-            currentEnemy = null;
+            weapon = null;
+            backpack = null; 
             hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
             NotificationCenter.Instance.addObserver("BattleOver", BattleOver);
+
         }
 
         public void waltTo(string direction)
@@ -53,13 +49,11 @@ namespace StarterGame
             Door door = this._currentRoom.getExit(direction);
             if (door != null)
             {
-
                 this._currentRoom = door.room(this.currentRoom);
                 // Player posts a notification PlayerEnteredRoom
                 this.outputMessage("\n" + this._currentRoom.description());
                 NotificationCenter.Instance.postNotification(new Notification("PlayerEnteredRoom", this));
                 NotificationCenter.Instance.postNotification(new Notification("BattleSequence", this));
-
             }
             else
             {
@@ -72,7 +66,7 @@ namespace StarterGame
         public void BattleOver(Notification notification)
         {
             //Player player = (Player)notification.Object;
-            CurrentEnemy = null; 
+            //CurrentEnemy = null; 
             
             this.outputMessage("\n" + currentRoom.description());
         }
@@ -87,11 +81,6 @@ namespace StarterGame
         {
             int discount = new Random().Next(1, (Attack / 2) + 1);
             currentRoom.CurrentEnemy.Health -= (this.totalAttack()-discount);
-            if (this.currentRoom.CurrentEnemy.Health <= 0)
-            {
-                //NotificationCenter.Instance.postNotification(new Notification("EnemyRespondAttack", this));
-                //CurrentEnemy.attackPlayer(this);
-            }
         }
 
         public int totalAttack()
@@ -123,9 +112,26 @@ namespace StarterGame
             outputMessage("Player \nHealth: " + this.Health + "\nAttack: " + this.totalAttack());
         }
 
-        public void addBackpack()
+        public void pickUpItem(string itemName)
         {
+            I_Item item = currentRoom.takeItem(itemName);
+            if (item != null)
+            { 
+                if ((Backpack.weightInBag() + item.Weight) >= 30)
+                {
+                    Console.WriteLine("Backpack is full.");
+                    currentRoom.giveItem(item);
+                }
+                else
+                {
+                    Backpack.giveItem(item);
+                }
+            }
+        }
 
+        public I_Item removeFromBackpack(string item)
+        {
+            return Backpack.takeItem(item);
         }
     }
 

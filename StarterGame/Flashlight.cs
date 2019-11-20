@@ -9,7 +9,7 @@ namespace StarterGame
         private float weight;
         public float Weight { get; }
 
-        private readonly string name = "Flashlight";
+        private readonly string name = "flashlight";
         public string Name { get { return name; } }
 
         private readonly string description = "Lets you see in the dark";
@@ -34,7 +34,7 @@ namespace StarterGame
             value = 0;
             batteryHealth = 0;
             itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.BasicItem);
+            itemTypes.Add("Basic", ItemType.BasicItem);
         }
 
         public void useItem(Flashlight o)

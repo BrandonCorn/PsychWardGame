@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace StarterGame
 {
-    class Backpack : I_Item
+    public class Backpack : I_Item
     {
 
         private float weight;
@@ -17,6 +17,7 @@ namespace StarterGame
         public string Name { get { return name; } }
 
         private readonly string description; 
+           
         public string Description { get { return description; }}
 
         private int value;
@@ -31,40 +32,70 @@ namespace StarterGame
         private int capacity;
         public int Capacity { get { return capacity; } }
 
-        private Dictionary<String, Queue<I_Item>> inventory;
-        public Dictionary<String, Queue<I_Item>> Inventory { get { return inventory; } }
+        private Dictionary<string, LinkedList<I_Item>> inventory;
+        public Dictionary<string, LinkedList<I_Item>> Inventory { get { return inventory; } }
 
         public Backpack()
         {
             weight = 0; //Weight should be 0
             uses = 1; //Doesn't matter
             value = 0; //Unsellable anyways
-            description = "Pretty useful for holding items. \n\tCapacity: + " + capacity + "lbs";
             capacity = 30;
+            description = "Pretty useful for holding items. \n\tCapacity: " + Capacity + "lbs";
             itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.BattleItem);
-
+            itemTypes.Add(name, ItemType.KeyItem);
+            inventory = new Dictionary<string, LinkedList<I_Item>>();
         }
-        public void AddItem(I_Item item)
+        public void giveItem(I_Item item)
         {
-            if (inventory.Count >= 30)
+            LinkedList<I_Item> check = null;
+            Inventory.TryGetValue(item.Name, out check);
+            if (check == null)
             {
-                Console.WriteLine("Backpack is full.");
+                Inventory[item.Name] = new LinkedList<I_Item>();
+                Inventory[item.Name].AddFirst(item);
             }
             else
             {
-                inventory[item.Name].Enqueue(item);
+                Inventory[item.Name].AddFirst(item);
+            }
+            
+        }
+
+        public I_Item takeItem(string item)
+        {
+            LinkedList<I_Item> check = null;
+            Inventory.TryGetValue(item, out check);
+            if (check != null && check.Count != 0)
+            {
+                I_Item temp = check.First.Value;
+                Inventory[item].RemoveFirst();
+                return temp;
+            }
+            else
+            {
+                Console.WriteLine("Item does not exist in your backpack!");
+                return null;
             }
         }
 
-        public void RemoveItem(String itemName)
+        public float weightInBag()
         {
-            inventory[itemName].Dequeue();
+            float temp = 0;
+            Dictionary<string, LinkedList<I_Item>>.ValueCollection values = inventory.Values;
+            foreach(LinkedList<I_Item> items in values)
+            {
+                foreach(I_Item item in items)
+                {
+                    temp += item.Weight;
+                }
+            }
+            return temp; 
         }
 
         //The actual total number of items is going to be the count of the Queues in each position in the 
         /// Dictionary 
-       
+
 
         /*public void ItemsinBackpack (Dictionary<String, Object> inventory)
         {
@@ -76,6 +107,27 @@ namespace StarterGame
                 inventory.ToList().ForEach(x => Console.WriteLine(x.Key));
             }
         }*/
+
+        public string displayItems()
+        {
+            string list = "";
+            Dictionary<string, LinkedList<I_Item>>.ValueCollection values = Inventory.Values;
+            int count = 0;
+            foreach (LinkedList<I_Item> item in values)
+            {
+                list += item.First.Value.Name + ": " + item.Count + "\n";
+                /*count++;
+                if (values.Count == count)
+                {
+                    list += item.First.Value.Name + ": " + item.Count + "\n";
+                }
+                else
+                {
+                    list += item.First.Value.Name + ": " + item.Count + ", ";
+                }*/
+            }
+            return list;
+        }
 
 
         public void useItem()

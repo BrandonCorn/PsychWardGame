@@ -33,8 +33,8 @@ namespace StarterGame
             uses = 1;
             value = 500;
             itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.BattleItem);
-            itemTypes.Add(name, ItemType.BasicItem);
+            itemTypes.Add("Battle", ItemType.BattleItem);
+            itemTypes.Add("Basic", ItemType.BasicItem);
         }
 
         public void useItem()
