@@ -19,6 +19,10 @@ namespace StarterGame
                 player.outputMessage("\nPick up what?");
                 return false;
             }
+            if (player.Backpack == null)
+            {
+                player.outputMessage("\nWhere are you going to put this item?"); 
+            }
             else
             {
                 while (this.Words.Count > 0)

@@ -201,6 +201,9 @@ namespace StarterGame
             {
                 I_Item temp = check.First.Value;
                 RoomItems[item].RemoveFirst();
+                if (RoomItems[item].Count == 0) {
+                    RoomItems.Remove(item); 
+                }
                 return temp;
             }
             else
@@ -224,7 +227,7 @@ namespace StarterGame
                 }
                 else
                 {
-                    //Missing value in in this room once it was taken from the room. 
+                    //Missing value in this room once it was taken from the room. 
                     list += item.First.Value.Name + ": " + item.Count + ", ";
                 }
             }
