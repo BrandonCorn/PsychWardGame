@@ -7,7 +7,7 @@ namespace StarterGame
     public abstract class IEnemy
     {
         public abstract string Name { get; }
-        public abstract EnemyType EnemyType {get;}
+        
         public abstract int Level { get; }
         public abstract int Attack { get; }
         public abstract int Health { get; set; }
@@ -24,9 +24,9 @@ namespace StarterGame
 
         public IEnemy()
         {
-            //NotificationCenter.Instance.addObserver("EnemyRespondAttack", EnemyRespondAttack);
+            
         }
 
-        //public abstract void EnemyRespondAttack(Notification notification);
+       
     }
 }

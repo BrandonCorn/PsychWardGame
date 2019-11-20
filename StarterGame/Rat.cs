@@ -10,8 +10,7 @@ namespace StarterGame
     {
         private readonly string name = "Rat";
         public override string Name { get { return name;  } }
-        private readonly EnemyType enemyType = EnemyType.Rat;
-        public override EnemyType EnemyType { get { return enemyType; } }
+
         private int level; 
         public override int Level { get { return level; } }
         private int attack;
@@ -26,7 +25,6 @@ namespace StarterGame
             attack = 3;
             health = 12; 
             hitProbability = 2;
-            //NotificationCenter.Instance.addObserver("EnemyRespondAttack", EnemyRespondAttack);
         }
         public override string battleGreeting()
         {
@@ -53,17 +51,6 @@ namespace StarterGame
             }
             else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
         }
-
-        /*public override void EnemyRespondAttack(Notification notification)
-        {
-            Player player = (Player)notification.Object;
-            int chance = new Random().Next(1, HitProbability + 1);
-            if (chance == 1 && this.Health > 0)
-            {
-                Console.WriteLine(attackDescription());
-                player.Health -= new Random().Next(1, Attack + 1);
-            }
-        }*/
 
         public override void currentStats()
         {

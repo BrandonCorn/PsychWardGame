@@ -27,11 +27,10 @@ namespace StarterGame
         public Room MerchantRoom { get { return this.merchantRoom; } }
         public Merchant(Room room)
         {
-           
             this.merchantRoom = room;
             this.taskList = new Queue<ITask>();
         
-            NotificationCenter.Instance.addObserver("EnteredMerchantRoom", enteredMerchantRoom);
+            //NotificationCenter.Instance.addObserver("EnteredMerchantRoom", enteredMerchantRoom);
             NotificationCenter.Instance.addObserver("PlayerSpeak_merchant", PlayerSpeak_merchant);
             NotificationCenter.Instance.addObserver("LeaveMerchant", LeaveMerchant);
         }
@@ -63,7 +62,7 @@ namespace StarterGame
             
         }
 
-        private void enteredMerchantRoom(Notification notification)
+        /*private void enteredMerchantRoom(Notification notification)
         {
             Player player = (Player)notification.Object;
             if (player.CurrentTask == null || player.CurrentTask.Complete == true)
@@ -76,7 +75,7 @@ namespace StarterGame
             Console.WriteLine("\nWould you like to:\n\tbuy goods" +
                 "\n\tsell goods");
 
-        }
+        } */
 
         public void LeaveMerchant(Notification notification)
         {

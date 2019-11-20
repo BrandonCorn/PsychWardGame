@@ -17,6 +17,12 @@ namespace StarterGame
         private int chanceEnemy;
         public int ChanceEnemy { get { return chanceEnemy; } }
 
+        //Giving the room the currentEnemy to the room because the room should be able to spawn them, take
+        //them away, and manipulate the enemy belonging to that room. 
+
+        private IEnemy currentEnemy;
+        public IEnemy CurrentEnemy { get { return currentEnemy; } set { currentEnemy = value; } }
+
         //Contains all the NPCs that a player can interact with in a room. They Key will be the name they 
         //given, creator of the game chooses this when compiling. The value will be the enemy themselves. 
         private Dictionary<string, INPC> roomNpcs; 
@@ -33,6 +39,7 @@ namespace StarterGame
             exits = new Dictionary<string, Door>();
             this.tag = tag;
             roomNpcs = new Dictionary<string, INPC>();
+            
         }
         public Room(string tag, string shortName) : this(tag, shortName, 0, 0)
         {
@@ -40,6 +47,7 @@ namespace StarterGame
             this.tag = tag;
             this.shortName = shortName;
             roomNpcs = new Dictionary<string, INPC>();
+            
         }
         public Room(String tag, string shortName, int chanceEnemy) : this(tag, shortName, chanceEnemy, 0)
         {
@@ -48,6 +56,7 @@ namespace StarterGame
             this.shortName = shortName;
             this.chanceEnemy = chanceEnemy;
             roomNpcs = new Dictionary<string, INPC>();
+            
         }
         //In the case that the user tells us to place some NPC's in the room this can do some randomly and
         //we only need to give the number of them we want. A generic class will be created to give them
@@ -104,20 +113,28 @@ namespace StarterGame
         }
 
         //Method will calculate the chance of running into an enemy and the random numbers match a 
-        //random enemy will be spawned and presented in the game world. 
-        public static IEnemy getAnEnemy(Room currentRoom)
+        //random enemy will be spawned and presented in the game world.
+        //This method has a bug and is not giving back new enemies each time. 
+        public void getAnEnemy()
         {
-            int chance1 = new Random().Next(1, currentRoom.ChanceEnemy + 1);
-            int chance2 = new Random().Next(1, currentRoom.ChanceEnemy + 1);
-            if (chance1 == chance2)
+
+            EnemyType temp = new EnemyType();
+            int chance1 = new Random().Next(1, ChanceEnemy + 1);
+
+            if (chance1 == 1)
             {
-                int chance = new Random().Next(0, GameWorld.AllEnemies.Count);
-                
-                return GameWorld.AllEnemies[chance];
+                int chance = new Random().Next(0, temp.AllEnemies.Count);
+
+                CurrentEnemy = temp.AllEnemies[chance];
 
             }
-            return null;
+            else
+            {
+                CurrentEnemy = null;
+            }
         }
+
+       
 
         public void addNPC(INPC npc)
         {

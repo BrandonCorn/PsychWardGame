@@ -68,6 +68,7 @@ namespace StarterGame
             }
         }
 
+        //Notification that battle is over, reads current room description. 
         public void BattleOver(Notification notification)
         {
             //Player player = (Player)notification.Object;
@@ -85,8 +86,8 @@ namespace StarterGame
         public void useWeapon()
         {
             int discount = new Random().Next(1, (Attack / 2) + 1);
-            CurrentEnemy.Health -= (this.totalAttack()-discount);
-            if (CurrentEnemy.Health <= 0)
+            currentRoom.CurrentEnemy.Health -= (this.totalAttack()-discount);
+            if (this.currentRoom.CurrentEnemy.Health <= 0)
             {
                 //NotificationCenter.Instance.postNotification(new Notification("EnemyRespondAttack", this));
                 //CurrentEnemy.attackPlayer(this);
@@ -101,6 +102,7 @@ namespace StarterGame
             }
             return this.Attack + weapon.Attack;
         }
+
         public void TaskSet(Notification notification)
         {
              Console.WriteLine("\nA task has been set! (You can view the task description with the \"task\" command");
@@ -119,6 +121,11 @@ namespace StarterGame
         public void currentStats()
         {
             outputMessage("Player \nHealth: " + this.Health + "\nAttack: " + this.totalAttack());
+        }
+
+        public void addBackpack()
+        {
+
         }
     }
 

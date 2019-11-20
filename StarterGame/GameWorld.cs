@@ -7,15 +7,17 @@ namespace StarterGame
     public class GameWorld
     {
         static private GameWorld _instance;
-        static public GameWorld Instance {
-            get {
+        static public GameWorld Instance
+        {
+            get
+            {
                 if (_instance == null)
                     _instance = new GameWorld();
                 return _instance;
             }
         }
-        static private Dictionary<int, IEnemy> allEnemies; 
-        static public Dictionary<int,IEnemy> AllEnemies{ get { return allEnemies; } }
+        //static private Dictionary<int, IEnemy> allEnemies; 
+        //static public Dictionary<int,IEnemy> AllEnemies{ get { return allEnemies; } }
 
         private Room _entrance;
         public Room Entrance { get { return _entrance; } }
@@ -24,16 +26,14 @@ namespace StarterGame
         private List<Room> hotList;
         private Merchant ladyMerchant;
         public Merchant LadyMerchant { get { return ladyMerchant; } }
+        
 
         private GameWorld()
         {
             hotList = new List<Room>();
             _entrance = createWorld();
 
-            //all the enemies available to the rooms in the game. 
-            allEnemies = new Dictionary<int, IEnemy>() {
-                { 0, new Rat() }, { 1, new ZombiePatient() }
-            };
+           
             // GameWorld subscribes to the notification PlayerEnteredRoom
             NotificationCenter.Instance.addObserver("PlayerEnteredRoom", playerEnteredRoom);
             NotificationCenter.Instance.addObserver("Player has spoken", playerSpeak);
@@ -42,12 +42,12 @@ namespace StarterGame
 
         private Room createWorld()
         {
-             
+
             Room entrance = new Room(" at the entrance of the PsychWard", "entrance");
             Room merch = new Room("in the merchant's room", "merchant room");
-            Room mainHall = new Room("in the main hall", "main hall",1);
+            Room mainHall = new Room("in the main hall", "main hall", 1);
             Room cafeteria = new Room("in the cafeteria", "cafeteria");
-            Room maleWard = new Room("in the male ward", "male ward",1);
+            Room maleWard = new Room("in the male ward", "male ward", 1);
             Room femaleWard = new Room("in the female ward", "female ward");
             Room maleShowers = new Room("in the male showers", "male showers");
             Room femaleShowers = new Room("in the female showers", "female showers");
@@ -66,7 +66,7 @@ namespace StarterGame
 
             Door door = Door.createDoor(entrance, merch);
             door = Door.createDoor(entrance, mainHall);
-            door.Closed = true; 
+            door.Closed = true;
             door = Door.createDoor(mainHall, maleWard);
             door = Door.createDoor(mainHall, femaleWard);
             door = Door.createDoor(mainHall, cafeteria);
@@ -97,7 +97,7 @@ namespace StarterGame
             return entrance;
         }
 
-        
+
         // callback method for PlayerEnteredRoom
         public void playerEnteredRoom(Notification notification)
         {
@@ -108,11 +108,11 @@ namespace StarterGame
             //interacts with the merchant. 
             //if (player.currentRoom == ladyMerchant.MerchantRoom)
             {
-               
+
             }
 
         }
-        
+
         //callback method for player speak word
         public void playerSpeak(Notification notification)
         {
@@ -133,11 +133,12 @@ namespace StarterGame
 
             if (player.currentRoom.ChanceEnemy != 0)
             {
-                IEnemy enemy = Room.getAnEnemy(player.currentRoom); 
+                //IEnemy enemy = Room.getAnEnemy(player.currentRoom);
+                player.currentRoom.getAnEnemy();
 
-                if (enemy != null)
+                if (player.currentRoom.CurrentEnemy != null)
                 {
-                    player.CurrentEnemy = enemy;
+                    IEnemy enemy = player.currentRoom.CurrentEnemy;
                     NotificationCenter.Instance.postNotification(new Notification("PushBattleCommands", this));
                     Console.WriteLine("\n****************************************************");
                     Console.WriteLine("\n" + enemy.battleGreeting() + "\n\nThe battle begins!\n");
@@ -148,5 +149,10 @@ namespace StarterGame
 
         }
 
+        public IEnemy getAnEnemy(Room room)
+        {
+
+            return null; 
+        }
     }
 }

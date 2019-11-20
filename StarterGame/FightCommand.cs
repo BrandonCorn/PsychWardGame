@@ -15,17 +15,21 @@ namespace StarterGame
         //battle sequence in the GameWorld, otherwise it remains true. 
         public override bool execute(Player player)
         {
+            IEnemy enemy = player.currentRoom.CurrentEnemy;
             player.useWeapon();
-            if (player.CurrentEnemy.Health <= 0)
+            //if (player.currentRoom.CurrentEnemy.Health <= 0)
+            if (enemy.Health <= 0)
             {
                 player.outputMessage("\nYou win!!!\n");
                 NotificationCenter.Instance.postNotification(new Notification("PopCommands", this));
                 NotificationCenter.Instance.postNotification(new Notification("BattleOver", this));
-                
+                //player.CurrentEnemy = null;
+                player.currentRoom.CurrentEnemy = null; 
                 return false;
             }
             else {
-                player.CurrentEnemy.attackPlayer(player);
+                //player.CurrentEnemy.attackPlayer(player);
+                enemy.attackPlayer(player);
             }
 
             if(player.Health <= 0)
@@ -34,7 +38,8 @@ namespace StarterGame
                 return true;
             }
             player.currentStats();
-            player.CurrentEnemy.currentStats();
+            //player.CurrentEnemy.currentStats();
+            enemy.currentStats();
             return false;
         }
     }

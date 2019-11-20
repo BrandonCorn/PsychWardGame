@@ -10,8 +10,7 @@ namespace StarterGame
     {
         private readonly string name = "Zombie Patient";
         public override string Name { get { return name; } }
-        private readonly EnemyType enemyType = EnemyType.ZombiePatient; 
-        public override EnemyType EnemyType { get { return enemyType; } }
+
         private int level; 
         public override int Level { get { return level; } }
         private int attack;
@@ -27,7 +26,6 @@ namespace StarterGame
             attack = 4;
             health = 14;
             hitProbability = 2;
-            //NotificationCenter.Instance.addObserver("EnemyRespondAttack", EnemyRespondAttack);
         }
 
         //
@@ -35,6 +33,7 @@ namespace StarterGame
         {
             return "A mummified zombie patient blindsides you out of no where!";
         }
+
         //Description of the enemy attacking the player
         public override string attackDescription()
         {
@@ -53,17 +52,6 @@ namespace StarterGame
             }
             else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
         }
-
-        /*public override void EnemyRespondAttack(Notification notification)
-        {
-            Player player = (Player)notification.Object;
-            int chance = new Random().Next(1, HitProbability + 1);
-            if (chance == 1 && this.Health > 0)
-            {
-                Console.WriteLine(attackDescription());
-                player.Health -= new Random().Next(1, Attack + 1);
-            }
-        }*/
 
         public override void currentStats()
         {
