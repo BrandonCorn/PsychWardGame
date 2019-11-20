@@ -55,7 +55,7 @@ namespace StarterGame
             l.uses--;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return name + "\n" + description + "\nUses per pick" + uses + "\nWeight: " + weight;
         }

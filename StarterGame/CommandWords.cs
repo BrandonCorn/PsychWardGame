@@ -19,7 +19,7 @@ namespace StarterGame
         public static Command[] merchantCommands = { new BuyCommand(), new SellCommand(),new WalkAwayCommand(),
              new BackpackCommand(), new QuitCommand() };
         public static Command[] battleCommands = { new FightCommand(), new RunCommand(), new QuitCommand()};
-
+        public static Command[] backpackCommands = { new UseCommand(), new CloseBackpackCommand() };
         public CommandWords() : this(commandArray)
         {
         }

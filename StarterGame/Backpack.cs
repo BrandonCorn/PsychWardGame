@@ -10,7 +10,7 @@ namespace StarterGame
 
         private float weight;
 
-        public float Weight { get; }
+        public float Weight { get { return weight; } }
 
         private readonly string name = "Backpack";
 
@@ -70,6 +70,10 @@ namespace StarterGame
             {
                 I_Item temp = check.First.Value;
                 Inventory[item].RemoveFirst();
+                if (Inventory[item].Count == 0)
+                {
+                    Inventory.Remove(item);
+                }
                 return temp;
             }
             else
@@ -112,7 +116,6 @@ namespace StarterGame
         {
             string list = "";
             Dictionary<string, LinkedList<I_Item>>.ValueCollection values = Inventory.Values;
-            int count = 0;
             list += "\nWeight in Bag: " + weightInBag() + "lbs\n\t";
             foreach (LinkedList<I_Item> item in values)
             {

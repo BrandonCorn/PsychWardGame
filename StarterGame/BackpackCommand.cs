@@ -16,6 +16,7 @@ namespace StarterGame
         {
             if (player.Backpack != null)
             {
+                NotificationCenter.Instance.postNotification(new Notification("PushBackpackCommands", this));
                 player.outputMessage(player.Backpack.displayItems()); 
                 return false;
             }

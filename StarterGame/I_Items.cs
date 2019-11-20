@@ -35,6 +35,6 @@ namespace StarterGame
 
         //A command will link to this when a player needs to use an item. A general command can allow a user
         //to use an item at any time so long as it is necessary and makes sense. 
-        void useItem(); 
+        void useItem(Player player); 
     }
 }

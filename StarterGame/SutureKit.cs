@@ -45,7 +45,11 @@ namespace StarterGame
         public void useItem(Player player)
         {
             //p.heal(); p.Health = p.MaxHealth
-            uses--;
+            this.uses--;
+            if (this.Uses == 0)
+            {
+                player.Backpack.takeItem(this.Name);
+            }
         }
 
         override

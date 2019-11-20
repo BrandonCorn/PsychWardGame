@@ -31,7 +31,7 @@ namespace StarterGame
             itemTypes.Add(name, ItemType.KeyItem);
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             throw new NotImplementedException();
         }

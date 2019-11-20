@@ -14,6 +14,8 @@ namespace StarterGame
 
         private int health; 
         public int Health { get { return health; } set { health = value; } }
+        private int maxHealth = 100; 
+        public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
         
         //Current Task is simply that, the task the player is currently trying to complete given by the merchant.
         private ITask currentTask; 
@@ -35,7 +37,7 @@ namespace StarterGame
             _currentRoom = room;
             currentTask = null;
             attack = 6;
-            health = 100;
+            health = MaxHealth;
             weapon = null;
             backpack = null; 
             hitProbability = 2;

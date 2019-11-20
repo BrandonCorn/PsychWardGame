@@ -39,7 +39,7 @@ namespace StarterGame
             return player.Attack + Attack;
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             throw new NotImplementedException();
         }

@@ -42,7 +42,7 @@ namespace StarterGame
             return player.Attack + Attack;
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             //theres no need for this. The player uses the weapon. 
         }

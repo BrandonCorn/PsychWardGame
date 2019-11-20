@@ -22,6 +22,7 @@ namespace StarterGame
             allCommands.Push(newCommands);
             NotificationCenter.Instance.addObserver("PushBattleCommands", PushBattleCommands);
             NotificationCenter.Instance.addObserver("PushMerchantCommands", PushMerchantCommands);
+            NotificationCenter.Instance.addObserver("PushBackpackCommands", PushBackpackCommands);
             NotificationCenter.Instance.addObserver("PopCommands", PopCommands);
         }
 
@@ -87,18 +88,7 @@ namespace StarterGame
             if (allWords.Count > 0)
             {
                 string commandName = "";
-                /*int commandCount = parseMore(allWords);
-                while(allWords.Count != commandCount)
-                {
-                    commandName += allWords.Dequeue() + " ";
-                    
-                }
-                commandName = commandName.TrimEnd();
-                
-                command = allCommands.Peek().get(commandName);
-                */
-                command = giveCommand(allWords);
-                //command = allCommands.Peek().get(allWords.Dequeue());
+                command = giveCommand(allWords); 
                 if (command != null)
                 {
                     command.Words = new Queue<string>(allWords);
@@ -110,27 +100,9 @@ namespace StarterGame
             }
             else
             {
-                //Console.WriteLine(">>>Did not find the command " + commandName);
+                Console.WriteLine(">>>Did not find the command ");
             }
             return command; 
-        }
-
-        public int parseMore(Queue<string> words)
-        {
-            
-            Queue<string> newWords = new Queue<string>(words);
-            //Command command = allCommands.Peek().get(findName);
-            string findName = newWords.Dequeue();
-            Command command = allCommands.Peek().get(findName);
-            int count = 0;
-            while (newWords.Count != 0 && command != null)
-            {
-                command = allCommands.Peek().get(findName);
-                findName += newWords.Dequeue();
-                count++;
-            }
-            
-            return count; 
         }
 
         public Command giveCommand(Queue<string> words)
@@ -171,6 +143,11 @@ namespace StarterGame
         public void PushMerchantCommands(Notification notification)
         {
             allCommands.Push(new CommandWords(CommandWords.merchantCommands));
+        }
+
+        public void PushBackpackCommands(Notification notification)
+        {
+            allCommands.Push(new CommandWords(CommandWords.backpackCommands));
         }
 
     }

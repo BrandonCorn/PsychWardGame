@@ -33,7 +33,9 @@ namespace StarterGame
             itemTypes.Add(name, ItemType.KeyItem);
         }
 
-        public void useItem() { throw new NotImplementedException(); }
+        public void useItem(Player player) { 
+            throw new NotImplementedException(); 
+        }
 
         public void useItem(Rope r)
         {
