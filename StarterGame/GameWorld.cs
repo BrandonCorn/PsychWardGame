@@ -93,6 +93,11 @@ namespace StarterGame
 
             HowToPlay task1 = new HowToPlay(mainHall);
             //ladyMerchant.addTask(task1);
+            //Testing if items placed in room correctly. 
+            entrance.giveItem(new Flashlight());
+            entrance.giveItem(new Bat());
+            entrance.giveItem(new Bat());
+            
 
             return entrance;
         }

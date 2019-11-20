@@ -29,6 +29,11 @@ namespace StarterGame
         
         public Dictionary<string,INPC> RoomNpcs { get { return roomNpcs; } }
 
+        //This dictionary containing the lists of items in the rooms allows for more than one of the 
+        //same type of item to be inside a room. 
+        private Dictionary<string, LinkedList<I_Item>> roomItems;
+        public Dictionary<string,LinkedList<I_Item>> RoomItems {  get { return roomItems; } }
+
         public Room() : this("No Tag", "short", 0, 0)
         {
             
@@ -39,6 +44,7 @@ namespace StarterGame
             exits = new Dictionary<string, Door>();
             this.tag = tag;
             roomNpcs = new Dictionary<string, INPC>();
+            roomItems = new Dictionary<string, LinkedList<I_Item>>();
             
         }
         public Room(string tag, string shortName) : this(tag, shortName, 0, 0)
@@ -47,7 +53,7 @@ namespace StarterGame
             this.tag = tag;
             this.shortName = shortName;
             roomNpcs = new Dictionary<string, INPC>();
-            
+            roomItems = new Dictionary<string, LinkedList<I_Item>>();
         }
         public Room(String tag, string shortName, int chanceEnemy) : this(tag, shortName, chanceEnemy, 0)
         {
@@ -56,7 +62,7 @@ namespace StarterGame
             this.shortName = shortName;
             this.chanceEnemy = chanceEnemy;
             roomNpcs = new Dictionary<string, INPC>();
-            
+            roomItems = new Dictionary<string, LinkedList<I_Item>>();
         }
         //In the case that the user tells us to place some NPC's in the room this can do some randomly and
         //we only need to give the number of them we want. A generic class will be created to give them
@@ -74,11 +80,13 @@ namespace StarterGame
             }
         }
 
+        //Sets the exit with the associated door, used for connecting rooms. 
         public void setExit(string exitName, Door door)
         {
             exits[exitName] = door;
         }
 
+        //Gives player the door they associated with the exit they are trying to take. 
         public Door getExit(string exitName)
         {
             Door door = null;
@@ -86,6 +94,7 @@ namespace StarterGame
             return door;
         }
 
+        //displays exits availabe to player 
         public string getExits()
         {
             string exitNames = "Exits: ";
@@ -106,18 +115,17 @@ namespace StarterGame
             return exitNames;
         }
 
+        //Displays the exits, npcs, and items the user can interact with. 
         public string description()
         {
             return "You are " + this.tag + ".\n *** " + this.getExits() + 
-                "\n --- NPCs: " + displayNPCs();
+                "\n --- NPCs: " + displayNPCs() + "\n +++ Items in room: " + displayItems();
         }
 
-        //Method will calculate the chance of running into an enemy and the random numbers match a 
-        //random enemy will be spawned and presented in the game world.
-        //This method has a bug and is not giving back new enemies each time. 
+        //Method will calculate the chance of running into an enemy and add an enemy to
+        //the room based on that. 
         public void getAnEnemy()
         {
-
             EnemyType temp = new EnemyType();
             int chance1 = new Random().Next(1, ChanceEnemy + 1);
 
@@ -134,18 +142,20 @@ namespace StarterGame
             }
         }
 
-       
+        //Methods for adding and removing npcs from the room 
 
         public void addNPC(INPC npc)
         {
-            roomNpcs[npc.Name] = npc; 
+            
+            RoomNpcs[npc.Name] = npc; 
         }
 
         public void removeNPC(INPC npc)
         {
-            roomNpcs.Remove(npc.Name);
+            RoomNpcs.Remove(npc.Name);
         }
 
+        //Displays information about npcs in the room. 
         public string displayNPCs()
         {
             string list = "";
@@ -161,6 +171,61 @@ namespace StarterGame
                 else
                 {
                     list += npc + ", ";
+                }
+            }
+            return list;
+        }
+
+        //Methods to give an item to the room and take it from the room. 
+        public void giveItem(I_Item item)
+        {
+            LinkedList<I_Item> check = null;
+            RoomItems.TryGetValue(item.Name, out check);
+            if (check == null)
+            {
+                RoomItems[item.Name] = new LinkedList<I_Item>();
+                RoomItems[item.Name].AddFirst(item);
+            }
+            else
+            {
+                RoomItems[item.Name].AddLast(item);
+            }
+
+        }
+
+        public I_Item takeItem(string item)
+        {
+            LinkedList<I_Item> check = null;
+            RoomItems.TryGetValue(item, out check);
+            if (check != null)
+            {
+                I_Item temp = check.First.Value;
+                check.RemoveFirst();
+                return temp;
+            }
+            else
+            {
+                Console.WriteLine("Item does not exist in the room!");
+                return null; 
+            }
+        }
+        //Method displays the item name and how many of them are inside the room. 
+        public string displayItems()
+        {
+            string list = "";
+            Dictionary<string, LinkedList<I_Item>>.ValueCollection values = RoomItems.Values;
+            int count = 0;
+            foreach (LinkedList<I_Item> item in values)
+            {
+                count++;
+                //Console.WriteLine(item.Count);
+                if (values.Count == count)
+                {
+                    list += item.First.Value.Name + ": " + item.Count;
+                }
+                else
+                {
+                    list += item.First.Value.Name + ": " + item.Count + ", ";
                 }
             }
             return list;

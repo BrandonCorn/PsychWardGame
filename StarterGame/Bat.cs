@@ -6,7 +6,7 @@ namespace StarterGame
 {
     class Bat : I_Item, IWeapon
     {
-        private readonly string name = "Knife";
+        private readonly string name = "Bat";
         public string Name { get { return name; } }
         private Dictionary<string, ItemType> itemTypes;
         public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
