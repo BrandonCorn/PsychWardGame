@@ -12,7 +12,7 @@ namespace StarterGame
         private float weight;
         public float Weight { get { return weight; } }
 
-        private readonly string name = "suture Kit";
+        private readonly string name = "suture kit";
         public string Name { get { return name; } }
 
         private readonly string description = "Does more than your regular first aid kit";
@@ -37,19 +37,10 @@ namespace StarterGame
             itemTypes.Add("Basic", ItemType.BasicItem);
         }
 
-        public void useItem()
-        {
-            throw new NotImplementedException();
-        }
-
         public void useItem(Player player)
         {
-            //p.heal(); p.Health = p.MaxHealth
+            player.Health = Player.MaxHealth;
             this.uses--;
-            if (this.Uses == 0)
-            {
-                player.Backpack.takeItem(this.Name);
-            }
         }
 
         override

@@ -57,7 +57,7 @@ namespace StarterGame
             }
             else
             {
-                Inventory[item.Name].AddFirst(item);
+                Inventory[item.Name].AddLast(item);
             }
             
         }
@@ -82,6 +82,7 @@ namespace StarterGame
                 return null;
             }
         }
+
 
         public float weightInBag()
         {

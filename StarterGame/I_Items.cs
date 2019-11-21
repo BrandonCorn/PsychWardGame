@@ -12,7 +12,7 @@ namespace StarterGame
         
         //The name should be initialized in the constructor of the items and should be readonly. The name of 
         //items should not change. 
-        string Name { get; }
+        string Name { get;}
 
         //A simple item description. This can be displayed when the user picks it upneeds to know when it 
         //may be used. **For instance we won't outright say rope will be used at the window to the alley

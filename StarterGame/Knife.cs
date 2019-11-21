@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    public class Knife : IWeapon, I_Item
+    public class Knife : IWeapon
     {
         private readonly string name = "knife";
         public string Name { get { return name; } }
@@ -43,7 +43,11 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
-            //Don't need this. the player will call the use of weapon. 
+            Uses--;
+            if (Uses <= 0)
+            {
+                player.Weapon = null;
+            }
         }
     }
 }

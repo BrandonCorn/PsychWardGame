@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StarterGame
 {
-    class Bat : I_Item, IWeapon
+    public class Bat : I_Item, IWeapon
     {
         private readonly string name = "bat";
         public string Name { get { return name; } }
@@ -34,16 +34,6 @@ namespace StarterGame
             itemTypes.Add(name, ItemType.BattleItem);
         }
 
-        /*public Bat(Player player)
-        {
-            attack = 10 + getStrength(player);
-            weight = 1.8f;
-            name = "Bat";
-            description = "A real slap in the face to whoever you swing on";
-            uses = 50; //Will change based on damage system
-            //value = 500 * player.level;
-        }*/
-
         public int getStrength(Player player)
         {
             return player.Attack + Attack;
@@ -51,7 +41,11 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
-            //No need for this the player will use the weapon 
+            this.Uses--;
+            if (this.Uses <= 0)
+            {
+                player.Weapon = null;
+            }
         }
 
         override

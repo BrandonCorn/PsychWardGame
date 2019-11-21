@@ -14,6 +14,34 @@ namespace StarterGame
         public override bool execute(Player player)
         {
             //In this method will write how a player will use an item they have in their bag. 
+            if (this.Words.Count > 0)
+            {
+                string item = "";
+                while (this.Words.Count > 0)
+                {
+                    if (this.Words.Count == 1)
+                    {
+                        item += this.Words.Dequeue();
+                    }
+                    else
+                    {
+                        item += this.Words.Dequeue() + " ";
+                    }
+                }
+                I_Item itemToUse = player.Backpack.takeItem(item);
+                if (itemToUse != null)
+                {
+                    itemToUse.useItem(player);
+                    
+                }
+                else
+                {
+                    player.outputMessage("\nYou don't have a " + item + " to use");
+                    
+                }
+                return false;
+            }
+            player.outputMessage("\nUse What\n");
             return false;
         }
     }

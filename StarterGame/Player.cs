@@ -14,8 +14,8 @@ namespace StarterGame
 
         private int health; 
         public int Health { get { return health; } set { health = value; } }
-        private int maxHealth = 100; 
-        public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
+        private static int maxHealth = 100; 
+        public static int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
         
         //Current Task is simply that, the task the player is currently trying to complete given by the merchant.
         private ITask currentTask; 
@@ -38,7 +38,7 @@ namespace StarterGame
             currentTask = null;
             attack = 6;
             health = MaxHealth;
-            weapon = null;
+            weapon = new Axe();
             backpack = null; 
             hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
@@ -67,10 +67,11 @@ namespace StarterGame
         //Notification that battle is over, reads current room description. 
         public void BattleOver(Notification notification)
         {
-            //Player player = (Player)notification.Object;
-            //CurrentEnemy = null; 
-            
             this.outputMessage("\n" + currentRoom.description());
+            if (this.Weapon != null)
+            {
+                this.Weapon.useItem(this);
+            }
         }
 
         public void speak(String word)
@@ -83,6 +84,7 @@ namespace StarterGame
         {
             int discount = new Random().Next(1, (Attack / 2) + 1);
             currentRoom.CurrentEnemy.Health -= (this.totalAttack()-discount);
+
         }
 
         public int totalAttack()
@@ -91,7 +93,7 @@ namespace StarterGame
             {
                 return this.Attack;
             }
-            return this.Attack + weapon.Attack;
+            return Weapon.getStrength(this);
         }
 
         public void TaskSet(Notification notification)

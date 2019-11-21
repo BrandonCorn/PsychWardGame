@@ -4,10 +4,10 @@ using System.Text;
 
 namespace StarterGame
 {
-    class Axe : I_Item, IWeapon
+    public class Axe : I_Item, IWeapon
     {
         private readonly string name = "Axe";
-        public string Name { get { return name; } }
+        public string Name { get { return name; }  }
         private Dictionary<string, ItemType> itemTypes;
         public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
         private float weight;
@@ -30,7 +30,7 @@ namespace StarterGame
             weight = 1.25f;
             itemTypes = new Dictionary<string, ItemType>();
             itemTypes.Add(name, ItemType.BattleItem);
-            uses = 10;
+            uses = 1;
             value = 850;
         }
 
@@ -41,7 +41,11 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
-            throw new NotImplementedException();
+            Uses--;
+            if (Uses <= 0)
+            {
+                player.Weapon = null;
+            }
         }
 
 
