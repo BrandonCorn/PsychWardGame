@@ -12,7 +12,6 @@ namespace StarterGame
         private readonly string name = "batteries";
         public string Name { get { return name; } }
 
-
         private readonly string description = "A pair of batteries";
         public string Description { get { return description; } }
 
@@ -47,7 +46,10 @@ namespace StarterGame
             }
         }
 
-        public void useItem(Player player){ throw new NotImplementedException(); }
+        public void useItem(Player player)
+        { 
+            throw new NotImplementedException(); 
+        }
 
         override
         public string ToString()

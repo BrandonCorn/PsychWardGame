@@ -39,7 +39,7 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
-            player.Health = Player.MaxHealth;
+            player.Health = player.MaxHealth;
             this.uses--;
         }
 

@@ -9,18 +9,36 @@ namespace StarterGame
         private Room _currentRoom = null;
         public Room currentRoom { get { return _currentRoom; } set { _currentRoom = value; } }
 
+        //players current strength
         private int attack; 
         public int Attack { get { return attack;} set { attack = value; } }
 
+        //Is the players current health. 
         private int health; 
         public int Health { get { return health; } set { health = value; } }
-        private static int maxHealth = 100; 
-        public static int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
+
+        //Is the players maximum health
+        private int maxHealth; 
+        public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
+
+        //Player level up system, starts at level 1 
+        private int level; 
+        public int Level { get { return level; } set { level = value; } }
+
+        //Experience will be total experience for player and is used for level up. 
+        private int experience; 
+        public int Experience { get { return experience; } set { experience = value; } }
+
+        //ExpLimit is the amount of experience the player needs to reach the next level. 
+        private int expLimit; 
+        public int ExpLimit { get { return expLimit; } set { expLimit = value; } }
+
+        private int coins; 
+        public int Coins { get { return coins; } set { coins = value; } }
         
         //Current Task is simply that, the task the player is currently trying to complete given by the merchant.
         private ITask currentTask; 
         public ITask CurrentTask { get { return currentTask; } }
-        
 
         //The player will be capable of holding one weapon at a time. The players weapon attack will 
         //stack onto the players attack damage and each battle will degrade the weapons use by one. 
@@ -37,7 +55,11 @@ namespace StarterGame
             _currentRoom = room;
             currentTask = null;
             attack = 6;
+            maxHealth = 100;
             health = MaxHealth;
+            experience = 0;
+            expLimit = 15;
+            coins = 0;
             weapon = new Axe();
             backpack = null; 
             hitProbability = 2;
@@ -136,6 +158,15 @@ namespace StarterGame
         public I_Item removeFromBackpack(string item)
         {
             return Backpack.takeItem(item);
+        }
+
+        public void LevelUp()
+        {
+            Level++;
+            Attack = (int)(attack * 1.2f);
+            MaxHealth = MaxHealth + 10;
+            Health = MaxHealth;
+            ExpLimit = (int)(ExpLimit * 1.5f);
         }
     }
 
