@@ -14,12 +14,15 @@ namespace StarterGame
         private int level; 
         public override int Level { get { return level; } }
         private int attack;
-        public override int Attack { get { return attack; } }
+        public override int Attack { get { return attack; } set { attack = value; } }
         private int health;
         public override int Health { get { return health; } set { health = value; } }
         private int hitProbability;
         public override int HitProbability { get { return hitProbability; } }
-        
+
+        private int playerExp;
+        public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
+
         public ZombiePatient()
         {
             level = 1;
