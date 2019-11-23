@@ -123,8 +123,9 @@ namespace StarterGame
         }
 
         //Method will calculate the chance of running into an enemy and add an enemy to
-        //the room based on that. 
-        public void getAnEnemy()
+        //the room based on that. Players current level is given to the room so that when the room
+        //spawns an enemy it's stats are updated according to that players level. 
+        public void getAnEnemy(int level)
         {
             EnemyType temp = new EnemyType();
             int chance1 = new Random().Next(1, ChanceEnemy + 1);
@@ -132,9 +133,8 @@ namespace StarterGame
             if (chance1 == 1)
             {
                 int chance = new Random().Next(0, temp.AllEnemies.Count);
-
                 CurrentEnemy = temp.AllEnemies[chance];
-
+                CurrentEnemy.statstoPlayerLevel(level);
             }
             else
             {

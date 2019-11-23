@@ -35,7 +35,7 @@ namespace StarterGame
             itemTypes = new Dictionary<string, ItemType>();
             itemTypes.Add(name, ItemType.BattleItem);
             Uses = 10;
-            Attack = 7;
+            Attack = 8;
         }
         public int getStrength(Player player)
         {

@@ -7,7 +7,7 @@ namespace StarterGame
     class Flashlight : I_Item
     {
         private float weight;
-        public float Weight { get; }
+        public float Weight { get { return weight; } }
 
         private readonly string name = "flashlight";
         public string Name { get { return name; } }
@@ -25,7 +25,7 @@ namespace StarterGame
         public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
 
         private int batteryHealth;
-        public int BatteryHealth { get; set; }
+        public int BatteryHealth { get { return batteryHealth; } set { batteryHealth = value; } }
 
         public Flashlight()
         {

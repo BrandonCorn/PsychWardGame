@@ -28,7 +28,7 @@ namespace StarterGame
         {
             attack = 10;
             weight = 1.8f;
-            uses = 50; //Will change based on damage system
+            uses = 50; 
             value = 500;
             itemTypes = new Dictionary<string, ItemType>();
             itemTypes.Add(name, ItemType.BattleItem);

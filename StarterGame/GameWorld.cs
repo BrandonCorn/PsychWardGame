@@ -45,9 +45,9 @@ namespace StarterGame
 
             Room entrance = new Room(" at the entrance of the PsychWard", "entrance");
             Room merch = new Room("in the merchant's room", "merchant room");
-            Room mainHall = new Room("in the main hall", "main hall", 2);
+            Room mainHall = new Room("in the main hall", "main hall", 1);
             Room cafeteria = new Room("in the cafeteria", "cafeteria");
-            Room maleWard = new Room("in the male ward", "male ward", 3);
+            Room maleWard = new Room("in the male ward", "male ward", 1);
             Room femaleWard = new Room("in the female ward", "female ward");
             Room maleShowers = new Room("in the male showers", "male showers");
             Room femaleShowers = new Room("in the female showers", "female showers");
@@ -138,8 +138,7 @@ namespace StarterGame
 
             if (player.currentRoom.ChanceEnemy != 0)
             {
-                //IEnemy enemy = Room.getAnEnemy(player.currentRoom);
-                player.currentRoom.getAnEnemy();
+                player.currentRoom.getAnEnemy(player.Level);
 
                 if (player.currentRoom.CurrentEnemy != null)
                 {

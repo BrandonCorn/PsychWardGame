@@ -26,11 +26,11 @@ namespace StarterGame
 
         public Axe()
         {
-            attack = 15;
+            attack = 11;
             weight = 1.25f;
             itemTypes = new Dictionary<string, ItemType>();
             itemTypes.Add(name, ItemType.BattleItem);
-            uses = 1;
+            uses = 10;
             value = 850;
         }
 

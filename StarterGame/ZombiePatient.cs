@@ -8,30 +8,27 @@ namespace StarterGame
 {
     public class ZombiePatient :IEnemy
     {
+        //VIEW IENEMY INTERFACE FOR DESCRIPTIONS OF VARIABLES AND PROPERTIES
+
         private readonly string name = "Zombie Patient";
         public override string Name { get { return name; } }
 
-        private int level; 
-        public override int Level { get { return level; } }
-        private int attack;
+        private int attack = 4;
         public override int Attack { get { return attack; } set { attack = value; } }
-        private int health;
+        private int health = 14;
         public override int Health { get { return health; } set { health = value; } }
-        private int hitProbability;
+        private int hitProbability = 1;
         public override int HitProbability { get { return hitProbability; } }
 
-        private int playerExp;
+        private int playerExp = 5;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
 
         public ZombiePatient()
         {
-            level = 1;
-            attack = 4;
-            health = 14;
-            hitProbability = 2;
+
         }
 
-        //
+        //Statement of enemy when greeting player
         public override string battleGreeting()
         {
             return "A mummified zombie patient blindsides you out of no where!";
@@ -43,23 +40,5 @@ namespace StarterGame
             return "\nThe Zombie leaps forward and bites you!";
         }
 
-        //As long as the enemy has health and the enemies attack hitting are true the enemy will attack
-        //the player
-        public override void attackPlayer(Player player)
-        {
-            int chance = new Random().Next(1, HitProbability + 1);
-            if (chance == 1 && this.Health > 0)
-            {
-                Console.WriteLine("\n" + attackDescription()+"\n");
-                player.Health -= new Random().Next(1, Attack + 1);
-            }
-            else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
-        }
-
-        public override void currentStats()
-        {
-            Console.WriteLine("\n" + this.Name + "\nHealth: " + this.Health + "\nAttack: " + 
-                this.Attack + "\n");
-        }
     }
 }

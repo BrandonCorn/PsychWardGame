@@ -30,8 +30,8 @@ namespace StarterGame
         public int Experience { get { return experience; } set { experience = value; } }
 
         //ExpLimit is the amount of experience the player needs to reach the next level. 
-        private int expLimit; 
-        public int ExpLimit { get { return expLimit; } set { expLimit = value; } }
+        private int expNeeded; 
+        public int ExpNeeded { get { return expNeeded; } set { expNeeded = value; } }
 
         private int coins; 
         public int Coins { get { return coins; } set { coins = value; } }
@@ -45,8 +45,11 @@ namespace StarterGame
         private IWeapon weapon; 
         public IWeapon Weapon { get { return weapon; } set { weapon = value; } }
 
+        //Allows the player to keep a limited inventory with them. 
         private Backpack backpack; 
         public Backpack Backpack { get { return backpack; } set { backpack = value; } }
+
+        //Chance of landing hit on the enemy 
         private int hitProbability;
         public int HitProbability { get { return hitProbability; } }
 
@@ -55,17 +58,18 @@ namespace StarterGame
             _currentRoom = room;
             currentTask = null;
             attack = 6;
+            level = 1;
             maxHealth = 100;
             health = MaxHealth;
             experience = 0;
-            expLimit = 15;
+            expNeeded = 15;
             coins = 0;
             weapon = new Axe();
             backpack = null; 
             hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
             NotificationCenter.Instance.addObserver("BattleOver", BattleOver);
-
+            NotificationCenter.Instance.addObserver("RanFromEnemy", RanFromEnemy);
         }
 
         public void waltTo(string direction)
@@ -89,11 +93,23 @@ namespace StarterGame
         //Notification that battle is over, reads current room description. 
         public void BattleOver(Notification notification)
         {
+            this.Experience += this.currentRoom.CurrentEnemy.PlayerExp;
+            this.LevelUp();
+            this.outputMessage("You gained " + this.currentRoom.CurrentEnemy.PlayerExp + " experience"
+                + "\n\t" + this.expToNextLvl() + " exp to next level!");
+            this.outputMessage("\n****************************************************");
             this.outputMessage("\n" + currentRoom.description());
-            if (this.Weapon != null)
+            /*if (this.Weapon != null)
             {
                 this.Weapon.useItem(this);
-            }
+            }*/
+        }
+
+        //Notification that the player ran from battle 
+        public void RanFromEnemy(Notification notification)
+        {
+            this.outputMessage("\n" + currentRoom.description()); 
+
         }
 
         public void speak(String word)
@@ -162,11 +178,34 @@ namespace StarterGame
 
         public void LevelUp()
         {
-            Level++;
-            Attack = (int)(attack * 1.2f);
-            MaxHealth = MaxHealth + 10;
-            Health = MaxHealth;
-            ExpLimit = (int)(ExpLimit * 1.5f);
+            while (reachNextLevel())
+            {
+                Level++;
+                Attack = (int)(attack * 1.2f);
+                MaxHealth = MaxHealth + 5;
+                Health = MaxHealth;
+                ExpNeeded = ExpNeeded + (int)(ExpNeeded * 1.5f);
+                
+                outputMessage("\nYou grew to level " + (Level));
+                //NotificationCenter.Instance.postNotification(new Notification("EnemyLevelUp", this));
+            }
+            
+        }
+
+        //Returns whether a player has reached the next level or not. 
+        public bool reachNextLevel()
+        {
+            if (Experience >= ExpNeeded)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        //Experience needed to get to next Level
+        public int expToNextLvl()
+        {
+            return ExpNeeded - Experience;
         }
     }
 

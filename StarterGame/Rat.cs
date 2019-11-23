@@ -8,26 +8,24 @@ namespace StarterGame
 {
     public class Rat: IEnemy
     {
+        //VIEW IENEMY INTERFACE FOR DESCRIPTIONS OF VARIABLES AND PROPERTIES
+
         private readonly string name = "Rat";
         public override string Name { get { return name;  } }
 
-        private int level; 
-        public override int Level { get { return level; } }
-        private int attack;
+        private int attack = 3;
         public override int Attack { get { return attack; } set { attack = value; } }
-        private int health;
+        private int health = 12;
         public override int Health { get { return health; } set { health = value; } }
-        private int hitProbability;
+
+        private int hitProbability = 2;
         public override int HitProbability { get { return hitProbability; } }
 
-        private int playerExp; 
+        private int playerExp = 4; 
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
         public Rat()
         {
-            level = 1;
-            attack = 3;
-            health = 12; 
-            hitProbability = 2;
+
         }
         public override string battleGreeting()
         {
@@ -40,25 +38,6 @@ namespace StarterGame
         {
             return "\nThe Rat slices your face!";
         }
-        //This is the attack action by the rat. It will display the attack description and take away health
-        //from the player if the random number is 1. This approach for random chance is written slightly
-        //different than the chance to enter battle as it only uses one random number and assumes 1 is always
-        //an option. 
-        public override void attackPlayer(Player player)
-        {
-            int chance = new Random().Next(1, HitProbability + 1);
-            if (chance == 1 && this.Health > 0)
-            {
-                Console.WriteLine("\n" + attackDescription()+"\n");
-                player.Health -= new Random().Next(1, Attack + 1);
-            }
-            else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
-        }
 
-        public override void currentStats()
-        {
-            Console.WriteLine("\n" + this.Name + "\nHealth: " + this.Health + "\nAttack: " + 
-                this.Attack + "\n");
-        }
     }
 }
