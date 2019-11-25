@@ -99,10 +99,6 @@ namespace StarterGame
                 + "\n\t" + this.expToNextLvl() + " exp to next level!");
             this.outputMessage("\n****************************************************");
             this.outputMessage("\n" + currentRoom.description());
-            /*if (this.Weapon != null)
-            {
-                this.Weapon.useItem(this);
-            }*/
         }
 
         //Notification that the player ran from battle 
@@ -122,7 +118,10 @@ namespace StarterGame
         {
             int discount = new Random().Next(1, (Attack / 2) + 1);
             currentRoom.CurrentEnemy.Health -= (this.totalAttack()-discount);
-
+            if (Weapon != null)
+            {
+                Weapon.useWeapon(this);
+            }
         }
 
         public int totalAttack()
@@ -151,9 +150,11 @@ namespace StarterGame
 
         public void currentStats()
         {
-            outputMessage("Player \nHealth: " + this.Health + "\nAttack: " + this.totalAttack());
+            outputMessage("Player \nHealth: " + this.Health +  
+                "\nAttack: " + this.totalAttack());
         }
 
+        //picks up an item to be placed in backpack as it fits in the bag. 
         public void pickUpItem(string itemName)
         {
             I_Item item = currentRoom.takeItem(itemName);
@@ -176,6 +177,7 @@ namespace StarterGame
             return Backpack.takeItem(item);
         }
 
+        //All the changes to stats for player when they level up. 
         public void LevelUp()
         {
             while (reachNextLevel())
@@ -187,7 +189,6 @@ namespace StarterGame
                 ExpNeeded = ExpNeeded + (int)(ExpNeeded * 1.5f);
                 
                 outputMessage("\nYou grew to level " + (Level));
-                //NotificationCenter.Instance.postNotification(new Notification("EnemyLevelUp", this));
             }
             
         }

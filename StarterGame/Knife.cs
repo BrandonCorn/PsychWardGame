@@ -43,11 +43,22 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
+            player.outputMessage("Cannot use " + Name + " right now.\n");
+        }
+
+        public void useWeapon(Player player)
+        {
             Uses--;
             if (Uses <= 0)
             {
                 player.Weapon = null;
             }
+        }
+
+        override
+        public string ToString()
+        {
+            return name + "\n" + description + "\nAttack: " + attack + "\nWeight: " + weight;
         }
     }
 }

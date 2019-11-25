@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    class Machete: IWeapon
+    public class Machete: IWeapon
     {
         private readonly String name = "machete";
         public String Name { get { return name; } }
@@ -43,11 +43,22 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
+            player.outputMessage("Cannot use " + Name + " right now.\n");
+        }
+
+        public void useWeapon(Player player)
+        {
             Uses--;
             if (Uses <= 0)
             {
                 player.Weapon = null;
             }
+        }
+
+        override
+        public string ToString()
+        {
+            return name + "\n" + description + "\nAttack: " + attack + "\nWeight: " + weight;
         }
     }
 }

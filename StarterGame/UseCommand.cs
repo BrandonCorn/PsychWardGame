@@ -29,15 +29,15 @@ namespace StarterGame
                     }
                 }
                 I_Item itemToUse = player.Backpack.takeItem(item);
-                if (itemToUse != null)
+                if (itemToUse == null)
                 {
-                    itemToUse.useItem(player);
-                    
+                    player.outputMessage("\nYou don't have a " + item + " to use");
+
                 }
                 else
                 {
-                    player.outputMessage("\nYou don't have a " + item + " to use");
-                    
+                    itemToUse.useItem(player);
+
                 }
                 return false;
             }
