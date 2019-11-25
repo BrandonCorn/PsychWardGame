@@ -39,7 +39,7 @@ namespace StarterGame
         public void statstoPlayerLevel(int level)
         {
             this.Attack = (int)(level * 1.3) * Attack;
-            this.Health = (int)(level * 1.5) * Health;
+            this.Health = (int)(level * 1.3) * Health;
             this.PlayerExp = (int)(level * 1.3) * PlayerExp;
         }
 

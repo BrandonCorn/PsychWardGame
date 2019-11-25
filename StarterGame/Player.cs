@@ -99,10 +99,6 @@ namespace StarterGame
                 + "\n\t" + this.expToNextLvl() + " exp to next level!");
             this.outputMessage("\n****************************************************");
             this.outputMessage("\n" + currentRoom.description());
-            /*if (this.Weapon != null)
-            {
-                this.Weapon.useItem(this);
-            }*/
         }
 
         //Notification that the player ran from battle 
