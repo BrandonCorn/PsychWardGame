@@ -6,10 +6,12 @@ namespace StarterGame
 {
     public class Bat : I_Item, IWeapon
     {
+        //SEE I_iTEM INTERFACE FOR EXPLAINATION OF ALL PROPERTIES!!
         private readonly string name = "bat";
         public string Name { get { return name; } }
-        private Dictionary<string, ItemType> itemTypes;
-        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+        private HashSet<ItemType> itemTypes;
+        private ItemType[] types = { ItemType.BattleItem };
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
         private float weight;
         public float Weight { get { return weight; } set { weight = value; } }
 
@@ -28,11 +30,10 @@ namespace StarterGame
         {
             attack = 10;
             weight = 1.8f;
+            itemTypes = new HashSet<ItemType>(types);
             uses = 50; 
             value = 500;
-            itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.BattleItem);
-        }
+    }
 
         public int getStrength(Player player)
         {

@@ -21,16 +21,16 @@ namespace StarterGame
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
 
-        private Dictionary<string, ItemType> itemTypes;
-        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+        private HashSet<ItemType> itemTypes;
+        private ItemType[] types = { ItemType.BasicItem };
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
 
         public Batteries()
         {
             weight = 0.106f; //The weight of 2 AA batteries
             uses = 1;
             value = 200; //To be updated in accordance with $ system
-            itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.BasicItem);
+            itemTypes = new HashSet<ItemType>(types);
         }
 
         public void useItem(Flashlight o, Batteries b)
