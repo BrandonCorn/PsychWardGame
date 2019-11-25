@@ -17,18 +17,16 @@ namespace StarterGame
         {
             IEnemy enemy = player.currentRoom.CurrentEnemy;
             player.useWeapon();
-            //if (player.currentRoom.CurrentEnemy.Health <= 0)
             if (enemy.Health <= 0)
             {
                 player.outputMessage("\nYou win!!!\n");
                 NotificationCenter.Instance.postNotification(new Notification("PopCommands", this));
                 NotificationCenter.Instance.postNotification(new Notification("BattleOver", this));
-                //player.CurrentEnemy = null;
+
                 player.currentRoom.CurrentEnemy = null; 
                 return false;
             }
             else {
-                //player.CurrentEnemy.attackPlayer(player);
                 enemy.attackPlayer(player);
             }
 
