@@ -11,10 +11,10 @@ namespace StarterGame
         private readonly string name = "hammer";
      
         public string Name { get { return name; } }
-        //The itemTypes is a Dictionary of what all an item qualifies as, for instance health items 
-        //can be used in and out of battle there fore should be of use in both circumstances. 
-        private Dictionary<string, ItemType> itemTypes;
-        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+
+        private HashSet<ItemType> itemTypes;
+        private ItemType[] types = { ItemType.BattleItem };
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
         private float weight;
         public float Weight { get { return weight; } set { weight = value; } }
 
@@ -32,8 +32,7 @@ namespace StarterGame
         {
             Weight = .85f;
             Value = 350;
-            itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.BattleItem);
+            itemTypes = new HashSet<ItemType>(types);
             Uses = 10;
             Attack = 8;
         }

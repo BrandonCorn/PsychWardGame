@@ -7,7 +7,7 @@ namespace StarterGame
     class Rope : I_Item
     {
         private float weight;
-        public float Weight { get; }
+        public float Weight { get { return weight; } }
 
         private readonly string name = "Rope";
         public string Name { get { return name; } }
@@ -21,16 +21,16 @@ namespace StarterGame
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
 
-        private Dictionary<string, ItemType> itemTypes;
-        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+        private HashSet<ItemType> itemTypes;
+        private ItemType[] types = { ItemType.KeyItem };
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
 
         public Rope()
         {
             weight = 4;
             uses = 1; //One time use
             value = 400;
-            itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.KeyItem);
+            itemTypes = new HashSet<ItemType>(types);
         }
 
         public void useItem(Player player) { 

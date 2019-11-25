@@ -165,6 +165,10 @@ namespace StarterGame
                     Console.WriteLine("Backpack is full.");
                     currentRoom.giveItem(item);
                 }
+                else if (false) //going to use this section to set weapon with hashset of item types
+                {
+                    
+                }
                 else
                 {
                     Backpack.giveItem(item);

@@ -7,7 +7,7 @@ namespace StarterGame
     class Key : I_Item
     {
         private float weight;
-        public float Weight { get; }
+        public float Weight { get { return weight; } }
 
         private readonly string name = "Key";
         public string Name { get { return name; } }
@@ -20,15 +20,15 @@ namespace StarterGame
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
 
-        private Dictionary<string, ItemType> itemTypes;
-        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+        private HashSet<ItemType> itemTypes;
+        private ItemType[] types = { ItemType.KeyItem }; 
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
         public Key()
         {
-            weight = 0; //Should they have weight?
+            weight = 0.5f; //Should have weight. 
             uses = 1;
             value = 0;
-            itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.KeyItem);
+            itemTypes = new HashSet<ItemType>(types);
         }
 
         public void useItem(Player player)

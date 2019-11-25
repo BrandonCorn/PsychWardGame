@@ -21,8 +21,9 @@ namespace StarterGame
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
 
-        private Dictionary<string, ItemType> itemTypes;
-        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+        private HashSet<ItemType> itemTypes;
+        private ItemType[] types = { ItemType.KeyItem };
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
 
         private int batteryHealth;
         public int BatteryHealth { get { return batteryHealth; } set { batteryHealth = value; } }
@@ -33,9 +34,9 @@ namespace StarterGame
             uses = 1; //Doesn't matter
             value = 0;
             batteryHealth = 0;
-            itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add("Basic", ItemType.BasicItem);
+            itemTypes = new HashSet<ItemType>(types);
         }
+        
 
         public void useItem(Flashlight o)
         {

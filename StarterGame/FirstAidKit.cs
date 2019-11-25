@@ -23,17 +23,17 @@ namespace StarterGame
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
 
-        private Dictionary<string, ItemType> itemTypes;
-        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+        private HashSet<ItemType> itemTypes;
+        private ItemType[] types = { ItemType.BasicItem, ItemType.HealthItem, ItemType.BattleItem };
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
 
         public FirstAidKit()
         {
             weight = 1;
             uses = 1;
             value = 350;
-            itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.BasicItem);
-            itemTypes.Add(name, ItemType.BattleItem);
+            itemTypes = new HashSet<ItemType>(types);
+
         }
 
         public void useItem(Player player)

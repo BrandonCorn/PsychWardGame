@@ -10,8 +10,9 @@ namespace StarterGame
     {
         private readonly String name = "machete";
         public String Name { get { return name; } }
-        private Dictionary<string, ItemType> itemTypes;
-        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+        private HashSet<ItemType> itemTypes;
+        private ItemType[] types = { ItemType.BattleItem };
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
         private float weight;
         public float Weight { get { return weight; } set { weight = value; } }
 
@@ -31,8 +32,7 @@ namespace StarterGame
         {
             Weight = 2.5f;
             Value = 600;
-            itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.BattleItem);
+            itemTypes = new HashSet<ItemType>(types);
             Uses = 10;
             Attack = 12;
         }
