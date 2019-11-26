@@ -6,6 +6,6 @@ namespace StarterGame
 {
     public enum ItemType
     {
-        BasicItem, HealthItem, KeyItem, BattleItem
+        BasicItem, HealthItem, KeyItem, BattleItem, Weapon
     }
 }

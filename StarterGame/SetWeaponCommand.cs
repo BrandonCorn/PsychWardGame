@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
+//THIS COMMAND IS FOR SETTING THE WEAPON OF YOUR PLAYER
 namespace StarterGame
 {
     public class SetWeaponCommand : Command
     {
         public SetWeaponCommand()
         {
-            this.name = "Set";
+            this.name = "set";
         }
 
         public override bool execute(Player player)
@@ -17,7 +18,7 @@ namespace StarterGame
             if (this.Words.Count <= 0)
             {
                 player.outputMessage("\nSet what weapon?");
-                player.Backpack.displayItems();
+                player.outputMessage(player.Backpack.displayWeapons());
                 return false;
             }
             else
@@ -33,18 +34,20 @@ namespace StarterGame
                         weaponName += this.Words.Dequeue() + " ";
                     }
                 }
-                if (player.Backpack.Inventory[weaponName].Count > 1)
+                LinkedList<I_Item> weapon; 
+                if (player.Backpack.Inventory.TryGetValue(weaponName, out weapon))
                 {
-                    foreach(IWeapon weapon in player.Backpack.Inventory.Values)
-                    {
-                        //need to display each of the same weapons stats and option for player
-                        //to pick a specific one to use. 
-                    }
+                    IWeapon takenWeapon = player.takeWeapon();
+                    player.Backpack.giveItem(takenWeapon);
+                    player.setWeapon((IWeapon)player.removeFromBackpack(weaponName));
+                    player.outputMessage("\nYour new weapon has been set!"); 
                 }
-                
-               
+                else
+                {
+                    player.outputMessage("You don't have a " + weaponName); 
+                }
             }
-            
+            player.outputMessage(player.Backpack.displayItems());
             return false; 
         }
     }

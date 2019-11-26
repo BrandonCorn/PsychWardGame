@@ -37,6 +37,7 @@ namespace StarterGame
                     }
                 }
                 player.pickUpItem(item);
+                
             }
             return false;
         }

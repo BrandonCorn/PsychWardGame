@@ -69,7 +69,7 @@ namespace StarterGame
             if (check != null && check.Count != 0)
             {
                 I_Item temp = check.First.Value;
-                Inventory[item].RemoveFirst();
+                Inventory[item].Remove(temp);
                 if (Inventory[item].Count == 0)
                 {
                     Inventory.Remove(item);
@@ -98,21 +98,6 @@ namespace StarterGame
             return temp; 
         }
 
-        //The actual total number of items is going to be the count of the Queues in each position in the 
-        /// Dictionary 
-
-
-        /*public void ItemsinBackpack (Dictionary<String, Object> inventory)
-        {
-            if (inventory.Count == 0)
-            {
-                Console.WriteLine("Bag is empty");
-            } else{
-                Console.WriteLine("Total number of items: " + inventory.Count + "\n");
-                inventory.ToList().ForEach(x => Console.WriteLine(x.Key));
-            }
-        }*/
-
         public string displayItems()
         {
             string list = "";
@@ -121,6 +106,21 @@ namespace StarterGame
             foreach (LinkedList<I_Item> item in values)
             {
                 list += item.First.Value.Name + ": " + item.Count + "\n\t";
+            }
+            return list;
+        }
+
+        public string displayWeapons()
+        {
+            string list = "";
+            Dictionary<string, LinkedList<I_Item>>.ValueCollection values = Inventory.Values;
+            list += "Weapons: \n\t"; 
+            foreach (LinkedList<I_Item> item in values)
+            {
+                if (item.First.Value.ItemTypes.Contains(ItemType.Weapon))
+                {
+                    list += item.First.Value.Name + "\n"; 
+                }
             }
             return list;
         }

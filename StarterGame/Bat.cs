@@ -10,7 +10,7 @@ namespace StarterGame
         private readonly string name = "bat";
         public string Name { get { return name; } }
         private HashSet<ItemType> itemTypes;
-        private ItemType[] types = { ItemType.BattleItem };
+        private ItemType[] types = { ItemType.BattleItem, ItemType.Weapon };
         public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
         private float weight;
         public float Weight { get { return weight; } set { weight = value; } }
@@ -57,7 +57,7 @@ namespace StarterGame
         override
         public string ToString()
         {
-            return name + "\n" + description + "\nAttack: " + attack + "\nWeight: " + weight;
+            return name + "\nAttack: " + attack + "\nWeight: " + weight + "lbs\n" + "Uses: " + uses + "\n";
         }
 
     }

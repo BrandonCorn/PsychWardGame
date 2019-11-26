@@ -64,8 +64,8 @@ namespace StarterGame
             experience = 0;
             expNeeded = 15;
             coins = 0;
-            //weapon = new Axe();
-            weapon = null; 
+            weapon = new Axe();
+            //weapon = null; 
             backpack = null; 
             hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
@@ -169,10 +169,12 @@ namespace StarterGame
                 else if (item.ItemTypes.Contains(ItemType.BattleItem) && Weapon == null)       
                 {
                     Weapon = (IWeapon)item;
+                    Console.WriteLine("\nYour weapon has been set to the " + itemName + "!\n");
                 }
                 else
                 {
                     Backpack.giveItem(item);
+                    Console.WriteLine("\nYou picked up a " + itemName + "!"); 
                 }
             }
         }
@@ -212,6 +214,18 @@ namespace StarterGame
         public int expToNextLvl()
         {
             return ExpNeeded - Experience;
+        }
+
+        public void setWeapon(IWeapon weapon)
+        {
+            Weapon = weapon; 
+        }
+
+        public IWeapon takeWeapon()
+        {
+            IWeapon current = this.Weapon;
+            this.Weapon = null;
+            return current;
         }
     }
 

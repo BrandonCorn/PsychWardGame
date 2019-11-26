@@ -58,7 +58,7 @@ namespace StarterGame
         override
         public string ToString()
         {
-            return name + "\n" + description + "\nAttack: " + attack + "\nWeight: " + weight;
+            return name + "\nAttack: " + attack + "\nWeight: " + weight + "lbs\n" + "Uses: " + uses + "\n";
         }
     }
 }
