@@ -64,7 +64,8 @@ namespace StarterGame
             experience = 0;
             expNeeded = 15;
             coins = 0;
-            weapon = new Axe();
+            //weapon = new Axe();
+            weapon = null; 
             backpack = null; 
             hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
@@ -150,7 +151,7 @@ namespace StarterGame
 
         public void currentStats()
         {
-            outputMessage("Player \nHealth: " + this.Health +  
+            outputMessage("Player \nHealth: " + this.Health +  (Weapon == null ? "\nNo Weapon" : "\nWeapon: " + Weapon.Name) +
                 "\nAttack: " + this.totalAttack());
         }
 
@@ -160,14 +161,14 @@ namespace StarterGame
             I_Item item = currentRoom.takeItem(itemName);
             if (item != null)
             { 
-                if ((Backpack.weightInBag() + item.Weight) >= 30)
+                if ((Backpack.weightInBag() + item.Weight) >= Backpack.Capacity)
                 {
                     Console.WriteLine("Backpack is full.");
                     currentRoom.giveItem(item);
                 }
-                else if (false) //going to use this section to set weapon with hashset of item types
+                else if (item.ItemTypes.Contains(ItemType.BattleItem) && Weapon == null)       
                 {
-                    
+                    Weapon = (IWeapon)item;
                 }
                 else
                 {
@@ -187,7 +188,7 @@ namespace StarterGame
             while (reachNextLevel())
             {
                 Level++;
-                Attack = (int)(attack * 1.2f);
+                Attack = (int)(attack * 1.35f);
                 MaxHealth = MaxHealth + 5;
                 Health = MaxHealth;
                 ExpNeeded = ExpNeeded + (int)(ExpNeeded * 1.5f);
