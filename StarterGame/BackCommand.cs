@@ -4,12 +4,12 @@ using System.Text;
 
 namespace StarterGame
 {
-    public class CloseBackpackCommand : Command
+    public class BackCommand : Command
     {
 
-        public CloseBackpackCommand()
+        public BackCommand()
         {
-            this.name = "close backpack";
+            this.name = "back";
         }
         public override bool execute(Player player)
         {

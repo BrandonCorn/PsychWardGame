@@ -26,8 +26,9 @@ namespace StarterGame
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
 
-        private Dictionary<string, ItemType> itemTypes;
-        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
+        private HashSet<ItemType> itemTypes;
+        private ItemType[] types = { ItemType.KeyItem };
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
 
         private int capacity;
         public int Capacity { get { return capacity; } }
@@ -42,8 +43,7 @@ namespace StarterGame
             value = 0; //Unsellable anyways
             capacity = 30;
             description = "Pretty useful for holding items. \n\tCapacity: " + Capacity + "lbs";
-            itemTypes = new Dictionary<string, ItemType>();
-            itemTypes.Add(name, ItemType.KeyItem);
+            itemTypes = new HashSet<ItemType>(types);
             inventory = new Dictionary<string, LinkedList<I_Item>>();
         }
         public void giveItem(I_Item item)
@@ -124,7 +124,6 @@ namespace StarterGame
             }
             return list;
         }
-
 
         public void useItem(Player player)
         {
