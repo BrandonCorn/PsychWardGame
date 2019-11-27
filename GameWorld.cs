@@ -7,44 +7,54 @@ namespace StarterGame
     public class GameWorld
     {
         static private GameWorld _instance;
-        static public GameWorld Instance {
-            get {
+        static public GameWorld Instance
+        {
+            get
+            {
                 if (_instance == null)
                     _instance = new GameWorld();
                 return _instance;
             }
         }
+        //static private Dictionary<int, IEnemy> allEnemies; 
+        //static public Dictionary<int,IEnemy> AllEnemies{ get { return allEnemies; } }
+
         private Room _entrance;
         public Room Entrance { get { return _entrance; } }
         private Room trigger;
         private string triggerWord;
         private List<Room> hotList;
         private Merchant ladyMerchant;
-        public Merchant LadyMerchant { get; }
+        public Merchant LadyMerchant { get { return ladyMerchant; } }
+        
 
         private GameWorld()
         {
             hotList = new List<Room>();
             _entrance = createWorld();
+
+           
             // GameWorld subscribes to the notification PlayerEnteredRoom
             NotificationCenter.Instance.addObserver("PlayerEnteredRoom", playerEnteredRoom);
             NotificationCenter.Instance.addObserver("Player has spoken", playerSpeak);
+            NotificationCenter.Instance.addObserver("BattleSequence", battleSequence);
         }
 
         private Room createWorld()
         {
+
             Room entrance = new Room(" at the entrance of the PsychWard", "entrance");
             Room merch = new Room("in the merchant's room", "merchant room");
-            Room mainHall = new Room("in the main hall", "main hall");
+            Room mainHall = new Room("in the main hall", "main hall", 1);
             Room cafeteria = new Room("in the cafeteria", "cafeteria");
-            Room maleWard = new Room("in the male ward", "male ward");
+            Room maleWard = new Room("in the male ward", "male ward", 1);
             Room femaleWard = new Room("in the female ward", "female ward");
             Room maleShowers = new Room("in the male showers", "male showers");
             Room femaleShowers = new Room("in the female showers", "female showers");
             Room maleGame = new Room("in male game room", "male game room");
             Room femaleGame = new Room("in female game room", "female game room");
             Room hallway = new Room("in the hallway outside the male ward", "male ward hallway");
-            Room maleMeetingRoom = new Room("in the male's meeting room", "male meeting room");
+            Room lounge = new Room("in the guy's lounge", "male lounge");
             Room maleTherapy = new Room("in the therapy room", "male therapy room");
             Room femaleTherapy = new Room("in female ward therapy room", "female therapy room");
             Room alley = new Room("outside in the alley", "alley");
@@ -55,16 +65,20 @@ namespace StarterGame
             Room shed = new Room("in the shed", "shed");
 
             Door door = Door.createDoor(entrance, merch);
-            door = Door.createDoor(entrance, mainHall);
+            door = Door.createDoor(entrance, mainHall);         
             door = Door.createDoor(mainHall, maleWard);
+            door.isLocked();
+            door.Lock();
             door = Door.createDoor(mainHall, femaleWard);
             door = Door.createDoor(mainHall, cafeteria);
             door = Door.createDoor(maleWard, maleGame);
             door = Door.createDoor(maleWard, maleShowers);
             door = Door.createDoor(maleWard, hallway);
-            door = Door.createDoor(hallway, maleMeetingRoom);
+            door = Door.createDoor(hallway, lounge);
             door = Door.createDoor(hallway, maleTherapy);
             door = Door.createDoor(femaleWard, femaleGame);
+            door.isLocked();
+            door.Lock();
             door = Door.createDoor(femaleWard, femaleShowers);
             door = Door.createDoor(femaleWard, femaleTherapy);
             //need to create this door as task, will say it's a window. 
@@ -76,38 +90,38 @@ namespace StarterGame
             door = Door.createDoor(mainCourtYard, eastCourtYard);
             door = Door.createDoor(eastCourtYard, shed);
 
-            ladyMerchant = new Merchant(merch);
+            //ladyMerchant = new Merchant(merch);
+
+            merch.addNPC(new Merchant(merch));
+
             HowToPlay task1 = new HowToPlay(mainHall);
-            ladyMerchant.addTask(task1);
+            //ladyMerchant.addTask(task1);
+            //Testing if items placed in room correctly. 
+            entrance.giveItem(new Flashlight());
+            entrance.giveItem(new Bat());
+            entrance.giveItem(new Bat());
+            
+            
 
             return entrance;
         }
 
-        
-        
 
         // callback method for PlayerEnteredRoom
         public void playerEnteredRoom(Notification notification)
         {
             Player player = (Player)notification.Object;
-            if(player.currentRoom == trigger)
-            {
-                Console.WriteLine("Player entered the trigger room\n");
-            }
 
-            if (player.currentRoom == ladyMerchant.MerchantRoom)
+            //Notifies the merchant when a player enters the room, a task is set by the merchant. The player
+            //is notified that they have received a task. An updated set of commands are given if they player 
+            //interacts with the merchant. 
+            //if (player.currentRoom == ladyMerchant.MerchantRoom)
             {
-                NotificationCenter.Instance.postNotification(new Notification("EnteredMerchantRoom", this));
-                player.setCurrentTask(ladyMerchant.TaskList.Dequeue());
-                NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
-                Console.WriteLine("\n\nHere's an updated set of commands: ");
-                CommandWords commands = new CommandWords();
-                //commands.addMerchantCommands();
-                Console.WriteLine(commands.description());
+
             }
 
         }
-        
+
         //callback method for player speak word
         public void playerSpeak(Notification notification)
         {
@@ -119,5 +133,36 @@ namespace StarterGame
             }
         }
 
+
+        //This method is callback method from player entering a room, it will initiate and conduct a battle
+        //between a player and randomly generated enemy.
+        public void battleSequence(Notification notification)
+        {
+            Player player = (Player)notification.Object;
+
+            if (player.currentRoom.ChanceEnemy != 0)
+            {
+                player.currentRoom.getAnEnemy(player.Level);
+
+                if (player.currentRoom.CurrentEnemy != null)
+                {
+                    IEnemy enemy = player.currentRoom.CurrentEnemy;
+                    NotificationCenter.Instance.postNotification(new Notification("PushBattleCommands", this));
+                    Console.WriteLine("\n****************************************************");
+                    Console.WriteLine("\n" + enemy.battleGreeting() + "\n\nThe battle begins!\n");
+                    player.currentStats();
+                    enemy.currentStats();
+                    
+                    
+                }
+            }
+
+        }
+
+        public IEnemy getAnEnemy(Room room)
+        {
+
+            return null; 
+        }
     }
 }

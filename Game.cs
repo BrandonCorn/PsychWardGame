@@ -9,7 +9,6 @@ namespace StarterGame
         Player player;
         Parser parser;
         bool playing;
-
         public Game()
         {
             //GameWorld gameWorld = new GameWorld();
@@ -28,6 +27,7 @@ namespace StarterGame
             // Enter the main command loop.  Here we repeatedly read commands and
             // execute them until the game is over.
 
+            //This bool has been made a value to the game so that it can be updated if the player dies.
             bool finished = false;
             while (!finished)
             {
@@ -66,6 +66,7 @@ namespace StarterGame
         {
             return "\nThank you for playing, Goodbye. \n";
         }
+
 
     }
 }

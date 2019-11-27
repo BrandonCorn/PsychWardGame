@@ -19,6 +19,9 @@ namespace StarterGame
         private Queue<string> words;
         public Queue<string> Words { get { return words; } set { words = value; } }
 
+
+   
+
         public Command()
         {
             this.name = "";
@@ -26,6 +29,7 @@ namespace StarterGame
             this.thirdWord = null;
             this.fourthWord = null;
             this.words = null;
+           
         }
 
         public bool hasSecondWord()
@@ -43,8 +47,6 @@ namespace StarterGame
             return this.fourthWord != null;
         }
     
-
-
         public abstract bool execute(Player player);
     }
 }

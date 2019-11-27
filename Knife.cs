@@ -1,39 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    public class Bat : I_Item, IWeapon
+    public class Knife : IWeapon
     {
-        private readonly string name = "bat";
+        private readonly string name = "knife";
         public string Name { get { return name; } }
         private Dictionary<string, ItemType> itemTypes;
         public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
         private float weight;
         public float Weight { get { return weight; } set { weight = value; } }
 
-        private readonly string description = "A real slap in the face to whoever you swing on";
+        private readonly string description = "A knife perfect for carving out zombie eyes!";
         public string Description { get { return description + "\nAttack: " + Attack; } }
-
+ 
         private int value;
         public int Value { get { return value; } set { this.value = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
-        private int attack;
+        private int attack; 
         public int Attack { get { return attack; } set { attack = value; } }
 
-        public Bat()
+
+        public Knife()
         {
-            attack = 10;
-            weight = 1.8f;
-            uses = 50; 
-            value = 500;
+            Weight = .25f;
             itemTypes = new Dictionary<string, ItemType>();
             itemTypes.Add(name, ItemType.BattleItem);
+            Value = 250; 
+            Uses = 10;
+            Attack = 5;
         }
-
         public int getStrength(Player player)
         {
             return player.Attack + Attack;
@@ -41,18 +43,11 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
-            this.Uses--;
-            if (this.Uses <= 0)
+            Uses--;
+            if (Uses <= 0)
             {
                 player.Weapon = null;
             }
         }
-
-        override
-        public string ToString()
-        {
-            return name + "\n" + description + "\nAttack: " + attack + "\nWeight: " + weight;
-        }
-
     }
 }

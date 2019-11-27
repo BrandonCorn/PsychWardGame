@@ -4,47 +4,43 @@ using System.Text;
 
 namespace StarterGame
 {
-    class SutureKit : I_Items
+    public class SutureKit : I_Item
     {
         //This is a healing item, it heals the player back to full health
 
 
         private float weight;
-        public float Weight { get; }
+        public float Weight { get { return weight; } }
 
-        private readonly string name = "Suture Kit";
-        public string Name { get; }
+        private readonly string name = "suture kit";
+        public string Name { get { return name; } }
 
-        private string description;
-        public string Description { get; }
-
-        private bool keyItem;
-        public bool KeyItem { get; }
-
-        private int uses;
-        public int Uses { get; }
+        private readonly string description = "Does more than your regular first aid kit";
+        public string Description { get { return description; } }
 
         private int value;
-        public int Value { get; }
+        public int Value { get { return value; } set { this.value = value; } }
+
+        private int uses;
+        public int Uses { get { return uses; } set { uses = value; } }
+
+        private Dictionary<string, ItemType> itemTypes;
+        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
 
         public SutureKit()
         {
             weight = 1.5f;
-            description = "Does more than your regular first aid kit";
-            keyItem = false;
             uses = 1;
             value = 500;
+            itemTypes = new Dictionary<string, ItemType>();
+            itemTypes.Add("Battle", ItemType.BattleItem);
+            itemTypes.Add("Basic", ItemType.BasicItem);
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
-            throw new NotImplementedException();
-        }
-
-        public void useItem(Player player, SutureKit kit)
-        {
-            //p.heal(); p.Health = p.MaxHealth
-            kit.uses--;
+            player.Health = player.MaxHealth;
+            this.uses--;
         }
 
         override

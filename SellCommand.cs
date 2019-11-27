@@ -8,7 +8,7 @@ namespace StarterGame
     {
         public SellCommand()
         {
-            this.name = "sell"; 
+            this.name = "sell";
         }
 
         public override bool execute(Player player)

@@ -4,36 +4,36 @@ using System.Text;
 
 namespace StarterGame
 {
-    class LockPick : I_Items
+    class LockPick : I_Item
     {
         private float weight;
         public float Weight { get; }
 
-        private readonly string name = "Lockpick";
-        public string Name { get; }
+        private readonly string name = "lockpick";
+        public string Name { get { return name; } }
 
-        private string description;
-        public string Description { get; }
-
-        private bool keyItem;
-        public bool KeyItem { get; }
-
-        private int uses;
-        public int Uses { get; }
+        private readonly string description = "Picks locks, but know some doors can't be picked";
+        public string Description { get { return description; } }
 
         private int value;
-        public int Value { get; }
+        public int Value { get { return value; } set { this.value = value; } }
+
+        private int uses;
+        public int Uses { get { return uses; } set { uses = value; } }
+
+        private Dictionary<string, ItemType> itemTypes;
+        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
 
         public LockPick()
         {
             weight = 0.1f;
-            description = "Picks locks, but know some doors can't be picked";
-            keyItem = false;
             uses = 1;
             value = 100;
+            itemTypes = new Dictionary<string, ItemType>();
+            itemTypes.Add(name, ItemType.BasicItem);
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             throw new NotImplementedException();
         }
@@ -55,7 +55,7 @@ namespace StarterGame
             l.uses--;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return name + "\n" + description + "\nUses per pick" + uses + "\nWeight: " + weight;
         }

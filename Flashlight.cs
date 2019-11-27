@@ -4,37 +4,37 @@ using System.Text;
 
 namespace StarterGame
 {
-    class Flashlight : I_Items
+    class Flashlight : I_Item
     {
         private float weight;
-        public float Weight { get; }
+        public float Weight { get { return weight; } }
 
-        private readonly string name = "Flashlight";
-        public string Name { get; }
+        private readonly string name = "flashlight";
+        public string Name { get { return name; } }
 
-        private string description;
-        public string Description { get; }
-
-        private bool keyItem;
-        public bool KeyItem { get; }
-
-        private int uses;
-        public int Uses { get; }
+        private readonly string description = "Lets you see in the dark";
+        public string Description { get { return description; } }
 
         private int value;
-        public int Value { get; }
+        public int Value { get { return value; } set { this.value = value; } }
+
+        private int uses;
+        public int Uses { get { return uses; } set { uses = value; } }
+
+        private Dictionary<string, ItemType> itemTypes;
+        public Dictionary<string, ItemType> ItemTypes { get { return itemTypes; } }
 
         private int batteryHealth;
-        public int BatteryHealth { get; set; }
+        public int BatteryHealth { get { return batteryHealth; } set { batteryHealth = value; } }
 
         public Flashlight()
         {
             weight = 0; //0 for key item
-            description = "Lets you see in the dark";
-            keyItem = true;
             uses = 1; //Doesn't matter
             value = 0;
             batteryHealth = 0;
+            itemTypes = new Dictionary<string, ItemType>();
+            itemTypes.Add("Basic", ItemType.BasicItem);
         }
 
         public void useItem(Flashlight o)
@@ -49,7 +49,7 @@ namespace StarterGame
             }
         }
 
-        public void useItem()
+        public void useItem(Player player)
         {
             throw new NotImplementedException();
         }

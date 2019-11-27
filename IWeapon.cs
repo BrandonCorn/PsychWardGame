@@ -4,9 +4,10 @@ using System.Text;
 
 namespace StarterGame
 {
-    public interface IWeapon
+    public interface IWeapon : I_Item
     {
-        int Attack { get; }
+        int Attack { get; set; }
         int getStrength(Player player);
+        new void useItem(Player player);
     }
 }
