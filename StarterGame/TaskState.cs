@@ -4,8 +4,9 @@ using System.Text;
 
 namespace StarterGame
 {
-     public enum TaskState
+    public enum TaskState
     {
         Inactive, Active, Complete
     }
+
 }

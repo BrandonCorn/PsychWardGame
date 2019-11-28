@@ -12,8 +12,8 @@ namespace StarterGame
         private string name; 
         public string Name { get { return name; } }
 
-        private TaskState taskStatus;
-        public TaskState TaskStatus { get { return taskStatus; } set { taskStatus = value; } }
+        private TaskState taskState;
+        public TaskState TaskState { get { return taskState; } set { taskState = value; } }
 
         //private Room taskRoom;
         //public Room TaskRoom { get { return taskRoom; } }
@@ -26,9 +26,7 @@ namespace StarterGame
         public HowToPlay()
         {
             name = "How To Play";
-            taskStatus = TaskState.Inactive;
-            //this.active = false;
-            //this.complete = false;
+            taskState = TaskState.Inactive;
             //this.taskRoom = room;
             //this.description = "This quest will give you a run down of playing the game, things ranging" +
             //    " from selecting commands to fighting enemies.";

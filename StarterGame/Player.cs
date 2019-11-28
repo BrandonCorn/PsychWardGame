@@ -99,6 +99,7 @@ namespace StarterGame
             this.outputMessage("You gained " + this.currentRoom.CurrentEnemy.PlayerExp + " experience"
                 + "\n\t" + this.expToNextLvl() + " exp to next level!");
             this.outputMessage("\n****************************************************");
+            currentRoom.giveItem(currentRoom.CurrentEnemy.getDrops());
             this.outputMessage("\n" + currentRoom.description());
         }
 
@@ -133,10 +134,12 @@ namespace StarterGame
             }
             return Weapon.getStrength(this);
         }
-
+        
+        //A notification to the player that a task has been set. The task is then set to active. 
         public void TaskSet(Notification notification)
         {
-             Console.WriteLine("\nA task has been set! (You can view the task description with the \"task\" command");
+            this.CurrentTask.TaskState = TaskState.Active;
+            Console.WriteLine("\nA task has been set! (You can view the task description with the \"task\" command");
         }
 
         public void setCurrentTask(ITask task)
