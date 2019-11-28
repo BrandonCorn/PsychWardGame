@@ -177,7 +177,7 @@ namespace StarterGame
                 else
                 {
                     Backpack.giveItem(item);
-                    Console.WriteLine("\nYou picked up a " + itemName + "!"); 
+                    Console.WriteLine("\nYou picked up a " + itemName + "!\n"); 
                 }
             }
         }

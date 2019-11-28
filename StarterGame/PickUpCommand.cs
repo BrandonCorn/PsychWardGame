@@ -37,7 +37,7 @@ namespace StarterGame
                     }
                 }
                 player.pickUpItem(item);
-                
+                player.outputMessage(player.currentRoom.description());
             }
             return false;
         }

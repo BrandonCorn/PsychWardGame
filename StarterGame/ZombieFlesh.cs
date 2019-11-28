@@ -40,7 +40,7 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
-            throw new NotImplementedException();
+            player.outputMessage("\n This item is meant to be sold for it's value.");
         }
 
         public override string ToString()

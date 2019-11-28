@@ -48,7 +48,7 @@ namespace StarterGame
             Player player = (Player)notification.Object;
             if (player.Backpack == null)
             {
-                Console.WriteLine("Oh a new traveler. You're going to have trouble carrying things around in " +
+                Console.WriteLine("\nOh a new traveler. You're going to have trouble carrying things around in " +
                 "your arms. Take this, it will help!");
                 player.Backpack = new Backpack();
                 player.Backpack.giveItem(new SutureKit());
@@ -60,10 +60,9 @@ namespace StarterGame
                 player.setCurrentTask(TaskList.Dequeue());
                 NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
             }
-            
-            Console.WriteLine("\nWould you like to:\n\tbuy goods" +
-                "\n\tsell goods");
-            
+
+            Console.WriteLine("\nWould you like to: \n\tsell goods" + "\n\tbuy goods");
+
         }
         
         //Displays when interaction with merchent ends. 

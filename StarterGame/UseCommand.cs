@@ -37,11 +37,13 @@ namespace StarterGame
                 else
                 {
                     itemToUse.useItem(player);
+                    player.outputMessage(player.Backpack.displayItems());
 
                 }
                 return false;
             }
             player.outputMessage("\nUse What\n");
+            player.outputMessage(player.Backpack.displayItems());
             return false;
         }
     }

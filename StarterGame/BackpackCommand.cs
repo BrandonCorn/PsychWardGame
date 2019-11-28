@@ -17,12 +17,15 @@ namespace StarterGame
             if (player.Backpack != null)
             {
                 NotificationCenter.Instance.postNotification(new Notification("PushBackpackCommands", this));
-                player.outputMessage(player.Backpack.displayItems()); 
+                player.outputMessage("\nCoins: " + player.Coins);
+                player.outputMessage(player.Backpack.displayItems() +
+                    "\nType \"back\" to close the backpack");
                 return false;
             }
             else
             {
                 player.outputMessage("I have no backpack!");
+                player.outputMessage(player.currentRoom.description());
                 return false;
             }
         }
