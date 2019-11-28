@@ -27,6 +27,10 @@ namespace StarterGame
         //Displays what happens when the enemy attacks
         public abstract string attackDescription();
 
+        public abstract I_Item getDrops();
+
+        public abstract int killValue();
+
         //Displays the enemies battle stats
         public void currentStats()
         {

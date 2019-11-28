@@ -23,6 +23,16 @@ namespace StarterGame
 
         private int playerExp = 4; 
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
+        private I_Item drops = new RatTail();
+        //public override I_Item Drops { get { return new RatTail(); }set { drops = new RatTail(); } }
+        public override I_Item getDrops()
+        {
+            return new RatTail();
+        }
+        public override int killValue()
+        {
+            return 50;
+        }
         public Rat()
         {
 

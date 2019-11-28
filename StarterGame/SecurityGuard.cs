@@ -1,53 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    public class ZombiePatient :IEnemy
+    public class SecurityGuard : IEnemy
     {
-        //VIEW IENEMY INTERFACE FOR DESCRIPTIONS OF VARIABLES AND PROPERTIES
-
-        private readonly string name = "Zombie Patient";
+        private readonly string name = "Security Guard";
         public override string Name { get { return name; } }
 
-        private int attack = 4;
+        private int attack = 3;
         public override int Attack { get { return attack; } set { attack = value; } }
-        private int health = 14;
+        private int health = 12;
         public override int Health { get { return health; } set { health = value; } }
-        private int hitProbability = 1;
+
+        private int hitProbability = 2;
         public override int HitProbability { get { return hitProbability; } }
 
-        private int playerExp = 5;
+        private int playerExp = 4;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
-        private I_Item drops = new ZombieFlesh();
+        private I_Item drops = new LockPick();
         public override I_Item getDrops()
         {
-            return new ZombieFlesh();
+            return new LockPick();
         }
         public override int killValue()
         {
-            return 150;
+            return 200;
         }
-
-        public ZombiePatient()
+        public SecurityGuard()
         {
 
         }
-
-        //Statement of enemy when greeting player
         public override string battleGreeting()
         {
-            return "A mummified zombie patient blindsides you out of no where!";
+            return "The psycho security guard is running at you with his batton!";
         }
 
-        //Description of the enemy attacking the player
+        //Description of the Rat attacking the player to display. We can write more these in this method
+        //and make it so that random ones display each time. 
         public override string attackDescription()
         {
-            return "\nThe Zombie leaps forward and bites you!";
+            return "\nThe Security Guard swings at you!";
         }
-
     }
 }

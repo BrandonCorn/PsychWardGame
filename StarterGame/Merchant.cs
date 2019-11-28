@@ -56,7 +56,7 @@ namespace StarterGame
                 Console.WriteLine(player.Backpack.Description);
             }
             NotificationCenter.Instance.postNotification(new Notification("PushMerchantCommands", this));
-            if (player.CurrentTask == null || player.CurrentTask.Complete == true)
+            if (player.CurrentTask == null || player.CurrentTask.TaskState == TaskState.Complete)
             {
                 //Need to find method for setting tasks 
                 //player.setCurrentTask(GameWorld.Instance.LadyMerchant.TaskList.Dequeue());
