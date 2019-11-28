@@ -14,12 +14,15 @@ namespace StarterGame
 
         private TaskState taskState;
         public TaskState TaskState { get { return taskState; } set { taskState = value; } }
+        private int enemiesKilled; 
+        public int EnemiesKilled { get { return enemiesKilled; } set { enemiesKilled = value; } }
 
         //private Room taskRoom;
         //public Room TaskRoom { get { return taskRoom; } }
 
         private string description = "This quest will give you a run down of playing the game, things ranging" +
-                " from selecting commands to fighting enemies.";
+                " from selecting commands to fighting enemies. \n\t Beat 2 enemies and bring the merchant" +
+            "a rat tail!";
         public string Description { get { return description; } }
 
 
@@ -27,12 +30,17 @@ namespace StarterGame
         {
             name = "How To Play";
             taskState = TaskState.Inactive;
+            enemiesKilled = 0;
             //this.taskRoom = room;
             //this.description = "This quest will give you a run down of playing the game, things ranging" +
             //    " from selecting commands to fighting enemies.";
         }
 
-
+        public void KilledEnemies(Notification notification)
+        {
+            Player player = (Player)notification.Object;
+            EnemiesKilled++;
+        }
         
     }
 }
