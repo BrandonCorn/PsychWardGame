@@ -10,29 +10,28 @@ namespace StarterGame
     public class HowToPlay : ITask 
     {
         private string name; 
-        public string Name { get; }
+        public string Name { get { return name; } }
 
-        private bool active;
-        public bool Active { get; set; }
+        private TaskState taskStatus;
+        public TaskState TaskStatus { get { return taskStatus; } set { taskStatus = value; } }
 
-        private bool complete; 
-        public bool Complete { get; }
+        //private Room taskRoom;
+        //public Room TaskRoom { get { return taskRoom; } }
 
-        private Room taskRoom;
-        public Room TaskRoom { get; }
-
-        private string description; 
+        private string description = "This quest will give you a run down of playing the game, things ranging" +
+                " from selecting commands to fighting enemies.";
         public string Description { get { return description; } }
 
 
-        public HowToPlay(Room room)
+        public HowToPlay()
         {
-            this.name = "How To Play";
-            this.active = false;
-            this.complete = false;
-            this.taskRoom = room;
-            this.description = "This quest will give you a run down of playing the game, things ranging" +
-                " from selecting commands to fighting enemies.";
+            name = "How To Play";
+            taskStatus = TaskState.Inactive;
+            //this.active = false;
+            //this.complete = false;
+            //this.taskRoom = room;
+            //this.description = "This quest will give you a run down of playing the game, things ranging" +
+            //    " from selecting commands to fighting enemies.";
             
         }
 

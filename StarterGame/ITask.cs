@@ -11,8 +11,8 @@ namespace StarterGame
         //can be active and the user will be able to participate or forced into participation. 
         string Name { get; }
         bool Active { get; set; }
-        bool Complete { get; }
-        Room TaskRoom { get; }
+        bool Complete { get; set; }
+        //Room TaskRoom { get; }
         string Description { get; }
 
     }
