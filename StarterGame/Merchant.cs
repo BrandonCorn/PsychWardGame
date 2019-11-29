@@ -17,15 +17,20 @@ namespace StarterGame
         //the game. 
 
         private Queue<ITask> taskList;
+        public Queue<ITask> TaskList { get { return taskList; } }
 
         private ITask[] tasks = { new HowToPlay() }; 
-        public Queue<ITask> TaskList { get { return taskList; } }
-        //created a merchant room, this can be changed in the game world
 
+        //This inventory is everything the merchant has available for purchase. 
+        private Dictionary<string, I_Item> inventory;
+        public Dictionary<string, I_Item> Inventory { get { return inventory; } set { inventory = value; } }
+
+        private static I_Item[] MerchantItems = { new Axe(), new BandAid(), new Bat(),
+            new Batteries(), new FirstAidKit(), new Hammer(), new Knife(), new LockPick(),
+            new Machete(), new SutureKit()};
+
+        //The room that the merchant is currently in. 
         private Room merchantRoom;
-
-        //we want access to the merchant room to see if the player is in there and can then start interacting
-        //with her. 
         public Room MerchantRoom { get { return this.merchantRoom; } }
         public Merchant(Room room)
         {
@@ -34,6 +39,9 @@ namespace StarterGame
             //NotificationCenter.Instance.addObserver("EnteredMerchantRoom", enteredMerchantRoom);
             NotificationCenter.Instance.addObserver("PlayerSpeak_merchant", PlayerSpeak_merchant);
             NotificationCenter.Instance.addObserver("LeaveMerchant", LeaveMerchant);
+
+            inventory = new Dictionary<string, I_Item>();
+            foreach (I_Item item in MerchantItems) { inventory[item.Name] = item; }
         }
 
         //add tasks to the merchants list
@@ -60,7 +68,6 @@ namespace StarterGame
                 player.setCurrentTask(TaskList.Dequeue());
                 NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
             }
-
             Console.WriteLine("\nWould you like to: \n\tsell goods" + "\n\tbuy goods");
 
         }

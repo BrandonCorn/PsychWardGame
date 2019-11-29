@@ -40,6 +40,7 @@ namespace StarterGame
         {
             Player player = (Player)notification.Object;
             EnemiesKilled++;
+            //if player completes task then change its status here. 
         }
         
     }
