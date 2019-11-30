@@ -100,7 +100,6 @@ namespace StarterGame
                 + "\n\t" + this.expToNextLvl() + " exp to next level!");
             this.outputMessage("\n****************************************************");
             currentRoom.giveItem(currentRoom.CurrentEnemy.getDrops());
-            this.outputMessage("\n" + currentRoom.description());
         }
 
         //Notification that the player ran from battle 

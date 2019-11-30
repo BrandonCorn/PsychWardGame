@@ -13,15 +13,15 @@ namespace StarterGame
         private readonly string name = "Rat";
         public override string Name { get { return name;  } }
 
-        private int attack = 3;
+        private int attack;
         public override int Attack { get { return attack; } set { attack = value; } }
-        private int health = 12;
+        private int health;
         public override int Health { get { return health; } set { health = value; } }
 
-        private int hitProbability = 2;
+        private int hitProbability;
         public override int HitProbability { get { return hitProbability; } }
 
-        private int playerExp = 4; 
+        private int playerExp; 
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
         private I_Item drops = new RatTail();
         //public override I_Item Drops { get { return new RatTail(); }set { drops = new RatTail(); } }
@@ -35,7 +35,10 @@ namespace StarterGame
         }
         public Rat()
         {
-
+            attack = 3;
+            health = 12;
+            hitProbability = 2;
+            playerExp = 4;
         }
         public override string battleGreeting()
         {

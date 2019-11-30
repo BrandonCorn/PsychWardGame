@@ -22,6 +22,8 @@ namespace StarterGame
                 player.outputMessage("\nYou win!!!\n");
                 NotificationCenter.Instance.postNotification(new Notification("PopCommands", this));
                 NotificationCenter.Instance.postNotification(new Notification("BattleOver", this));
+                NotificationCenter.Instance.postNotification(new Notification("KilledEnemies", player));
+                player.outputMessage("\n" + player.currentRoom.description());
 
                 player.currentRoom.CurrentEnemy = null; 
                 return false;
