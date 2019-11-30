@@ -13,14 +13,14 @@ namespace StarterGame
         private readonly string name = "Zombie Patient";
         public override string Name { get { return name; } }
 
-        private int attack = 4;
+        private int attack;
         public override int Attack { get { return attack; } set { attack = value; } }
-        private int health = 14;
+        private int health;
         public override int Health { get { return health; } set { health = value; } }
-        private int hitProbability = 1;
+        private int hitProbability;
         public override int HitProbability { get { return hitProbability; } }
 
-        private int playerExp = 5;
+        private int playerExp;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
         private I_Item drops = new ZombieFlesh();
         public override I_Item getDrops()
@@ -34,7 +34,10 @@ namespace StarterGame
 
         public ZombiePatient()
         {
-
+            attack = 4;
+            health = 14;
+            hitProbability = 1;
+            playerExp = 5;
         }
 
         //Statement of enemy when greeting player

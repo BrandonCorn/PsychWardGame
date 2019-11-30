@@ -17,6 +17,7 @@ namespace StarterGame
             if (player.Backpack != null)
             {
                 NotificationCenter.Instance.postNotification(new Notification("PushBackpackCommands", this));
+                player.outputMessage("\n****************************************************");
                 player.outputMessage("\nCoins: " + player.Coins);
                 player.outputMessage(player.Backpack.displayItems() +
                     "\nType \"back\" to close the backpack");

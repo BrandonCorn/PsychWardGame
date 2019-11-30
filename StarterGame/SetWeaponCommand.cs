@@ -38,7 +38,7 @@ namespace StarterGame
                 if (player.Weapon == null)
                 {
                     player.setWeapon((IWeapon)player.removeFromBackpack(weaponName));
-                    player.outputMessage("\nYour new weapon has been set!");
+                    player.outputMessage("\nYour new weapon has been set!\n");
                 }
                 else if (player.Backpack.Inventory.TryGetValue(weaponName, out weapon))
                 {

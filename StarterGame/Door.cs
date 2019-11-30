@@ -9,7 +9,9 @@ namespace StarterGame
         private Room roomA;
         private Room roomB;
         private bool closed;
-        public bool Closed
+        private ILockable theLock;
+
+        /*public bool Closed
         {
             get
             {
@@ -30,7 +32,7 @@ namespace StarterGame
             {
                 closed = !value;
             }
-        }
+        } */
 
        
         public Door(Room roomA, Room roomB)
@@ -38,7 +40,7 @@ namespace StarterGame
             this.roomA = roomA;
             this.roomB = roomB;
             closed = false;
-            
+            theLock = new RegularLock();
         }
 
         public Room room(Room from)
@@ -65,7 +67,109 @@ namespace StarterGame
         {
 
         }
+        public void Lock()
+        {
+            if (theLock != null)
+            {
+                theLock.Lock();
+                //Console.WriteLine("This door is locked.");
+            }
+        }
+        public void Unlock()
+        {
+            if (theLock != null)
+            {
+                theLock.Unlock();
+            }
+        }
+        public bool Closed
+        {
+            get
+            {
+                return closed;
+            }
+            set
+            {
+                if (theLock != null)
+                {
+                    if (theLock.MayClose())
+                    {
+                        closed = value;
+                    }
 
+                    else
+                    {
+                        closed = true;
+                    }
+                }
+            }
+        }
+        public bool Open
+        {
+            get
+            {
+                return !closed;
+            }
+            set
+            {
+                if (theLock != null)
+                {
+                    if (theLock.MayOpen())
+                    {
+                        closed = !value;
+                    }
+                    else
+                    {
+                        closed = !value;
+                    }
+                }
+            }
+        }
+        public bool isLocked()
+        {
+            if (theLock != null)
+            {
+                Console.WriteLine("This door is LOCKED!");
+                return theLock.isLocked();
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool isUnlocked()
+        {
+            if (theLock != null)
+            {
+                return theLock.isUnlocked();
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool MayOpen()
+        {
+            if (theLock != null)
+            {
+                return theLock.MayOpen();
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool MayClose()
+        {
+            if (theLock != null)
+            {
+                return theLock.MayClose();
+            }
+            else
+            {
+                return true;
+            }
+        }
 
     }
 }

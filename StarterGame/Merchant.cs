@@ -7,7 +7,7 @@ namespace StarterGame
     public class Merchant : INPC
     {
 
-        private readonly string name = "Merchant"; 
+        private readonly string name = "merchant"; 
         public string Name { get { return name; } }
         private readonly string description = "Nice person who wants to trade with you!";
         public string Description { get { return description; } }
@@ -36,7 +36,6 @@ namespace StarterGame
         {
             this.merchantRoom = room;
             this.taskList = new Queue<ITask>(tasks);
-            //NotificationCenter.Instance.addObserver("EnteredMerchantRoom", enteredMerchantRoom);
             NotificationCenter.Instance.addObserver("PlayerSpeak_merchant", PlayerSpeak_merchant);
             NotificationCenter.Instance.addObserver("LeaveMerchant", LeaveMerchant);
 
@@ -54,6 +53,22 @@ namespace StarterGame
         private void PlayerSpeak_merchant(Notification notification)
         {
             Player player = (Player)notification.Object;
+            NotificationCenter.Instance.postNotification(new Notification("PushMerchantCommands", this));
+            giveBackpack(player);
+            givePlayerTask(player);
+            Console.WriteLine("\nWould you like to: \n\tsell goods" + "\n\tbuy goods");
+        }
+        
+        //Displays when interaction with merchent ends. 
+        public void LeaveMerchant(Notification notification)
+        {
+            Console.WriteLine("\n\nThank's for your business. Come again soon!\n\n");
+            
+        }
+
+        //Gives the new player a backpack. 
+        public void giveBackpack(Player player)
+        {
             if (player.Backpack == null)
             {
                 Console.WriteLine("\nOh a new traveler. You're going to have trouble carrying things around in " +
@@ -62,21 +77,22 @@ namespace StarterGame
                 player.Backpack.giveItem(new SutureKit());
                 Console.WriteLine(player.Backpack.Description);
             }
-            NotificationCenter.Instance.postNotification(new Notification("PushMerchantCommands", this));
+        }
+
+        public void givePlayerTask(Player player)
+        {
             if (player.CurrentTask == null || player.CurrentTask.TaskState == TaskState.Complete)
             {
-                player.setCurrentTask(TaskList.Dequeue());
-                NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
+                if (TaskList.Count > 0)
+                {
+                    player.setCurrentTask(TaskList.Dequeue());
+                    NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
+                }
+                else
+                {
+                    Console.WriteLine("\nYou have completed all current tasks available!");
+                }
             }
-            Console.WriteLine("\nWould you like to: \n\tsell goods" + "\n\tbuy goods");
-
-        }
-        
-        //Displays when interaction with merchent ends. 
-        public void LeaveMerchant(Notification notification)
-        {
-            Console.WriteLine("\n\nThank's for your business. Come again soon!\n\n");
-            
         }
 
 

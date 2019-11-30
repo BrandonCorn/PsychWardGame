@@ -37,6 +37,7 @@ namespace StarterGame
                     }
                 }
                 player.pickUpItem(item);
+                //notifies anyone who needs to know that an item has successfully been picked up. 
                 NotificationCenter.Instance.postNotification(new Notification("PickedUpItem", player));
                 player.outputMessage(player.currentRoom.description());
             }

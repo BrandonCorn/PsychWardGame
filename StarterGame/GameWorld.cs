@@ -66,7 +66,8 @@ namespace StarterGame
 
             Door door = Door.createDoor(entrance, merch);
             door = Door.createDoor(entrance, mainHall);
-            door.Closed = true;
+            door.isLocked();
+            door.Lock();
             door = Door.createDoor(mainHall, maleWard);
             door = Door.createDoor(mainHall, femaleWard);
             door = Door.createDoor(mainHall, cafeteria);
@@ -95,7 +96,6 @@ namespace StarterGame
             entrance.giveItem(new Flashlight());
             entrance.giveItem(new Bat());
             entrance.giveItem(new Bat());
-            entrance.giveItem(new Bat()); 
             
 
             return entrance;
