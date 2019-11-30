@@ -19,10 +19,19 @@ namespace StarterGame
 
         private int playerExp = 4;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
-        private I_Item drops = new LockPick();
+        private int numItems;
+        public override int NumItems { get { return numItems; } }
+        /*private I_Item drops = new LockPick();
         public override I_Item getDrops()
         {
             return new LockPick();
+        }*/
+        private I_Item[] list = { new LockPick(), new SutureKit(), new BandAid() };
+        private Dictionary<int, I_Item> drops;
+        public override Dictionary<int, I_Item> Drops { get { return drops; } }
+        public override I_Item getDrops(int num)
+        {
+            return Drops[num];
         }
         public override int killValue()
         {

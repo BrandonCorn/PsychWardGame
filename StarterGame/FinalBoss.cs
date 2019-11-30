@@ -17,8 +17,13 @@ namespace StarterGame
         private int hitProbability;
         public override int HitProbability { get { return hitProbability; } }
 
-        private int playerExp; 
-        public override int PlayerExp { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private int playerExp;
+        public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
+
+        private int numItems;
+        public override int NumItems { get { return numItems; } }
+
+        public override Dictionary<int, I_Item> Drops => throw new NotImplementedException();
 
         public FinalBoss()
         {
@@ -29,20 +34,20 @@ namespace StarterGame
         }
         public override string attackDescription()
         {
-            throw new NotImplementedException();
+            return "The luny mummy man flails his arms at you in craziness!"; 
         }
 
         public override string battleGreeting()
         {
-            throw new NotImplementedException();
-        }
-
-        public override I_Item getDrops()
-        {
-            throw new NotImplementedException();
+            return "The final battle begins";
         }
 
         public override int killValue()
+        {
+            return 1000;
+        }
+
+        public override I_Item getDrops(int num)
         {
             throw new NotImplementedException();
         }

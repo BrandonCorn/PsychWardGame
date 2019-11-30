@@ -19,10 +19,20 @@ namespace StarterGame
 
         private int playerExp;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
-        private I_Item drops = new SutureKit();
+        private int numItems;
+        public override int NumItems { get { return numItems; } }
+
+        /*private I_Item drops = new SutureKit();
         public override I_Item getDrops()
         {
             return new SutureKit();
+        }*/
+        private I_Item[] list = { new SutureKit(), new BandAid() };
+        private Dictionary<int, I_Item> drops;
+        public override Dictionary<int, I_Item> Drops { get { return drops; } }
+        public override I_Item getDrops(int num)
+        {
+            return Drops[num];
         }
         public override int killValue()
         {
@@ -35,6 +45,12 @@ namespace StarterGame
             health = 12;
             hitProbability = 2;
             playerExp = 4;
+            numItems = 2;
+            drops = new Dictionary<int, I_Item>();
+            for (int i = 0; i < list.Length; i++)
+            {
+                drops[i] = list[i];
+            }
         }
         public override string battleGreeting()
         {

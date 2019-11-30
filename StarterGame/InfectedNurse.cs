@@ -19,10 +19,19 @@ namespace StarterGame
 
         private int playerExp;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
-        private I_Item drops = new FirstAidKit();
+        private int numItems;
+        public override int NumItems { get { return numItems; } }
+        /*private I_Item drops = new FirstAidKit();
         public override I_Item getDrops()
         {
             return new FirstAidKit();
+        } */
+        private I_Item[] list = { new RatTail(), new FirstAidKit(), new BandAid() };
+        private Dictionary<int, I_Item> drops;
+        public override Dictionary<int, I_Item> Drops { get { return drops; } }
+        public override I_Item getDrops(int num)
+        {
+            return Drops[num];
         }
         public override int killValue()
         {
@@ -34,6 +43,12 @@ namespace StarterGame
             health = 13;
             hitProbability = 2;
             playerExp = 5;
+            numItems = 2;
+            drops = new Dictionary<int, I_Item>();
+            for (int i = 0; i < list.Length; i++)
+            {
+                drops[i] = list[i];
+            }
         }
         public override string battleGreeting()
         {

@@ -22,11 +22,19 @@ namespace StarterGame
 
         private int playerExp;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
-        private I_Item drops = new ZombieFlesh();
-        public override I_Item getDrops()
+
+        private int numItems;
+        public override int NumItems { get { return numItems; } }
+        //private I_Item drops = new ZombieFlesh();
+
+        private I_Item[] list = { new RatTail(), new FirstAidKit(), new BandAid() };
+        private Dictionary<int, I_Item> drops;
+        public override Dictionary<int, I_Item> Drops { get { return drops; } }
+        public override I_Item getDrops(int num)
         {
-            return new ZombieFlesh();
+            return Drops[num];
         }
+
         public override int killValue()
         {
             return 150;
@@ -38,6 +46,12 @@ namespace StarterGame
             health = 14;
             hitProbability = 1;
             playerExp = 5;
+            numItems = 2;
+            drops = new Dictionary<int, I_Item>();
+            for (int i = 0; i < list.Length; i++)
+            {
+                drops[i] = list[i];
+            }
         }
 
         //Statement of enemy when greeting player

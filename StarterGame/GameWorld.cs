@@ -39,6 +39,7 @@ namespace StarterGame
             NotificationCenter.Instance.addObserver("BattleSequence", battleSequence);
             NotificationCenter.Instance.addObserver("SpokeToMerchant", SpokeToMerchant);
             NotificationCenter.Instance.addObserver("FinishedFirstTask", FinishedFirstTask);
+            NotificationCenter.Instance.addObserver("EnemyGiveItems", EnemyGiveItems);
         }
 
         private Room createWorld()
@@ -190,6 +191,19 @@ namespace StarterGame
             Console.WriteLine("****************************************************\n" +
                 "You can now explore the PsychWard further!\n"
                 + "****************************************************\n");
+        }
+
+        //Callback method to Items to the current room the enemy is in. 
+        public void EnemyGiveItems(Notification notification)
+        {
+            Room room = (Room)notification.Object;
+            for (int i = 0; i < room.CurrentEnemy.NumItems; i++)
+            {
+                int rand = new Random().Next(0, room.CurrentEnemy.NumItems + 1);
+                room.giveItem(room.CurrentEnemy.getDrops(rand));
+            }
+
+
         }
     }
 }

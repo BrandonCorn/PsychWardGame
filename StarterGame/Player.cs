@@ -107,7 +107,8 @@ namespace StarterGame
             this.outputMessage("You gained " + this.currentRoom.CurrentEnemy.PlayerExp + " experience"
                 + "\n\t" + this.expToNextLvl() + " exp to next level!");
             this.outputMessage("\n****************************************************");
-            currentRoom.giveItem(currentRoom.CurrentEnemy.getDrops());
+            //currentRoom.giveItem(currentRoom.CurrentEnemy.getDrops());
+            NotificationCenter.Instance.postNotification(new Notification("EnemyGiveItems", this.currentRoom));
         }
 
         //Notification that the player ran from battle 
