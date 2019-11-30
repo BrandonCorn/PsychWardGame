@@ -33,7 +33,7 @@ namespace StarterGame
             attack = 11;
             weight = 1.25f;
             itemTypes = new HashSet<ItemType>(types);
-            uses = 1;
+            uses = 10;
             value = 850;
         }
 
