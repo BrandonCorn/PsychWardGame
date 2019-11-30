@@ -15,7 +15,7 @@ namespace StarterGame
         {
             if (player.CurrentTask != null)
             {
-                player.outputMessage(player.CurrentTask.Description + "\nCompletetion Status: " +
+                player.outputMessage("\n" + player.CurrentTask.Description + "\nCompletetion Status: " +
                 player.CurrentTask.TaskState);
             }
             return false;

@@ -37,6 +37,7 @@ namespace StarterGame
                     }
                 }
                 player.pickUpItem(item);
+                NotificationCenter.Instance.postNotification(new Notification("PickedUpItem", player));
                 player.outputMessage(player.currentRoom.description());
             }
             return false;
