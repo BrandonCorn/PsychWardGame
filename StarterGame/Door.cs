@@ -129,7 +129,7 @@ namespace StarterGame
         {
             if (theLock != null)
             {
-                Console.WriteLine("This door is LOCKED!");
+                //Console.WriteLine("This door is LOCKED!");
                 return theLock.isLocked();
             }
             else

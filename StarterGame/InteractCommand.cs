@@ -25,6 +25,7 @@ namespace StarterGame
                 {
                     notify += this.Words.Dequeue();
                 }
+                NotificationCenter.Instance.postNotification(new Notification("SpokeToMerchant", player));
                 NotificationCenter.Instance.postNotification(new Notification(notify, player));
                 player.outputMessage("\nType \"walk away\" to end the interaction");
             }

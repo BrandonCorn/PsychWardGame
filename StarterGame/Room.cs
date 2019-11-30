@@ -97,7 +97,7 @@ namespace StarterGame
         //displays exits availabe to player 
         public string getExits()
         {
-            string exitNames = "Exits: ";
+            string exitNames = " ";
             Dictionary<string, Door>.KeyCollection keys = exits.Keys;
             int count = 0;
             foreach (string exitName in keys)
@@ -118,7 +118,7 @@ namespace StarterGame
         //Displays the exits, npcs, and items the user can interact with. 
         public string description()
         {
-            return "You are " + this.tag + ".\n *** " + this.getExits() + 
+            return "You are " + this.tag + ".\n *** Exits: " + this.getExits() + 
                 "\n --- NPCs: " + displayNPCs() + "\n +++ Items in room: " + displayItems();
         }
 

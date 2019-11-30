@@ -76,7 +76,8 @@ namespace StarterGame
             {
                 TaskState = TaskState.Complete;
                 Console.WriteLine("\nYou completed the How to Play task!! Visit the merchant to get "
-                    + "another task!"); 
+                    + "another task!\n");
+                NotificationCenter.Instance.postNotification(new Notification("FinishedFirstTask", this));
             }
         }
     }

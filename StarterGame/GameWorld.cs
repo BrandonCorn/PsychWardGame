@@ -21,13 +21,12 @@ namespace StarterGame
 
         private Room _entrance;
         public Room Entrance { get { return _entrance; } }
-        private Room trigger;
+        private Room gameBeginTrigger;
+        private Room firstTaskFinished;
+        private Room bossBattleDoor;
         private string triggerWord;
         private List<Room> hotList;
-        private Merchant ladyMerchant;
-        public Merchant LadyMerchant { get { return ladyMerchant; } }
         
-
         private GameWorld()
         {
             hotList = new List<Room>();
@@ -38,6 +37,8 @@ namespace StarterGame
             NotificationCenter.Instance.addObserver("PlayerEnteredRoom", playerEnteredRoom);
             NotificationCenter.Instance.addObserver("Player has spoken", playerSpeak);
             NotificationCenter.Instance.addObserver("BattleSequence", battleSequence);
+            NotificationCenter.Instance.addObserver("SpokeToMerchant", SpokeToMerchant);
+            NotificationCenter.Instance.addObserver("FinishedFirstTask", FinishedFirstTask);
         }
 
         private Room createWorld()
@@ -66,11 +67,17 @@ namespace StarterGame
 
             Door door = Door.createDoor(entrance, merch);
             door = Door.createDoor(entrance, mainHall);
-            door.isLocked();
+            door.Closed = true;
             door.Lock();
             door = Door.createDoor(mainHall, maleWard);
+            door.Closed = true;
+            door.Lock();
             door = Door.createDoor(mainHall, femaleWard);
+            door.Closed = true;
+            door.Lock();
             door = Door.createDoor(mainHall, cafeteria);
+            door.Closed = true;
+            door.Lock();
             door = Door.createDoor(maleWard, maleGame);
             door = Door.createDoor(maleWard, maleShowers);
             door = Door.createDoor(maleWard, hallway);
@@ -87,8 +94,13 @@ namespace StarterGame
             door = Door.createDoor(mainCourtYard, westCourtYard);
             door = Door.createDoor(mainCourtYard, eastCourtYard);
             door = Door.createDoor(eastCourtYard, shed);
+            door.Closed = true;
+            door.Lock();
 
-            //ladyMerchant = new Merchant(merch);
+            //Rooms that have doors that need to be unlocked. 
+            gameBeginTrigger = entrance;
+            firstTaskFinished = mainHall;
+            bossBattleDoor = eastCourtYard;
 
             merch.addNPC(new Merchant(merch));
 
@@ -121,7 +133,7 @@ namespace StarterGame
         public void playerSpeak(Notification notification)
         {
             Player player = (Player)notification.Object;
-            if (player.currentRoom == ladyMerchant.MerchantRoom)
+            if (player.currentRoom == null)
             {
                 Dictionary<String, Object> userInfo = notification.userInfo;
                 Console.WriteLine(notification.Name);
@@ -151,11 +163,33 @@ namespace StarterGame
             }
 
         }
-
-        public IEnemy getAnEnemy(Room room)
+        public void SpokeToMerchant(Notification notification)
         {
+            Console.WriteLine("The main hall door has been unlocked!!");
+            Door door = gameBeginTrigger.getExit("main hall");
+            door.Unlock();
+            door.Closed = false;
+            NotificationCenter.Instance.removeObserver("SpokeToMerchant", SpokeToMerchant);
+        }
 
-            return null; 
+        public void FinishedFirstTask (Notification notification)
+        {
+            Door door;
+            string splitter = firstTaskFinished.getExits();
+            string[] exits = splitter.Split(","); 
+            foreach(string room in exits)
+            {
+                splitter = room.TrimStart();
+                door = firstTaskFinished.getExit(splitter);
+                if (door.isLocked())
+                {
+                    door.Unlock();
+                    door.Closed = false;
+                }
+            }
+            Console.WriteLine("****************************************************\n" +
+                "You can now explore the PsychWard further!\n"
+                + "****************************************************\n");
         }
     }
 }
