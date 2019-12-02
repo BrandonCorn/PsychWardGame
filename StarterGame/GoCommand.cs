@@ -55,6 +55,7 @@ namespace StarterGame
                     location += this.Words.Dequeue() + " ";
                 }
             }
+            location = location.Trim();
             player.waltTo(location);
             return false;
         } 
