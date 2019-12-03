@@ -65,12 +65,12 @@ namespace StarterGame
             expNeeded = 15;
             coins = 0;
             weapon = new Axe();
-            //weapon = null; 
             backpack = null; 
             hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
             NotificationCenter.Instance.addObserver("BattleOver", BattleOver);
             NotificationCenter.Instance.addObserver("RanFromEnemy", RanFromEnemy);
+            NotificationCenter.Instance.addObserver("FirstBattle", FirstBattle);
         }
 
         //Method when player is walking to another room. 
@@ -119,6 +119,16 @@ namespace StarterGame
 
         }
 
+        //Callback method to task that provides the player an explaination of how the combat system works. 
+        public void FirstBattle(Notification notification)
+        {
+            Console.WriteLine("\n\n****************************************************");
+            Console.WriteLine("Welcome to your first battle! \n\tTo attack your opponent type \"fight\".\n\t" +
+                "To heal yourself in battle open your bag and type \"use\" + the name of the item to use.\n\t" +
+                "To run away from the enemy type \"run\".");
+            NotificationCenter.Instance.removeObserver("FirstBattle", FirstBattle);
+        }
+
         public void speak(String word)
         {
             outputMessage(word);
@@ -148,9 +158,10 @@ namespace StarterGame
         public void TaskSet(Notification notification)
         {
             this.CurrentTask.TaskState = TaskState.Active;
-            Console.WriteLine("\nA task has been set! (You can view the task description with the \"task\" command");
+            Console.WriteLine("\nA task has been set! (You can view the task description with the \"task\" command)\n");
         }
 
+        //Sets the task given to the player. 
         public void setCurrentTask(ITask task)
         {   
                 this.currentTask = task; 
@@ -161,13 +172,14 @@ namespace StarterGame
             Console.WriteLine(message);
         }
 
+        //Current stats of player health, attack, and what weapon they possess. 
         public void currentStats()
         {
             outputMessage("Player \nHealth: " + this.Health +  (Weapon == null ? "\nNo Weapon" : "\nWeapon: " + Weapon.Name) +
                 "\nAttack: " + this.totalAttack());
         }
 
-        //picks up an item to be placed in backpack as it fits in the bag. 
+        //picks up an item to be placed in backpack if it will fit in the bag. 
         public void pickUpItem(string itemName)
         {
             I_Item item = currentRoom.takeItem(itemName);
@@ -191,6 +203,7 @@ namespace StarterGame
             }
         }
 
+        //Takes an item out of the backpack
         public I_Item removeFromBackpack(string item)
         {
             return Backpack.takeItem(item);

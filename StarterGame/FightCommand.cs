@@ -15,6 +15,7 @@ namespace StarterGame
         //battle sequence in the GameWorld, otherwise it remains true. 
         public override bool execute(Player player)
         {
+
             IEnemy enemy = player.currentRoom.CurrentEnemy;
             player.useWeapon();
             if (enemy.Health <= 0)

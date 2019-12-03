@@ -154,8 +154,10 @@ namespace StarterGame
 
                 if (player.currentRoom.CurrentEnemy != null)
                 {
-                    IEnemy enemy = player.currentRoom.CurrentEnemy;
+                    //First Battle placed here so that player always notified by the game world how to fight. 
+                    NotificationCenter.Instance.postNotification(new Notification("FirstBattle", this));
                     NotificationCenter.Instance.postNotification(new Notification("PushBattleCommands", this));
+                    IEnemy enemy = player.currentRoom.CurrentEnemy;
                     Console.WriteLine("\n****************************************************");
                     Console.WriteLine("\n" + enemy.battleGreeting() + "\n\nThe battle begins!\n");
                     player.currentStats();
@@ -202,8 +204,6 @@ namespace StarterGame
                 int rand = new Random().Next(0, room.CurrentEnemy.DropCount + 1);
                 room.giveItem(room.CurrentEnemy.getDrops(rand));
             }
-
-
         }
     }
 }

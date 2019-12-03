@@ -37,7 +37,7 @@ namespace StarterGame
             //this.taskRoom = room;
             description = "This quest will give you a run down of playing the game, things ranging" +
             " from selecting commands to fighting enemies. \n\t Beat 2 enemies! \n\t Bring the merchant" +
-        "a rat tail! \n\t Pick up an item!";
+            "a rat tail! \n\t Pick up an item!";
             NotificationCenter.Instance.addObserver("KilledEnemies", KilledEnemies);
             NotificationCenter.Instance.addObserver("PickedUpItem", PickedUpItem);
         }
@@ -61,6 +61,8 @@ namespace StarterGame
             Player player = (Player)notification.Object;
             pickedUpItem = true;
             player.outputMessage("You successfully picked up your first item!!\n");
+            player.outputMessage("Anytime you need to pick up an item simply type \"pick up\" followed by the" +
+                " name of the item.\n");
             TaskComplete();
             NotificationCenter.Instance.removeObserver("PickedUpItem", PickedUpItem);
         }
