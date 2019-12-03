@@ -176,6 +176,13 @@ namespace StarterGame
             return list;
         }
 
+        public INPC getNPC(string name)
+        {
+            INPC npc = null;
+            RoomNpcs.TryGetValue(name, out npc);
+            return npc;
+        }
+
         //Methods to give an item to the room and take it from the room. 
         public void giveItem(I_Item item)
         {

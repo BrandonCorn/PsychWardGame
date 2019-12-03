@@ -56,6 +56,7 @@ namespace StarterGame
             NotificationCenter.Instance.postNotification(new Notification("PushMerchantCommands", this));
             giveBackpack(player);
             givePlayerTask(player);
+            NotificationCenter.Instance.postNotification(new Notification("SpokeToMerchant", player));
             Console.WriteLine("\nWould you like to: \n\tsell goods" + "\n\tbuy goods");
         }
         
