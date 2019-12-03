@@ -25,8 +25,7 @@ namespace StarterGame
 
         private int dropCount;
         public override int DropCount { get { return dropCount; } }
-        //private I_Item drops = new ZombieFlesh();
-
+    
         private I_Item[] list = { new RatTail(), new FirstAidKit(), new BandAid() };
         private Dictionary<int, I_Item> drops;
         public override Dictionary<int, I_Item> Drops { get { return drops; } }

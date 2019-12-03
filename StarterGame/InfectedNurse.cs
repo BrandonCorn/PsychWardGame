@@ -23,11 +23,7 @@ namespace StarterGame
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
         private int dropCount;
         public override int DropCount { get { return dropCount; } }
-        /*private I_Item drops = new FirstAidKit();
-        public override I_Item getDrops()
-        {
-            return new FirstAidKit();
-        } */
+
         private I_Item[] list = { new RatTail(), new FirstAidKit(), new BandAid() };
         private Dictionary<int, I_Item> drops;
         public override Dictionary<int, I_Item> Drops { get { return drops; } }
