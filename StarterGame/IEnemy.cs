@@ -21,7 +21,7 @@ namespace StarterGame
         //Experience that will be given to the player
         public abstract int PlayerExp { get; set; }
 
-        public abstract int NumItems { get; }
+        public abstract int DropCount { get; }
 
         //Gives a prompt when the player encounters the enemy
         public abstract string battleGreeting();

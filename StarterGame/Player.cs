@@ -89,12 +89,13 @@ namespace StarterGame
                 }
                 else
                 {
-                    this.outputMessage("\n the door to " + direction + " is closed.");
+                    this.outputMessage("\n The door to " + direction + " is closed.\n");
+                    this.outputMessage("\n" + this._currentRoom.description());
                 }
             }
             else
             {
-                this.outputMessage("\nThere is no door on " + direction);
+                this.outputMessage("\nThere is no door to " + direction);
                 this.outputMessage("\n" + this._currentRoom.description());
             }
         }

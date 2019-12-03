@@ -197,9 +197,9 @@ namespace StarterGame
         public void EnemyGiveItems(Notification notification)
         {
             Room room = (Room)notification.Object;
-            for (int i = 0; i < room.CurrentEnemy.NumItems; i++)
+            for (int i = 0; i < room.CurrentEnemy.DropCount; i++)
             {
-                int rand = new Random().Next(0, room.CurrentEnemy.NumItems + 1);
+                int rand = new Random().Next(0, room.CurrentEnemy.DropCount + 1);
                 room.giveItem(room.CurrentEnemy.getDrops(rand));
             }
 

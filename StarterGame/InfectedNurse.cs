@@ -6,6 +6,8 @@ namespace StarterGame
 {
     public class InfectedNurse: IEnemy
     {
+        //VIEW IENEMY INTERFACE FOR DESCRIPTIONS OF VARIABLES AND PROPERTIES
+
         private readonly string name = "Infected Nurse";
         public override string Name { get { return name; } }
 
@@ -19,8 +21,8 @@ namespace StarterGame
 
         private int playerExp;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
-        private int numItems;
-        public override int NumItems { get { return numItems; } }
+        private int dropCount;
+        public override int DropCount { get { return dropCount; } }
         /*private I_Item drops = new FirstAidKit();
         public override I_Item getDrops()
         {
@@ -43,7 +45,7 @@ namespace StarterGame
             health = 13;
             hitProbability = 2;
             playerExp = 5;
-            numItems = 2;
+            dropCount = 1;
             drops = new Dictionary<int, I_Item>();
             for (int i = 0; i < list.Length; i++)
             {

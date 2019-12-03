@@ -21,9 +21,16 @@ namespace StarterGame
         //The run command returns false so the player can exit the battle sequence
         public override bool execute(Player player)
         {
-            player.outputMessage("\n" + runStatement());
-            NotificationCenter.Instance.postNotification(new Notification("RanFromEnemy", this));
-            NotificationCenter.Instance.postNotification(new Notification("PopCommands", this));
+            if (this.Words.Count > 0)
+            {
+                player.outputMessage("You should just say to run");
+            }
+            else
+            {
+                player.outputMessage("\n" + runStatement());
+                NotificationCenter.Instance.postNotification(new Notification("RanFromEnemy", this));
+                NotificationCenter.Instance.postNotification(new Notification("PopCommands", this));
+            }
             return false;
         } 
     }

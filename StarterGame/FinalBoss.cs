@@ -20,8 +20,8 @@ namespace StarterGame
         private int playerExp;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
 
-        private int numItems;
-        public override int NumItems { get { return numItems; } }
+        private int dropCount;
+        public override int DropCount { get { return dropCount; } }
 
         public override Dictionary<int, I_Item> Drops => throw new NotImplementedException();
 
@@ -31,6 +31,7 @@ namespace StarterGame
             health = 1000;
             hitProbability = 3;
             playerExp = 2500;
+            dropCount = 3;
         }
         public override string attackDescription()
         {

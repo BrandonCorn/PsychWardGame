@@ -23,8 +23,8 @@ namespace StarterGame
         private int playerExp;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
 
-        private int numItems;
-        public override int NumItems { get { return numItems; } }
+        private int dropCount;
+        public override int DropCount { get { return dropCount; } }
         //private I_Item drops = new ZombieFlesh();
 
         private I_Item[] list = { new RatTail(), new FirstAidKit(), new BandAid() };
@@ -46,7 +46,7 @@ namespace StarterGame
             health = 14;
             hitProbability = 1;
             playerExp = 5;
-            numItems = 2;
+            dropCount = 1;
             drops = new Dictionary<int, I_Item>();
             for (int i = 0; i < list.Length; i++)
             {

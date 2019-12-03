@@ -16,9 +16,9 @@ namespace StarterGame
         public bool execute(Player player)
         {
             bool answer = true;
-            if (this.hasSecondWord())
+            if (this.Words.Count > 0)
             {
-                player.outputMessage("\nI cannot quit " + this.secondWord);
+                player.outputMessage("\nI cannot quit that");
                 answer = false;
             }
             return answer;
