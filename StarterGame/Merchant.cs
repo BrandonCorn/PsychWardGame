@@ -36,11 +36,14 @@ namespace StarterGame
         {
             this.merchantRoom = room;
             this.taskList = new Queue<ITask>(tasks);
-            NotificationCenter.Instance.addObserver("PlayerSpeak_merchant", PlayerSpeak_merchant);
-            NotificationCenter.Instance.addObserver("LeaveMerchant", LeaveMerchant);
-
             inventory = new Dictionary<string, I_Item>();
             foreach (I_Item item in MerchantItems) { inventory[item.Name] = item; }
+
+            NotificationCenter.Instance.addObserver("PlayerSpeak_merchant", PlayerSpeak_merchant);
+            NotificationCenter.Instance.addObserver("LeaveMerchant", LeaveMerchant);
+            NotificationCenter.Instance.addObserver("ViewInventory", ViewInventory);
+
+
         }
 
         //add tasks to the merchants list
@@ -102,10 +105,11 @@ namespace StarterGame
             Dictionary<string, I_Item>.ValueCollection values = Inventory.Values;
             foreach(I_Item item in values)
             {
-                itemDisplay += item.Name + ": Purchase Price: " + item.PurchasePrice + "| Sell Price: " +
-                    item.SellPrice + "\n";
+                itemDisplay += item.Name + ": " + item.PurchasePrice + " | " + item.SellPrice + "\n";
             }
             Console.WriteLine("\n****************************************************");
+            Console.WriteLine("Item Name: Purchase Value | Sell Value");
+            Console.WriteLine("_____________________________________________________");
             Console.WriteLine(itemDisplay);
             Console.WriteLine("****************************************************\n");
         }
