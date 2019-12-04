@@ -61,5 +61,16 @@ namespace StarterGame
         {
             return "\nThe Infected Doctor bites your arm!";
         }
+
+        public override void attackPlayer(Player player)
+        {
+            int chance = new Random().Next(1, HitProbability + 1);
+            if (chance == 1 && this.Health > 0)
+            {
+                Console.WriteLine("\n" + attackDescription() + "\n");
+                player.Health -= new Random().Next((Attack / 2), Attack + 1);
+            }
+            else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
+        }
     }
 }

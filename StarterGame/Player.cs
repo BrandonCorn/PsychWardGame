@@ -70,7 +70,7 @@ namespace StarterGame
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
             NotificationCenter.Instance.addObserver("BattleOver", BattleOver);
             NotificationCenter.Instance.addObserver("RanFromEnemy", RanFromEnemy);
-            NotificationCenter.Instance.addObserver("FirstBattle", FirstBattle);
+            //NotificationCenter.Instance.addObserver("FirstBattle", FirstBattle);
         }
 
         //Method when player is walking to another room. 
@@ -119,15 +119,18 @@ namespace StarterGame
 
         }
 
-        //Callback method to task that provides the player an explaination of how the combat system works. 
-        public void FirstBattle(Notification notification)
+        /*Callback method to task that provides the player an explaination of how the combat system works. 
+         Commented out for now, deciding whether to keep first task which will be notified to explain combat
+         mechanics with gameworld. */
+
+        /*public void FirstBattle(Notification notification)
         {
             Console.WriteLine("\n\n****************************************************");
             Console.WriteLine("Welcome to your first battle! \n\tTo attack your opponent type \"fight\".\n\t" +
                 "To heal yourself in battle open your bag and type \"use\" + the name of the item to use.\n\t" +
                 "To run away from the enemy type \"run\".");
             NotificationCenter.Instance.removeObserver("FirstBattle", FirstBattle);
-        }
+        }*/
 
         public void speak(String word)
         {

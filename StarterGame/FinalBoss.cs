@@ -23,6 +23,8 @@ namespace StarterGame
         private int dropCount;
         public override int DropCount { get { return dropCount; } }
 
+        private I_Item[] itemList = { new FirstAidKit(), new BandAid(), new SutureKit() };
+        private Dictionary<int, I_Item> drops; 
         public override Dictionary<int, I_Item> Drops => throw new NotImplementedException();
 
         public FinalBoss()
@@ -32,6 +34,11 @@ namespace StarterGame
             hitProbability = 3;
             playerExp = 2500;
             dropCount = 3;
+            drops = new Dictionary<int, I_Item>();
+            for (int i = 0; i < itemList.Length; i++)
+            {
+                drops[i] = itemList[i];
+            }
         }
         public override string attackDescription()
         {
@@ -50,8 +57,18 @@ namespace StarterGame
 
         public override I_Item getDrops(int num)
         {
-            throw new NotImplementedException();
+            return Drops[num];
         }
 
+        public override void attackPlayer(Player player)
+        {
+            int chance = new Random().Next(1, HitProbability + 1);
+            if (chance == 1 && this.Health > 0)
+            {
+                Console.WriteLine("\n" + attackDescription() + "\n");
+                player.Health -= new Random().Next((Attack / 2), Attack + 1);
+            }
+            else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
+        }
     }
 }

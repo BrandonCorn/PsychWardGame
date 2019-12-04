@@ -32,7 +32,6 @@ namespace StarterGame
         public abstract I_Item getDrops(int num);
 
         public abstract Dictionary<int, I_Item> Drops { get; }
-        //public abstract void getDrops(); 
 
         public abstract int killValue();
 
@@ -54,15 +53,7 @@ namespace StarterGame
 
         //This is the attack action by the rat. It will display the attack description and take away health
         //from the player if the random number is 1.
-        public void attackPlayer(Player player)
-        {
-            int chance = new Random().Next(1, HitProbability + 1);
-            if (chance == 1 && this.Health > 0)
-            {
-                Console.WriteLine("\n" + attackDescription() + "\n");
-                player.Health -= new Random().Next((Attack/2), Attack + 1);
-            }
-            else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
-        }
+        public abstract void attackPlayer(Player player);
+
     }
 }

@@ -26,8 +26,7 @@ namespace StarterGame
         private int dropCount;
         public override int DropCount { get { return dropCount; } }
 
-        //private I_Item drops = new RatTail();
-        private I_Item[] list = { new RatTail(), new FirstAidKit(), new BandAid() };
+        private I_Item[] itemList = { new RatTail(), new FirstAidKit(), new BandAid() };
         private Dictionary<int, I_Item> drops; 
         public override Dictionary<int,I_Item> Drops { get { return drops; } }
         public override I_Item getDrops(int num)
@@ -46,9 +45,9 @@ namespace StarterGame
             playerExp = 4;
             dropCount = 1;
             drops = new Dictionary<int, I_Item>();
-            for(int i = 0; i < list.Length; i++)
+            for(int i = 0; i < itemList.Length; i++)
             {
-                drops[i] = list[i];
+                drops[i] = itemList[i];
             }
         }
         public override string battleGreeting()
@@ -63,5 +62,15 @@ namespace StarterGame
             return "\nThe Rat slices your face!";
         }
 
+        public override void attackPlayer(Player player)
+        {
+            int chance = new Random().Next(1, HitProbability + 1);
+            if (chance == 1 && this.Health > 0)
+            {
+                Console.WriteLine("\n" + attackDescription() + "\n");
+                player.Health -= new Random().Next((Attack / 2), Attack + 1);
+            }
+            else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
+        }
     }
 }

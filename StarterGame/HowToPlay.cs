@@ -17,10 +17,8 @@ namespace StarterGame
         private int enemiesKilled; 
         public int EnemiesKilled { get { return enemiesKilled; } set { enemiesKilled = value; } }
         private readonly int enemiesToKill = 2;
-        //Lets task know when the player has picked up their first item. 
-        //private bool pickedUpItem;
-        public bool pickedUpItem { get; set; }
-        
+    
+        private bool pickedUpItem { get; set; }
 
         //private Room taskRoom;
         //public Room TaskRoom { get { return taskRoom; } }
@@ -36,10 +34,20 @@ namespace StarterGame
             enemiesKilled = 0;
             //this.taskRoom = room;
             description = "This quest will give you a run down of playing the game, things ranging" +
-            " from selecting commands to fighting enemies. \n\t Beat 2 enemies! \n\t Bring the merchant" +
-            "a rat tail! \n\t Pick up an item!";
+            " from selecting commands to fighting enemies. \n\t Beat 2 enemies! \n\t Pick up an item!";
             NotificationCenter.Instance.addObserver("KilledEnemies", KilledEnemies);
             NotificationCenter.Instance.addObserver("PickedUpItem", PickedUpItem);
+            NotificationCenter.Instance.addObserver("FirstBattle", FirstBattle);
+        }
+
+        //Callback method to task that provides the player an explaination of how the combat system works. 
+        public void FirstBattle(Notification notification)
+        {
+            Console.WriteLine("\n\n****************************************************");
+            Console.WriteLine("Welcome to your first battle! \n\tTo attack your opponent type \"fight\".\n\t" +
+                "To heal yourself in battle open your bag and type \"use\" + the name of the item to use.\n\t" +
+                "To run away from the enemy type \"run\".");
+            NotificationCenter.Instance.removeObserver("FirstBattle", FirstBattle);
         }
 
         //Callback method notifies the task that enemies have been killed and contributed to the amount 
@@ -60,9 +68,11 @@ namespace StarterGame
         {
             Player player = (Player)notification.Object;
             pickedUpItem = true;
+            Console.WriteLine("\n****************************************************");
             player.outputMessage("You successfully picked up your first item!!\n");
             player.outputMessage("Anytime you need to pick up an item simply type \"pick up\" followed by the" +
                 " name of the item.\n");
+            Console.WriteLine("****************************************************\n");
             TaskComplete();
             NotificationCenter.Instance.removeObserver("PickedUpItem", PickedUpItem);
         }
