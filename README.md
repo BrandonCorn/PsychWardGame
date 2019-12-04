@@ -15,4 +15,6 @@ Welcome to the PsychWard!
       7. Different levels of difficulty. 
       8. Game progress saving. 
       9. Items to inflict damage and different afflictions to enemy (poison, paralysis, etc). 
+      10. Add functionality to sell quantity of one specific item in inventory.  
+      
       To be continued. 
