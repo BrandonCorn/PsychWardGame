@@ -52,6 +52,8 @@ namespace StarterGame
         //Chance of landing hit on the enemy 
         private int hitProbability;
         public int HitProbability { get { return hitProbability; } }
+        private BattleState battleState;
+        public BattleState BattleState { get { return battleState; } set { battleState = value; } }
 
         public Player(Room room)//, GameOutput output)
         {
@@ -64,7 +66,7 @@ namespace StarterGame
             experience = 0;
             expNeeded = 15;
             coins = 0;
-            weapon = new Axe();
+            weapon = null;
             backpack = null; 
             hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);

@@ -25,7 +25,10 @@ namespace StarterGame
 
         private I_Item[] itemList = { new FirstAidKit(), new BandAid(), new SutureKit() };
         private Dictionary<int, I_Item> drops; 
-        public override Dictionary<int, I_Item> Drops => throw new NotImplementedException();
+        public override Dictionary<int, I_Item> Drops { get { return drops; } }
+
+        private int poisonProbability; 
+        public int PoisonProbability { get { return poisonProbability; } }
 
         public FinalBoss()
         {
@@ -67,6 +70,7 @@ namespace StarterGame
             {
                 Console.WriteLine("\n" + attackDescription() + "\n");
                 player.Health -= new Random().Next((Attack / 2), Attack + 1);
+
             }
             else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
         }
