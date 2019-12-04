@@ -19,19 +19,12 @@ namespace StarterGame
             string location = "";
             if (this.Words.Count == 0)
             {
-                player.outputMessage("\nGoWhere?");
+                player.outputMessage("\nGo Where?");
                 return false;
             }
             while (this.Words.Count > 0)
             {
-                if (this.Words.Count == 1)
-                {
-                    location += this.Words.Dequeue();
-                }
-                else
-                {
-                    location += this.Words.Dequeue() + " ";
-                }
+                location += this.Words.Dequeue() + " ";
             }
             location = location.Trim();
             player.waltTo(location);

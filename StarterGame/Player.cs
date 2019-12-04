@@ -112,7 +112,9 @@ namespace StarterGame
             this.outputMessage("\n****************************************************");
             //currentRoom.giveItem(currentRoom.CurrentEnemy.getDrops());
             NotificationCenter.Instance.postNotification(new Notification("EnemyGiveItems", this.currentRoom));
+            this.Coins += this.currentRoom.CurrentEnemy.killValue();
         }
+
 
         //Notification that the player ran from battle 
         public void RanFromEnemy(Notification notification)
@@ -191,13 +193,14 @@ namespace StarterGame
         {
             I_Item item = currentRoom.takeItem(itemName);
             if (item != null)
-            { 
+            {
+                NotificationCenter.Instance.postNotification(new Notification("PickedUpItem",this));
                 if ((Backpack.weightInBag() + item.Weight) >= Backpack.Capacity)
                 {
                     Console.WriteLine("Backpack is full.");
                     currentRoom.giveItem(item);
                 }
-                else if (item.ItemTypes.Contains(ItemType.BattleItem) && Weapon == null)       
+                if (item.ItemTypes.Contains(ItemType.Weapon) && Weapon == null)       
                 {
                     Weapon = (IWeapon)item;
                     Console.WriteLine("\nYour weapon has been set to the " + itemName + "!\n");
@@ -258,6 +261,21 @@ namespace StarterGame
             IWeapon current = this.Weapon;
             this.Weapon = null;
             return current;
+        }
+
+        public bool hasEnoughCoins(I_Item item)
+        {
+            if (Coins < item.PurchasePrice)
+            {
+                this.outputMessage("\nYou don't have enough money for " + item);
+                return false;
+            }
+            return true;
+        }
+
+        public void spendCoins(int amount)
+        {
+            this.Coins -= amount;
         }
     }
 

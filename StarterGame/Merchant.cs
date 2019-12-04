@@ -42,7 +42,7 @@ namespace StarterGame
             NotificationCenter.Instance.addObserver("PlayerSpeak_merchant", PlayerSpeak_merchant);
             NotificationCenter.Instance.addObserver("LeaveMerchant", LeaveMerchant);
             NotificationCenter.Instance.addObserver("ViewInventory", ViewInventory);
-
+            NotificationCenter.Instance.addObserver("PlayerPurchaseMessage", PlayerPurchaseMessage);
 
         }
 
@@ -60,6 +60,7 @@ namespace StarterGame
             giveBackpack(player);
             givePlayerTask(player);
             NotificationCenter.Instance.postNotification(new Notification("SpokeToMerchant", player));
+            player.outputMessage("\nPlayer Coins: " + player.Coins);
             Console.WriteLine("\nWould you like to: \n\tsell goods" + "\n\tbuy goods");
         }
         
@@ -112,6 +113,18 @@ namespace StarterGame
             Console.WriteLine("_____________________________________________________");
             Console.WriteLine(itemDisplay);
             Console.WriteLine("****************************************************\n");
+        }
+
+        public I_Item itemFromInventory(string name)
+        {
+            I_Item item = null;
+            Inventory.TryGetValue(name, out item);
+            return item;
+        }
+
+        public void PlayerPurchaseMessage(Notification notification)
+        {
+            Console.WriteLine("Thank you for your purchase!");
         }
 
     }

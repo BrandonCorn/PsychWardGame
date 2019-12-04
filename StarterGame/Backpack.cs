@@ -101,6 +101,16 @@ namespace StarterGame
             return temp; 
         }
 
+        public bool spaceInBag(I_Item item)
+        {
+            if (this.Weight + item.Weight > capacity)
+            {
+                Console.WriteLine("You don't have room in your backpack");
+                return false;
+            }
+            return true;  
+        }
+
         public string displayItems()
         {
             string list = "";

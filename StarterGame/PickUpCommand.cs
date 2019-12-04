@@ -25,7 +25,7 @@ namespace StarterGame
             }
             else
             {
-                while (this.Words.Count > 0)
+                /*while (this.Words.Count > 0)
                 {
                     if (this.Words.Count == 1)
                     {
@@ -35,10 +35,13 @@ namespace StarterGame
                     {
                         item += this.Words.Dequeue() + " ";
                     }
+                }*/
+                while (this.Words.Count > 0)
+                {
+                    item += this.Words.Dequeue() + " ";
                 }
+                item = item.TrimEnd();
                 player.pickUpItem(item);
-                //notifies anyone who needs to know that an item has successfully been picked up. 
-                NotificationCenter.Instance.postNotification(new Notification("PickedUpItem", player));
                 player.outputMessage(player.currentRoom.description());
             }
             return false;

@@ -203,9 +203,10 @@ namespace StarterGame
             Room room = (Room)notification.Object;
             for (int i = 0; i < room.CurrentEnemy.DropCount; i++)
             {
-                int rand = new Random().Next(0, room.CurrentEnemy.DropCount + 1);
+                int rand = new Random().Next(0, room.CurrentEnemy.Drops.Count);
                 room.giveItem(room.CurrentEnemy.getDrops(rand));
             }
+            
         }
     }
 }
