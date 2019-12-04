@@ -15,8 +15,10 @@ namespace StarterGame
         private readonly string description = "Nasty. Smells. Makes a nastier posion if mixed correctly";
         public string Description { get { return description; } }
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return SellPrice; } set { SellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -29,7 +31,8 @@ namespace StarterGame
         {
             weight = 0.5f;
             uses = 1;
-            value = 50;
+            purchasePrice = 0;
+            sellPrice = 40;
             itemTypes = new HashSet<ItemType>(types);
         }
 

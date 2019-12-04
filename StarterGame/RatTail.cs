@@ -15,8 +15,10 @@ namespace StarterGame
         private readonly string description = "Can be mixed with other ingredients to make something useful";
         public string Description { get { return description; } }
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return SellPrice; } set { SellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -29,7 +31,8 @@ namespace StarterGame
         {
             weight = 0.5f;
             uses = 1;
-            value = 50; //Change based on monetary system
+            purchasePrice = 0;
+            sellPrice = 30; 
             itemTypes = new HashSet<ItemType>(types);
         }
 

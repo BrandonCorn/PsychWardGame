@@ -33,6 +33,7 @@ namespace StarterGame
                 if (npc != null)
                 {
                     NotificationCenter.Instance.postNotification(new Notification(notify, player));
+                    NotificationCenter.Instance.postNotification(new Notification("FirstMerchantInteraction", this));
                     player.outputMessage("\nType \"walk away\" to end the interaction");
                 }
                 else

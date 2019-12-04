@@ -96,6 +96,19 @@ namespace StarterGame
             }
         }
 
+        public void ViewInventory(Notification notification)
+        {
+            string itemDisplay = "";
+            Dictionary<string, I_Item>.ValueCollection values = Inventory.Values;
+            foreach(I_Item item in values)
+            {
+                itemDisplay += item.Name + ": Purchase Price: " + item.PurchasePrice + "| Sell Price: " +
+                    item.SellPrice + "\n";
+            }
+            Console.WriteLine("\n****************************************************");
+            Console.WriteLine(itemDisplay);
+            Console.WriteLine("****************************************************\n");
+        }
 
     }
 }

@@ -15,8 +15,10 @@ namespace StarterGame
         private readonly string description = "Lets you see in the dark";
         public string Description { get { return description; } }
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return SellPrice; } set { SellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -32,7 +34,8 @@ namespace StarterGame
         {
             weight = 0; //0 for key item
             uses = 1; //Doesn't matter
-            value = 0;
+            purchasePrice = 99999;
+            sellPrice = 99999;
             batteryHealth = 0;
             itemTypes = new HashSet<ItemType>(types);
         }

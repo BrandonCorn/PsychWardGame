@@ -15,8 +15,10 @@ namespace StarterGame
         private readonly string description = "A pair of batteries";
         public string Description { get { return description; } }
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -29,7 +31,8 @@ namespace StarterGame
         {
             weight = 0.106f; //The weight of 2 AA batteries
             uses = 1;
-            value = 200; //To be updated in accordance with $ system
+            purchasePrice = 200;
+            sellPrice = 100;
             itemTypes = new HashSet<ItemType>(types);
         }
 

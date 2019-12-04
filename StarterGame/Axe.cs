@@ -20,8 +20,10 @@ namespace StarterGame
         private readonly string description = "It hacks and wacks to destroy your enemies";
         public string Description { get { return description + "\nAttack: " + Attack; } }
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice; 
+        public int SellPrice { get { return sellPrice;  } set { sellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -34,7 +36,8 @@ namespace StarterGame
             weight = 1.25f;
             itemTypes = new HashSet<ItemType>(types);
             uses = 10;
-            value = 850;
+            purchasePrice = 850;
+            sellPrice = 425;
         }
 
         public int getStrength(Player player)

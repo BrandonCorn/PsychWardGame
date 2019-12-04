@@ -50,6 +50,15 @@ namespace StarterGame
             NotificationCenter.Instance.removeObserver("FirstBattle", FirstBattle);
         }
 
+        public void FirstMerchantInteraction(Notification notification)
+        {
+            Console.WriteLine("\n****************************************************");
+            Console.WriteLine("To view the merchant's inventory type \"merchandise\".\n" + "To buy an item " +
+                "type \"buy\" + the item name.\n" + "To sell an item type \"sell\" + the item name.");
+            Console.WriteLine("****************************************************\n");
+            NotificationCenter.Instance.removeObserver("FirstMerchantInteraction", FirstMerchantInteraction);
+        }
+
         //Callback method notifies the task that enemies have been killed and contributed to the amount 
         //the task requires. 
         public void KilledEnemies(Notification notification)

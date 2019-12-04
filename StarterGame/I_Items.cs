@@ -30,8 +30,11 @@ namespace StarterGame
         //How many times the item can be used. 
         int Uses { get; }
 
-        //How much the item is worth. 
-        int Value { get; }
+        //How much the item can be purchased for. 
+        int PurchasePrice { get; set; }
+
+        //How much the item can be sold for. 
+        int SellPrice { get; set; }
 
         //A command will link to this when a player needs to use an item. A general command can allow a user
         //to use an item at any time so long as it is necessary and makes sense. 

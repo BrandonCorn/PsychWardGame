@@ -15,8 +15,10 @@ namespace StarterGame
         private readonly string description = "Picks locks, but know some doors can't be picked";
         public string Description { get { return description; } }
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -29,7 +31,8 @@ namespace StarterGame
         {
             weight = 0.1f;
             uses = 1;
-            value = 100;
+            purchasePrice = 200;
+            sellPrice = 100;
             itemTypes = new HashSet<ItemType>(types);
         }
 

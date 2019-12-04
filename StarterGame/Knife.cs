@@ -18,9 +18,11 @@ namespace StarterGame
 
         private readonly string description = "A knife perfect for carving out zombie eyes!";
         public string Description { get { return description + "\nAttack: " + Attack; } }
- 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -32,8 +34,9 @@ namespace StarterGame
         {
             Weight = .25f;
             itemTypes = new HashSet<ItemType>(types);
-            Value = 250; 
-            Uses = 10;
+            purchasePrice = 250;
+            sellPrice = 125;
+            Uses = 4;
             Attack = 5;
         }
         public int getStrength(Player player)

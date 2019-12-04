@@ -18,8 +18,10 @@ namespace StarterGame
         private readonly string description = "Does more than your regular first aid kit";
         public string Description { get { return description; } }
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -32,7 +34,8 @@ namespace StarterGame
         {
             weight = 1.5f;
             uses = 1;
-            value = 500;
+            purchasePrice = 800;
+            sellPrice = 400;
             itemTypes = new HashSet<ItemType>(types);
         }
 

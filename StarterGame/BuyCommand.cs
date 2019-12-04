@@ -10,10 +10,10 @@ namespace StarterGame
         public BuyCommand()
         {
             this.name = "buy";
-
         }
         public override bool execute(Player player)
         {
+            
             return true;
         }
     }

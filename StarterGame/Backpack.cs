@@ -20,8 +20,10 @@ namespace StarterGame
            
         public string Description { get { return description; }}
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+        private int purchasePrice; 
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return SellPrice; } set { SellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -40,7 +42,8 @@ namespace StarterGame
         {
             weight = 0; //Weight should be 0
             uses = 1; //Doesn't matter
-            value = 0; //Unsellable anyways
+            purchasePrice = 999999999;
+            sellPrice = 999999999;
             capacity = 30;
             description = "Pretty useful for holding items. \n\tCapacity: " + Capacity + "lbs";
             itemTypes = new HashSet<ItemType>(types);

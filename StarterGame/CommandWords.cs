@@ -16,7 +16,7 @@ namespace StarterGame
         //These two arrays will be used in the stack implementation of the Commands, when a player enters a 
         //scenario in which the commands must be changed, the corresponding array of commands can be pushed
         //to the stack changing the available options. 
-        public static Command[] merchantCommands = { new BuyCommand(), new SellCommand(),new WalkAwayCommand(),
+        public static Command[] merchantCommands = { new MerchandiseCommand(),new BuyCommand(), new SellCommand(), new WalkAwayCommand(),
              new BackpackCommand() };
         public static Command[] battleCommands = { new FightCommand(), new BackpackCommand(), new RunCommand()};
         //Add command for viewing item description. 

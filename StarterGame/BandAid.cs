@@ -16,11 +16,10 @@ namespace StarterGame
         private readonly string description = "Awww do you have a boo-boo?";
         public string Description { get { return description; } }
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
-
-        private int Sellvalue;
-        public int SellValue { get { return value; } set { this.value = value; } }
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -32,8 +31,8 @@ namespace StarterGame
         {
             weight = 0.1f;
             Uses = 1;
-            Value = 100;
-            SellValue = 50;
+            purchasePrice = 100;
+            sellPrice = 50;
             itemTypes = new HashSet<ItemType>(types);
         }
 

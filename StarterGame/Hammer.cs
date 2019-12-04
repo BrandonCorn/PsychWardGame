@@ -21,8 +21,10 @@ namespace StarterGame
         public readonly string description = "An awesome hammer to bash people's brains in with";
         public String Description { get { return description + "\nAttack: " + Attack; } }
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -31,10 +33,11 @@ namespace StarterGame
         public Hammer()
         {
             Weight = .85f;
-            Value = 350;
             itemTypes = new HashSet<ItemType>(types);
-            Uses = 10;
+            Uses = 7;
             Attack = 8;
+            purchasePrice = 350;
+            sellPrice = 175;
         }
         public int getStrength(Player player)
         {

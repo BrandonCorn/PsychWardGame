@@ -18,8 +18,10 @@ namespace StarterGame
         private readonly string description = "A real slap in the face to whoever you swing on";
         public string Description { get { return description + "\nAttack: " + Attack; } }
 
-        private int value;
-        public int Value { get { return value; } set { this.value = value; } }
+        private int purchasePrice;
+        public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
+        private int sellPrice;
+        public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
@@ -31,8 +33,9 @@ namespace StarterGame
             attack = 10;
             weight = 1.8f;
             itemTypes = new HashSet<ItemType>(types);
-            uses = 50; 
-            value = 500;
+            uses = 6;
+            purchasePrice = 500;
+            sellPrice = 225;
     }
 
         public int getStrength(Player player)
