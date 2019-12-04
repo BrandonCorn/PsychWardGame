@@ -168,10 +168,12 @@ namespace StarterGame
         }
         public void SpokeToMerchant(Notification notification)
         {
-            Console.WriteLine("The main hall door has been unlocked!!");
             Door door = gameBeginTrigger.getExit("main hall");
             door.Unlock();
             door.Closed = false;
+            Console.WriteLine("\n****************************************************");
+            Console.WriteLine("The main hall door has been unlocked!!");
+            Console.WriteLine("****************************************************");
             NotificationCenter.Instance.removeObserver("SpokeToMerchant", SpokeToMerchant);
         }
 
