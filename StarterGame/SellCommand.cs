@@ -13,7 +13,30 @@ namespace StarterGame
 
         public override bool execute(Player player)
         {
-            throw new NotImplementedException();
+            string itemName = "";
+            while (this.Words.Count > 0)
+            {
+                itemName += Words.Dequeue() + " ";
+            }
+            itemName = itemName.TrimEnd();
+
+            I_Item item = player.takeFromBackpack(itemName); 
+            if (item.ItemTypes.Contains(ItemType.KeyItem))
+            {
+                player.outputMessage("\nI wouldn't sell that, you may need it later!");
+                player.addToBackpack(item);
+            }
+            else if(item != null)
+            {
+                player.receiveCoins(item.SellPrice);
+                player.outputMessage("\nYou received " + item.SellPrice + " coins!");
+            }
+            else
+            {
+                player.outputMessage("\nWhat do you want to sell!!!");
+            }
+
+            return false;
         }
     }
 }

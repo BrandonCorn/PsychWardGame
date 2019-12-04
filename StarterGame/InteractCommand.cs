@@ -24,11 +24,11 @@ namespace StarterGame
             {
                 while (this.Words.Count != 0)
                 {
-                    name += this.Words.Peek();
-                    notify += this.Words.Dequeue();
+                    name += this.Words.Dequeue() + " ";
                 }
                 
-                name = name.Trim();
+                name = name.TrimEnd();
+                notify += name;
                 INPC npc = player.currentRoom.getNPC(name);
                 if (npc != null)
                 {

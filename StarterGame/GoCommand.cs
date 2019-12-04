@@ -26,7 +26,7 @@ namespace StarterGame
             {
                 location += this.Words.Dequeue() + " ";
             }
-            location = location.Trim();
+            location = location.TrimEnd();
             player.waltTo(location);
             return false;
         } 

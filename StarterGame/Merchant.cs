@@ -91,7 +91,7 @@ namespace StarterGame
                 if (TaskList.Count > 0)
                 {
                     player.setCurrentTask(TaskList.Dequeue());
-                    NotificationCenter.Instance.postNotification(new Notification("TaskSet", this));
+                    NotificationCenter.Instance.postNotification(new Notification("TaskSet", player));
                 }
                 else
                 {

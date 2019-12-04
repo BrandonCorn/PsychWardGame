@@ -6,6 +6,7 @@ namespace StarterGame
 {
     class Flashlight : I_Item
     {
+        //Will be used in the future for tasks. 
         private float weight;
         public float Weight { get { return weight; } }
 
@@ -18,7 +19,7 @@ namespace StarterGame
         private int purchasePrice;
         public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
         private int sellPrice;
-        public int SellPrice { get { return SellPrice; } set { SellPrice = value; } }
+        public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }

@@ -166,7 +166,7 @@ namespace StarterGame
         {
             this.CurrentTask.TaskState = TaskState.Active;
             Console.WriteLine("****************************************************");
-            Console.WriteLine("A task has been set! (To view the task type \"task\"");
+            Console.WriteLine("A task has been set! (To view the task type \"task\")");
             Console.WriteLine("****************************************************\n");
         }
 
@@ -214,9 +214,14 @@ namespace StarterGame
         }
 
         //Takes an item out of the backpack
-        public I_Item removeFromBackpack(string item)
+        public I_Item takeFromBackpack(string item)
         {
             return Backpack.takeItem(item);
+        }
+
+        public void addToBackpack(I_Item item)
+        {
+            Backpack.giveItem(item);
         }
 
         //All the changes to stats for player when they level up. 
@@ -276,6 +281,11 @@ namespace StarterGame
         public void spendCoins(int amount)
         {
             this.Coins -= amount;
+        }
+
+        public void receiveCoins(int amount)
+        {
+            this.Coins += amount;
         }
     }
 

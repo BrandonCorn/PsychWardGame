@@ -25,26 +25,20 @@ namespace StarterGame
             {
                 while (this.Words.Count > 0)
                 {
-                    if (this.Words.Count == 1)
-                    {
-                        weaponName += this.Words.Dequeue();
-                    }
-                    else
-                    {
-                        weaponName += this.Words.Dequeue() + " ";
-                    }
+                    weaponName += this.Words.Dequeue() + " ";
                 }
+                weaponName = weaponName.TrimEnd();
                 LinkedList<I_Item> weapon;
                 if (player.Weapon == null)
                 {
-                    player.setWeapon((IWeapon)player.removeFromBackpack(weaponName));
+                    player.setWeapon((IWeapon)player.takeFromBackpack(weaponName));
                     player.outputMessage("\nYour new weapon has been set!\n");
                 }
                 else if (player.Backpack.Inventory.TryGetValue(weaponName, out weapon))
                 {
                     IWeapon takenWeapon = player.takeWeapon();
                     player.Backpack.giveItem(takenWeapon);
-                    player.setWeapon((IWeapon)player.removeFromBackpack(weaponName));
+                    player.setWeapon((IWeapon)player.takeFromBackpack(weaponName));
                     player.outputMessage("\nYour new weapon has been set!"); 
                 }
                 else

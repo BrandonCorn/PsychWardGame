@@ -23,7 +23,7 @@ namespace StarterGame
         private int purchasePrice; 
         public int PurchasePrice { get { return purchasePrice; } set { purchasePrice = value; } }
         private int sellPrice;
-        public int SellPrice { get { return SellPrice; } set { SellPrice = value; } }
+        public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }

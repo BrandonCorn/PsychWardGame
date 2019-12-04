@@ -23,7 +23,7 @@ namespace StarterGame
         {
             if (this.Words.Count > 0)
             {
-                player.outputMessage("You should just say to run");
+                player.outputMessage("You should just say \"run\"");
             }
             else
             {
