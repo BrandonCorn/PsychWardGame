@@ -39,7 +39,7 @@ namespace StarterGame
             NotificationCenter.Instance.addObserver("BattleSequence", battleSequence);
             NotificationCenter.Instance.addObserver("SpokeToMerchant", SpokeToMerchant);
             NotificationCenter.Instance.addObserver("FinishedFirstTask", FinishedFirstTask);
-            NotificationCenter.Instance.addObserver("EnemyGiveItems", EnemyGiveItems);
+            NotificationCenter.Instance.addObserver("BattleOver", BattleOver);
         }
 
         private Room createWorld()
@@ -130,7 +130,7 @@ namespace StarterGame
 
         }
 
-        //callback method for player speak word
+        //callback method for player speak word, will be able to use for player answering riddles in tasks
         public void playerSpeak(Notification notification)
         {
             Player player = (Player)notification.Object;
@@ -164,8 +164,22 @@ namespace StarterGame
                     enemy.currentStats();
                 }
             }
-
         }
+        //callback method to the game world, makes it known and allows the players level and stats be
+        //increased as well as the dead enemy give items to the room and coins to the player before dying.
+        public void BattleOver(Notification notification)
+        {
+            Player player = (Player)notification.Object;
+            IEnemy enemy = player.currentRoom.CurrentEnemy;
+            player.Experience += enemy.PlayerExp;
+            player.LevelUp();
+            player.outputMessage("You gained " + player.currentRoom.CurrentEnemy.PlayerExp + " experience"
+                + "\n\t" + player.expToNextLvl() + " exp to next level!");
+            player.outputMessage("\n****************************************************");
+            enemy.deadEnemyItems(player.currentRoom);
+            player.Coins += enemy.KillValue;
+        }
+
         public void SpokeToMerchant(Notification notification)
         {
             Door door = gameBeginTrigger.getExit("main hall");
@@ -197,16 +211,5 @@ namespace StarterGame
                 + "****************************************************\n");
         }
 
-        //Callback method to Items to the current room the enemy is in. 
-        public void EnemyGiveItems(Notification notification)
-        {
-            Room room = (Room)notification.Object;
-            for (int i = 0; i < room.CurrentEnemy.DropCount; i++)
-            {
-                int rand = new Random().Next(0, room.CurrentEnemy.Drops.Count);
-                room.giveItem(room.CurrentEnemy.getDrops(rand));
-            }
-            
-        }
     }
 }

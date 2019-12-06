@@ -9,7 +9,7 @@ namespace StarterGame
         //This is a healing item, heals half the players health
 
         private float weight;
-        public float Weight { get; }
+        public float Weight { get { return weight; } }
 
         private readonly string name = "first aid kit";
         public string Name { get { return name; } }

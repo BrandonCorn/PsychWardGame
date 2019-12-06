@@ -9,7 +9,7 @@ namespace StarterGame
         private float weight;
         public float Weight { get { return weight; } }
 
-        private readonly string name = "Key";
+        private readonly string name = "key";
         public string Name { get { return name; } }
 
         private readonly string description = "Unlocks doors";
@@ -27,7 +27,7 @@ namespace StarterGame
         public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
         public Key()
         {
-            weight = 0.5f; //Should have weight. 
+            weight = 0.1f; //Should have weight. 
             uses = 1;
             purchasePrice = 999999;
             sellPrice = 999999; 

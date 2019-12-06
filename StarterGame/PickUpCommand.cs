@@ -25,17 +25,6 @@ namespace StarterGame
             }
             else
             {
-                /*while (this.Words.Count > 0)
-                {
-                    if (this.Words.Count == 1)
-                    {
-                        item += this.Words.Dequeue();
-                    }
-                    else
-                    {
-                        item += this.Words.Dequeue() + " ";
-                    }
-                }*/
                 while (this.Words.Count > 0)
                 {
                     item += this.Words.Dequeue() + " ";

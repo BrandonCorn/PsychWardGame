@@ -33,11 +33,13 @@ namespace StarterGame
         {
             return Drops[num];
         }
+        private int killValue;
+        public override int KillValue { get { return killValue; } set { killValue = value; } }
 
-        public override int killValue()
+        /*public override int killValue()
         {
-            return 150;
-        }
+            return 100;
+        }*/
 
         public ZombiePatient()
         {
@@ -46,6 +48,7 @@ namespace StarterGame
             hitProbability = 1;
             playerExp = 5;
             dropCount = 1;
+            killValue = 50;
             drops = new Dictionary<int, I_Item>();
             for (int i = 0; i < list.Length; i++)
             {

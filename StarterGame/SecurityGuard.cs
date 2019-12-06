@@ -25,17 +25,20 @@ namespace StarterGame
         private int dropCount;
         public override int DropCount { get { return dropCount; } }
  
-        private I_Item[] list = { new LockPick(), new SutureKit(), new BandAid() };
+        private I_Item[] itemList = { new LockPick(), new SutureKit(), new BandAid() };
         private Dictionary<int, I_Item> drops;
         public override Dictionary<int, I_Item> Drops { get { return drops; } }
         public override I_Item getDrops(int num)
         {
             return Drops[num];
         }
-        public override int killValue()
+        private int killValue;
+        public override int KillValue { get { return killValue; } set { killValue = value; } }
+        /*public override int killValue()
         {
-            return 200;
-        }
+            return 80;
+        }*/
+
         public SecurityGuard()
         {
             attack = 3;
@@ -43,6 +46,12 @@ namespace StarterGame
             hitProbability = 2;
             playerExp = 4;
             dropCount = 1;
+            killValue = 60;
+            drops = new Dictionary<int, I_Item>();
+            for (int i = 0; i < itemList.Length; i++)
+            {
+                drops[i] = itemList[i];
+            }
         }
         public override string battleGreeting()
         {

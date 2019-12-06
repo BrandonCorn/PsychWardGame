@@ -33,10 +33,12 @@ namespace StarterGame
         {
             return Drops[num]; 
         }
-        public override int killValue()
+        private int killValue;
+        public override int KillValue { get { return killValue; } set { killValue = value; } }
+        /*public override int killValue()
         {
             return 50;
-        }
+        }*/
         public Rat()
         {
             attack = 3;
@@ -44,6 +46,7 @@ namespace StarterGame
             hitProbability = 2;
             playerExp = 4;
             dropCount = 1;
+            killValue = 30;
             drops = new Dictionary<int, I_Item>();
             for(int i = 0; i < itemList.Length; i++)
             {

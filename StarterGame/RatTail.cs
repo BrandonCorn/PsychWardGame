@@ -29,7 +29,7 @@ namespace StarterGame
 
         public RatTail()
         {
-            weight = 0.5f;
+            weight = 1.0f;
             uses = 1;
             purchasePrice = 0;
             sellPrice = 30; 

@@ -8,7 +8,7 @@ namespace StarterGame
     {
         //The enemies name 
         public abstract string Name { get; }
-        
+
         //Attack power of the enemy 
         public abstract int Attack { get; set; }
 
@@ -33,7 +33,8 @@ namespace StarterGame
 
         public abstract Dictionary<int, I_Item> Drops { get; }
 
-        public abstract int killValue();
+        public abstract int KillValue { get; set; }
+        //public abstract int killValue();
 
         //Displays the enemies battle stats
         public void currentStats()
@@ -49,6 +50,17 @@ namespace StarterGame
             this.Attack = (int)(level * 1.3) * Attack;
             this.Health = (int)(level * 1.3) * Health;
             this.PlayerExp = (int)(level * 1.3) * PlayerExp;
+            this.KillValue = (int)(level * 1.2) * KillValue;
+        }
+
+        public void deadEnemyItems(Room room)
+        {
+            for (int i = 0; i < DropCount; i++)
+            {
+                int rand = new Random().Next(0, Drops.Count);
+                room.giveItem(getDrops(rand));
+            }
+            
         }
 
         //This is the attack action by the rat. It will display the attack description and take away health

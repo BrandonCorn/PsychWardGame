@@ -26,6 +26,8 @@ namespace StarterGame
         private I_Item[] itemList = { new FirstAidKit(), new BandAid(), new SutureKit() };
         private Dictionary<int, I_Item> drops; 
         public override Dictionary<int, I_Item> Drops { get { return drops; } }
+        private int killValue;
+        public override int KillValue { get { return killValue; } set { killValue = value; } }
 
         private int poisonProbability; 
         public int PoisonProbability { get { return poisonProbability; } }
@@ -52,13 +54,7 @@ namespace StarterGame
         {
             return "The final battle begins";
         }
-
-        public override int killValue()
-        {
-            return 1000;
-        }
-
-        public override I_Item getDrops(int num)
+      public override I_Item getDrops(int num)
         {
             return Drops[num];
         }

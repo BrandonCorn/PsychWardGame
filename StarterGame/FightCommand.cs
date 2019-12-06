@@ -25,7 +25,6 @@ namespace StarterGame
                 NotificationCenter.Instance.postNotification(new Notification("BattleOver", this));
                 NotificationCenter.Instance.postNotification(new Notification("KilledEnemies", player));
                 player.outputMessage("\n" + player.currentRoom.description());
-
                 player.currentRoom.CurrentEnemy = null; 
                 return false;
             }
@@ -39,7 +38,6 @@ namespace StarterGame
                 return true;
             }
             player.currentStats();
-            //player.CurrentEnemy.currentStats();
             enemy.currentStats();
             return false;
         }

@@ -32,10 +32,12 @@ namespace StarterGame
         {
             return Drops[num];
         }
-        public override int killValue()
+        private int killValue;
+        public override int KillValue { get { return killValue; } set { killValue = value; } }
+        /*public override int killValue()
         {
             return 250; 
-        }
+        }*/
 
         public InfectedDoctor()
         {
@@ -44,6 +46,7 @@ namespace StarterGame
             hitProbability = 2;
             playerExp = 4;
             dropCount = 1;
+            killValue = 45;
             drops = new Dictionary<int, I_Item>();
             for (int i = 0; i < list.Length; i++)
             {

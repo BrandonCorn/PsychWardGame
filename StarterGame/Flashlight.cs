@@ -33,7 +33,7 @@ namespace StarterGame
 
         public Flashlight()
         {
-            weight = 0; //0 for key item
+            weight = 1.2f; //0 for key item
             uses = 1; //Doesn't matter
             purchasePrice = 99999;
             sellPrice = 99999;
