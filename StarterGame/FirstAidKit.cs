@@ -41,17 +41,8 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
-            throw new NotImplementedException();
-        }
-
-        public void useItem(Player player, FirstAidKit AidKit)
-        {
-            //p.heal() or p.Health = p.MaxHealth
-            //Do we want to have the useItem methods to perform the item stuff?
-            //i.e. the weapons "useItem" will deal damage to enemies and such?
-            //or will that be in a separate class?
-            //Is the player class gonna have all the player qualities or who's doing that
-            AidKit.uses--;
+            player.Health += 50;
+            this.Uses--;
         }
 
         override

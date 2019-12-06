@@ -63,7 +63,7 @@ namespace StarterGame
             Queue<string> newWords = words;
             while(newWords.Count > 0 && command == null)
             {
-                commandName += newWords.Dequeue();
+                commandName += newWords.Dequeue().Trim();
                 command = allCommands.Peek().get(commandName);
                 if (command == null)
                 {
