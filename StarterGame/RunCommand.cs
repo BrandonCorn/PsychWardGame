@@ -28,8 +28,8 @@ namespace StarterGame
             else
             {
                 player.outputMessage("\n" + runStatement());
-                NotificationCenter.Instance.postNotification(new Notification("RanFromEnemy", this));
                 NotificationCenter.Instance.postNotification(new Notification("PopCommands", this));
+                player.outputMessage("\n" + player.currentRoom.description());
             }
             return false;
         } 

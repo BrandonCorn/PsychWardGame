@@ -70,7 +70,6 @@ namespace StarterGame
             backpack = null; 
             hitProbability = 2;
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
-            NotificationCenter.Instance.addObserver("RanFromEnemy", RanFromEnemy);
         }
 
         //Method when player is walking to another room. 
@@ -98,13 +97,6 @@ namespace StarterGame
                 this.outputMessage("\nThere is no door to " + direction);
                 this.outputMessage("\n" + this._currentRoom.description());
             }
-        }
-
-        //Notification that the player ran from battle 
-        public void RanFromEnemy(Notification notification)
-        {
-            this.outputMessage("\n" + currentRoom.description()); 
-
         }
 
         public void speak(String word)
