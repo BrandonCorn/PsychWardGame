@@ -163,11 +163,12 @@ namespace StarterGame
                     Console.WriteLine("Backpack is full.");
                     currentRoom.giveItem(item);
                 }
-                if (item.ItemTypes.Contains(ItemType.Weapon) && Weapon == null)       
+                else if (item.ItemTypes.Contains(ItemType.Weapon) && Weapon == null)       
                 {
                     Weapon = (IWeapon)item;
                     Console.WriteLine("\nYour weapon has been set to the " + itemName + "!\n");
                 }
+
                 else
                 {
                     Backpack.giveItem(item);

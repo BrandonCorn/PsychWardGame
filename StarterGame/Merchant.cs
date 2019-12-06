@@ -19,7 +19,7 @@ namespace StarterGame
         private Queue<ITask> taskList;
         public Queue<ITask> TaskList { get { return taskList; } }
 
-        private ITask[] tasks = { new HowToPlay() }; 
+        private ITask[] tasks = { new HowToPlay(), new KeyTask() }; 
 
         //This inventory is everything the merchant has available for purchase. 
         private Dictionary<string, I_Item> inventory;

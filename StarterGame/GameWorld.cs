@@ -109,6 +109,8 @@ namespace StarterGame
             entrance.giveItem(new Flashlight());
             entrance.giveItem(new Bat());
             entrance.giveItem(new Bat());
+
+            maleShowers.giveItem(new Key());
             
 
             return entrance;
