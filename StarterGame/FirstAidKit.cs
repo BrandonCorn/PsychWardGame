@@ -41,6 +41,7 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
+            player.outputMessage("Your health went up by 50");
             player.Health += 50;
             this.Uses--;
         }

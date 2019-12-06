@@ -19,15 +19,9 @@ namespace StarterGame
                 string item = "";
                 while (this.Words.Count > 0)
                 {
-                    if (this.Words.Count == 1)
-                    {
-                        item += this.Words.Dequeue();
-                    }
-                    else
-                    {
-                        item += this.Words.Dequeue() + " ";
-                    }
+                    item += this.Words.Dequeue() + " ";
                 }
+                item = item.TrimEnd();
                 I_Item itemToUse = player.Backpack.takeItem(item);
                 if (itemToUse == null)
                 {
