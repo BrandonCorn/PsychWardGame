@@ -24,6 +24,11 @@ namespace StarterGame
                 NotificationCenter.Instance.postNotification(new Notification("PopCommands"));
                 NotificationCenter.Instance.postNotification(new Notification("BattleOver", player));
                 NotificationCenter.Instance.postNotification(new Notification("KilledEnemies", player));
+                if (enemy.GetType() == typeof(FinalBoss))
+                {
+                    player.outputMessage("You Beat the Game");
+                    return true;
+                }
                 player.outputMessage("\n" + player.currentRoom.description());
                 return false;
             }

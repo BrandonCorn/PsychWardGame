@@ -35,7 +35,7 @@ namespace StarterGame
         public FinalBoss()
         {
             attack = 30;
-            health = 1000;
+            health = 1;
             hitProbability = 3;
             playerExp = 2500;
             dropCount = 3;
@@ -66,7 +66,6 @@ namespace StarterGame
             {
                 Console.WriteLine("\n" + attackDescription() + "\n");
                 player.Health -= new Random().Next((Attack / 2), Attack + 1);
-
             }
             else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
         }

@@ -95,8 +95,8 @@ namespace StarterGame
             door = Door.createDoor(mainCourtYard, westCourtYard);
             door = Door.createDoor(mainCourtYard, eastCourtYard);
             door = Door.createDoor(eastCourtYard, shed);
-            door.Closed = true;
-            door.Lock();
+            //door.Closed = true;
+            //door.Lock();
 
             //Rooms that have doors that need to be unlocked. 
             gameBeginTrigger = entrance;
@@ -148,7 +148,19 @@ namespace StarterGame
         {
             Player player = (Player)notification.Object;
 
-            if (player.currentRoom.ChanceEnemy != 0)
+            if (player.currentRoom == bossBattleDoor)
+            {
+                NotificationCenter.Instance.postNotification(new Notification("FirstBattle", this));
+                NotificationCenter.Instance.postNotification(new Notification("PushBattleCommands", this));
+                IEnemy enemy = new FinalBoss();
+                player.currentRoom.CurrentEnemy = enemy;
+                Console.WriteLine("\n****************************************************");
+                Console.WriteLine("\n" + enemy.battleGreeting() + "\n\nThe battle begins!\n");
+                player.currentStats();
+                enemy.currentStats();
+            }
+
+            else if (player.currentRoom.ChanceEnemy != 0)
             {
                 player.currentRoom.getAnEnemy(player.Level);
 
