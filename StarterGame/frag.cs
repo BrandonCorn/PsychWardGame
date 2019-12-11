@@ -42,7 +42,7 @@ namespace StarterGame
             IEnemy enemy = player.currentRoom.CurrentEnemy;
             if (enemy != null)
             {
-                player.outputMessage("You threw a frag at the enemy!!");
+                player.outputMessage("\nYou threw a frag at the enemy!!");
                 enemy.Health -= this.Damage;
                 Uses--;
                 if (player.defeatedEnemy(enemy))
@@ -52,7 +52,8 @@ namespace StarterGame
             }
             else
             {
-                player.outputMessage("Now is not the time to use that!");
+                player.outputMessage("\nNow is not the time to use that!");
+                player.Backpack.giveItem(this);
             }
         }
     }
