@@ -41,7 +41,7 @@ namespace StarterGame
 
         public void useItem(Player player)
         {
-            player.outputMessage("You're at full health");
+            player.outputMessage("\nYou're at full health");
             player.Health = player.MaxHealth;
             this.uses--;
         }

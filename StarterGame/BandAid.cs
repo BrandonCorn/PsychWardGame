@@ -40,6 +40,10 @@ namespace StarterGame
         {
             player.outputMessage("Your health went up by 10!");
             player.Health = player.Health + 10;
+            if (player.Health > player.MaxHealth)
+            {
+                player.Health = player.MaxHealth;
+            }
             this.uses--;
         }
 
