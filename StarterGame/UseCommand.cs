@@ -42,6 +42,7 @@ namespace StarterGame
                         }
                         player.currentStats();
                         player.getEnemy().currentStats();
+                        NotificationCenter.Instance.postNotification(new Notification("PopCommands"));
                     }
                     player.outputMessage(player.Backpack.displayItems());
 

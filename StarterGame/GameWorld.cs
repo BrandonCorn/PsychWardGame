@@ -187,15 +187,15 @@ namespace StarterGame
             Player player = (Player)notification.Object;
             IEnemy enemy = player.currentRoom.CurrentEnemy;
             player.outputMessage("\nYou win!!!\n");
-            player.Experience += enemy.PlayerExp;
-            player.LevelUp();
-            player.outputMessage("You gained " + player.currentRoom.CurrentEnemy.PlayerExp + " experience"
-                + "\n\t" + player.expToNextLvl() + " exp to next level!");
+            player.LevelUp(enemy.PlayerExp);
+            player.outputMessage("You gained " + enemy.PlayerExp + " experience"
+                + "\n\t" + player.expToNextLvl() + " exp to next level!" +
+                "\n\t You earned " + enemy.KillValue + " coins!!");
             player.outputMessage("\n****************************************************");
             enemy.deadEnemyItems(player.currentRoom);
-            player.Coins += enemy.KillValue;
+            player.receiveCoins(enemy.KillValue);
             player.currentRoom.CurrentEnemy = null;
-            player.PlayerState = PlayerState.Wandering;
+            
             NotificationCenter.Instance.postNotification(new Notification("PopCommands"));
             NotificationCenter.Instance.postNotification(new Notification("KilledEnemies",player));
         }

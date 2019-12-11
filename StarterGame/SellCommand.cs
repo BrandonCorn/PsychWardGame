@@ -26,14 +26,14 @@ namespace StarterGame
                 player.outputMessage("\nI wouldn't sell that, you may need it later!");
                 player.addToBackpack(item);
             }
-            else if(item != null)
+            else if(item == null)
             {
-                player.receiveCoins(item.SellPrice);
-                player.outputMessage("\nYou received " + item.SellPrice + " coins!");
+                player.outputMessage("\nWhat do you want to sell!!!");
             }
             else
             {
-                player.outputMessage("\nWhat do you want to sell!!!");
+                player.receiveCoins(item.SellPrice);
+                player.outputMessage("\nYou received " + item.SellPrice + " coins!");
             }
 
             return false;

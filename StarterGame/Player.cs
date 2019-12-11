@@ -208,8 +208,9 @@ namespace StarterGame
         }
 
         //All the changes to stats for player when they level up. 
-        public void LevelUp()
+        public void LevelUp(int experience)
         {
+            Experience += experience;
             while (reachNextLevel())
             {
                 Level++;
