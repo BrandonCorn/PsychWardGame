@@ -106,7 +106,7 @@ namespace StarterGame
             merch.addNPC(new Merchant(merch));
 
             //Testing if items placed in room correctly. 
-            entrance.giveItem(new Flashlight());
+            entrance.giveItem(new frag());
             entrance.giveItem(new Bat());
             entrance.giveItem(new Bat());
 
@@ -172,6 +172,7 @@ namespace StarterGame
                     NotificationCenter.Instance.postNotification(new Notification("FirstBattle", this));
                     NotificationCenter.Instance.postNotification(new Notification("PushBattleCommands", this));
                     IEnemy enemy = player.currentRoom.CurrentEnemy;
+                    player.PlayerState = PlayerState.InBattle;
                     Console.WriteLine("\n****************************************************");
                     Console.WriteLine("\n" + enemy.battleGreeting() + "\n\nThe battle begins!\n");
                     player.currentStats();
@@ -185,6 +186,7 @@ namespace StarterGame
         {
             Player player = (Player)notification.Object;
             IEnemy enemy = player.currentRoom.CurrentEnemy;
+            player.outputMessage("\nYou win!!!\n");
             player.Experience += enemy.PlayerExp;
             player.LevelUp();
             player.outputMessage("You gained " + player.currentRoom.CurrentEnemy.PlayerExp + " experience"
@@ -192,6 +194,10 @@ namespace StarterGame
             player.outputMessage("\n****************************************************");
             enemy.deadEnemyItems(player.currentRoom);
             player.Coins += enemy.KillValue;
+            player.currentRoom.CurrentEnemy = null;
+            player.PlayerState = PlayerState.Wandering;
+            NotificationCenter.Instance.postNotification(new Notification("PopCommands"));
+            NotificationCenter.Instance.postNotification(new Notification("KilledEnemies",player));
         }
 
         public void SpokeToMerchant(Notification notification)

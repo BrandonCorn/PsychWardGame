@@ -18,12 +18,11 @@ namespace StarterGame
 
             IEnemy enemy = player.currentRoom.CurrentEnemy;
             player.useWeapon();
-            if (enemy.Health <= 0)
+            if (player.defeatedEnemy(enemy))
             {
-                player.outputMessage("\nYou win!!!\n");
-                NotificationCenter.Instance.postNotification(new Notification("PopCommands"));
+                //player.outputMessage("\nYou win!!!\n");
                 NotificationCenter.Instance.postNotification(new Notification("BattleOver", player));
-                NotificationCenter.Instance.postNotification(new Notification("KilledEnemies", player));
+
                 if (enemy.GetType() == typeof(FinalBoss))
                 {
                     player.outputMessage("You Beat the Game");
@@ -34,12 +33,11 @@ namespace StarterGame
             }
             else {
                 enemy.attackPlayer(player);
-            }
-
-            if(player.Health <= 0)
-            {
-                player.outputMessage("You died");
-                return true;
+                if (player.playerDefeated())
+                {
+                    player.outputMessage("You died");
+                    return true;
+                }
             }
             player.currentStats();
             enemy.currentStats();

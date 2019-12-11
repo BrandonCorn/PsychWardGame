@@ -52,6 +52,9 @@ namespace StarterGame
         //Chance of landing hit on the enemy 
         private int hitProbability;
         public int HitProbability { get { return hitProbability; } }
+
+        private PlayerState playerState;
+        public PlayerState PlayerState { get { return playerState; }  set { playerState = value; } }
         private BattleState battleState;
         public BattleState BattleState { get { return battleState; } set { battleState = value; } }
 
@@ -69,6 +72,7 @@ namespace StarterGame
             weapon = null;
             backpack = null; 
             hitProbability = 2;
+            playerState = PlayerState.Wandering; 
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
         }
 
@@ -105,6 +109,11 @@ namespace StarterGame
             NotificationCenter.Instance.postNotification(new Notification("Player has spoken", this));
         }
 
+        public IEnemy getEnemy()
+        {
+            return currentRoom.CurrentEnemy;
+        }
+
         public void useWeapon()
         {
             int discount = new Random().Next(1, (Attack / 2) + 1);
@@ -122,6 +131,16 @@ namespace StarterGame
                 return this.Attack;
             }
             return Weapon.getStrength(this);
+        }
+
+        public bool defeatedEnemy(IEnemy enemy)
+        {
+            return enemy.Health <= 0;
+        }
+
+        public bool playerDefeated()
+        {
+            return Health <= 0;
         }
         
         //A notification to the player that a task has been set. The task is then set to active. 

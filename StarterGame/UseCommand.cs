@@ -31,6 +31,17 @@ namespace StarterGame
                 else
                 {
                     itemToUse.useItem(player);
+                    IEnemy enemy = player.currentRoom.CurrentEnemy;
+                    if (itemToUse.ItemTypes.Contains(ItemType.BattleItem) && enemy != null)
+                    {
+                        enemy.attackPlayer(player);
+                        if (player.playerDefeated())
+                        {
+                            return true;
+                        }
+                        player.currentStats();
+                        player.getEnemy().currentStats();
+                    }
                     player.outputMessage(player.Backpack.displayItems());
 
                 }
