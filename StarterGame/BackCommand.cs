@@ -14,7 +14,7 @@ namespace StarterGame
         public override bool execute(Player player)
         {
             NotificationCenter.Instance.postNotification(new Notification("PopCommands"));
-            player.outputMessage(player.currentRoom.description());
+            //player.outputMessage(player.currentRoom.description());
             return false;
         }
     }
