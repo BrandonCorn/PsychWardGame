@@ -40,6 +40,7 @@ namespace StarterGame
         public InfectedNurse()
         {
             attack = 4;
+            speed = new Random().Next(1, 4);
             health = 13;
             hitProbability = 2;
             playerExp = 5;

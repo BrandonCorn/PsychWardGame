@@ -46,6 +46,7 @@ namespace StarterGame
         public Rat()
         {
             attack = 3;
+            speed = new Random().Next(1, 3);
             health = 12;
             hitProbability = 2;
             playerExp = 4;

@@ -45,6 +45,7 @@ namespace StarterGame
         public ZombiePatient()
         {
             attack = 4;
+            speed = new Random().Next(1, 3);
             health = 14;
             hitProbability = 1;
             playerExp = 5;

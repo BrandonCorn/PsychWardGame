@@ -41,6 +41,7 @@ namespace StarterGame
         public InfectedDoctor()
         {
             attack = 3;
+            speed = new Random().Next(1, 4);
             health = 12;
             hitProbability = 2;
             playerExp = 4;
