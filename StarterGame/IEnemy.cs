@@ -24,6 +24,7 @@ namespace StarterGame
         //Experience that will be given to the player
         public abstract int PlayerExp { get; set; }
 
+        //Number of items the enemy can drop when they die. 
         public abstract int DropCount { get; }
 
         //Gives a prompt when the player encounters the enemy
@@ -32,8 +33,11 @@ namespace StarterGame
         //Displays what happens when the enemy attacks
         public abstract string attackDescription();
 
+        //Provides drops to the room from enemies death
+        //params: item number in the Dictionary of available drops of the enemy.  
         public abstract I_Item getDrops(int num);
 
+        //List of available items the enemy can drop. 
         public abstract Dictionary<int, I_Item> Drops { get; }
 
         public abstract int KillValue { get; set; }
@@ -56,6 +60,8 @@ namespace StarterGame
             this.KillValue = (int)(level * 1.2) * KillValue;
         }
 
+        //provides the room random items at the enemies death based on how many they can drop and what they are capable of dropping
+        //param: The current room being given items. 
         public void deadEnemyItems(Room room)
         {
             for (int i = 0; i < DropCount; i++)
