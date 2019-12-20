@@ -12,6 +12,9 @@ namespace StarterGame
         //Attack power of the enemy 
         public abstract int Attack { get; set; }
 
+        //Speed of the enemy
+        public abstract int Speed { get; set; }
+
         //Total health of the enemy 
         public abstract int Health { get; set; }
 

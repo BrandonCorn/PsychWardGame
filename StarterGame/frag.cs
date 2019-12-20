@@ -4,6 +4,7 @@ using System.Text;
 
 namespace StarterGame
 {
+    //Battle Item for player use against enemy. 
     public class frag : I_Item
     {
         private float weight;

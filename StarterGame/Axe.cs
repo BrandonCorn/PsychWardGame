@@ -6,13 +6,9 @@ namespace StarterGame
 {
     public class Axe : I_Item, IWeapon
     {
-        //SEE I_iTEM INTERFACE FOR EXPLAINATION OF ALL PROPERTIES!!
+
         private readonly string name = "Axe";
         public string Name { get { return name; }  }
-        
-        private HashSet<ItemType> itemTypes;
-        private ItemType[] types = { ItemType.BattleItem, ItemType.Weapon };
-        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
 
         private float weight;
         public float Weight { get { return weight; } set { weight = value; } }
@@ -27,6 +23,11 @@ namespace StarterGame
 
         private int uses;
         public int Uses { get { return uses; } set { uses = value; } }
+
+        private HashSet<ItemType> itemTypes;
+        private ItemType[] types = { ItemType.BattleItem, ItemType.Weapon };
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } }
+
         private int attack;
         public int Attack { get { return attack; } set { attack = value; } }
 

@@ -13,6 +13,10 @@ namespace StarterGame
         private int attack; 
         public int Attack { get { return attack;} set { attack = value; } }
 
+        //players current speed
+        private int speed; 
+        public int Speed { get { return speed; } set { speed = value; } }
+
         //Is the players current health. 
         private int health; 
         public int Health { get { return health; } set { health = value; } }
@@ -53,8 +57,11 @@ namespace StarterGame
         private int hitProbability;
         public int HitProbability { get { return hitProbability; } }
 
+        //Player State may be used to define the different circumstances the player may be in. 
         private PlayerState playerState;
         public PlayerState PlayerState { get { return playerState; }  set { playerState = value; } }
+
+        //The players battle state will be the condition of their health i.e. paralyzed, confused, poisoned. 
         private BattleState battleState;
         public BattleState BattleState { get { return battleState; } set { battleState = value; } }
 
@@ -63,6 +70,7 @@ namespace StarterGame
             _currentRoom = room;
             currentTask = null;
             attack = 6;
+            speed = 3;
             level = 1;
             maxHealth = 100;
             health = MaxHealth;
@@ -202,6 +210,7 @@ namespace StarterGame
             return Backpack.takeItem(item);
         }
 
+        //Places item in the backpack
         public void addToBackpack(I_Item item)
         {
             Backpack.giveItem(item);
@@ -215,6 +224,7 @@ namespace StarterGame
             {
                 Level++;
                 Attack = (int)(attack * 1.35f);
+                Speed = (int)(speed * 1.3f);
                 MaxHealth = MaxHealth + 5;
                 Health = MaxHealth;
                 ExpNeeded = ExpNeeded + (int)(ExpNeeded * 1.5f);
@@ -240,11 +250,13 @@ namespace StarterGame
             return ExpNeeded - Experience;
         }
 
+        //Sets the players current weapon
         public void setWeapon(IWeapon weapon)
         {
             Weapon = weapon; 
         }
 
+        //Takes players current weapon 
         public IWeapon takeWeapon()
         {
             IWeapon current = this.Weapon;
@@ -252,6 +264,7 @@ namespace StarterGame
             return current;
         }
 
+        //Player counts their coins to see if they have enough for item
         public bool hasEnoughCoins(I_Item item)
         {
             if (Coins < item.PurchasePrice)
@@ -262,11 +275,13 @@ namespace StarterGame
             return true;
         }
 
+        //Player uses their coins for item to purchase 
         public void spendCoins(int amount)
         {
             this.Coins -= amount;
         }
 
+        //Player accepts coins 
         public void receiveCoins(int amount)
         {
             this.Coins += amount;

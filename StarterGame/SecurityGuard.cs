@@ -13,6 +13,10 @@ namespace StarterGame
 
         private int attack;
         public override int Attack { get { return attack; } set { attack = value; } }
+
+        private int speed;
+        public override int Speed { get { return speed; } set { speed = value; } }
+
         private int health;
         public override int Health { get { return health; } set { health = value; } }
 
@@ -34,10 +38,6 @@ namespace StarterGame
         }
         private int killValue;
         public override int KillValue { get { return killValue; } set { killValue = value; } }
-        /*public override int killValue()
-        {
-            return 80;
-        }*/
 
         public SecurityGuard()
         {
@@ -53,6 +53,8 @@ namespace StarterGame
                 drops[i] = itemList[i];
             }
         }
+
+        //When the player enters battle they are prompted with this greeting. 
         public override string battleGreeting()
         {
             return "The psycho security guard is running at you with his batton!";

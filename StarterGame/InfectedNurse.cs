@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StarterGame
 {
-    public class InfectedNurse: IEnemy
+    public class InfectedNurse : IEnemy
     {
         //VIEW IENEMY INTERFACE FOR DESCRIPTIONS OF VARIABLES AND PROPERTIES
 
@@ -13,6 +13,9 @@ namespace StarterGame
 
         private int attack;
         public override int Attack { get { return attack; } set { attack = value; } }
+
+        private int speed;
+        public override int Speed {get {return speed; } set { speed = value; } }
         private int health;
         public override int Health { get { return health; } set { health = value; } }
 
@@ -33,10 +36,7 @@ namespace StarterGame
         }
         private int killValue;
         public override int KillValue { get { return killValue; } set { killValue = value; } }
-        /*public override int killValue()
-        {
-            return 100;
-        }*/
+
         public InfectedNurse()
         {
             attack = 4;
@@ -51,6 +51,8 @@ namespace StarterGame
                 drops[i] = list[i];
             }
         }
+
+        //When the player enters battle they are prompted with this greeting. 
         public override string battleGreeting()
         {
             return "The Infected Nurse is coming at you!";

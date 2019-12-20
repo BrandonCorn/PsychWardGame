@@ -15,8 +15,13 @@ namespace StarterGame
 
         private int attack;
         public override int Attack { get { return attack; } set { attack = value; } }
+
+        private int speed;
+        public override int Speed { get { return speed; } set { speed = value; } }
+
         private int health;
         public override int Health { get { return health; } set { health = value; } }
+
         private int hitProbability;
         public override int HitProbability { get { return hitProbability; } }
 
@@ -36,10 +41,6 @@ namespace StarterGame
         private int killValue;
         public override int KillValue { get { return killValue; } set { killValue = value; } }
 
-        /*public override int killValue()
-        {
-            return 100;
-        }*/
 
         public ZombiePatient()
         {
@@ -56,7 +57,7 @@ namespace StarterGame
             }
         }
 
-        //Statement of enemy when greeting player
+        //When the player enters battle they are prompted with this greeting. 
         public override string battleGreeting()
         {
             return "A mummified zombie patient blindsides you out of no where!";

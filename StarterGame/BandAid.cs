@@ -4,9 +4,10 @@ using System.Text;
 
 namespace StarterGame
 {
+    //This is a healing item, it heals the player by 10 health
     public class BandAid : I_Item
     {
-        //This is a healing item, it heals the player by 10 health
+        
         private float weight;
         public float Weight { get { return weight; } }
 
@@ -36,6 +37,7 @@ namespace StarterGame
             itemTypes = new HashSet<ItemType>(types);
         }
 
+        //Player receives 10 health from the band aid 
         public void useItem(Player player)
         {
             player.outputMessage("Your health went up by 10!");
