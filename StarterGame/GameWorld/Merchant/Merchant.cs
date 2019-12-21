@@ -26,7 +26,7 @@ namespace StarterGame
         public Dictionary<string, I_Item> Inventory { get { return inventory; } set { inventory = value; } }
 
         private static I_Item[] MerchantItems = { new Axe(), new BandAid(), new Bat(),
-            new Batteries(), new FirstAidKit(), new Hammer(), new Knife(), new LockPick(),
+            new FirstAidKit(), new Hammer(), new Knife(), 
             new Machete(), new SutureKit()};
 
         //The room that the merchant is currently in. 

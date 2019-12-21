@@ -47,14 +47,16 @@ namespace StarterGame
         public void currentStats()
         {
             Console.WriteLine("\n" + this.Name + "\nHealth: " + this.Health + "\nAttack: " +
-                this.Attack + "\n");
+                this.Attack + "\nSpeed: " + this.Speed + "\n");
         }
 
         //For all enemies, method updates the enemies stats relative to the players level to increase
         //difficulty of game as player gets stronger. 
+        //Param: Player's current level
         public void statstoPlayerLevel(int level)
         {
             this.Attack = (int)(level * 1.3) * Attack;
+            this.Speed = (int)(level * 1.3) * Speed;
             this.Health = (int)(level * 1.3) * Health;
             this.PlayerExp = (int)(level * 1.3) * PlayerExp;
             this.KillValue = (int)(level * 1.2) * KillValue;

@@ -70,9 +70,9 @@ namespace StarterGame
             _currentRoom = room;
             currentTask = null;
             attack = 6;
-            speed = 3;
+            speed = 1;
             level = 1;
-            maxHealth = 100;
+            maxHealth = 10;
             health = MaxHealth;
             experience = 0;
             expNeeded = 15;
@@ -172,10 +172,11 @@ namespace StarterGame
         }
 
         //Current stats of player health, attack, and what weapon they possess. 
+        //****At the moment speed is accessed directly, will be altered once armor and items have an effect on speed. 
         public void currentStats()
         {
-            outputMessage("Player \nHealth: " + this.Health +  (Weapon == null ? "\nNo Weapon" : "\nWeapon: " + Weapon.Name) +
-                "\nAttack: " + this.totalAttack());
+            outputMessage("Player \nHealth: " + this.Health + (Weapon == null ? "\nNo Weapon" : "\nWeapon: " + Weapon.Name) +
+                "\nAttack: " + this.totalAttack() + "\nSpeed: " + this.Speed);
         }
 
         //picks up an item to be placed in backpack if it will fit in the bag. 

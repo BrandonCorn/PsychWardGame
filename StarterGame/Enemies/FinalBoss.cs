@@ -4,18 +4,15 @@ using System.Text;
 
 namespace StarterGame
 {
-    public class InfectedNurse : IEnemy
+    public class FinalBoss : IEnemy
     {
-        //VIEW IENEMY INTERFACE FOR DESCRIPTIONS OF VARIABLES AND PROPERTIES
-
-        private readonly string name = "Infected Nurse";
+        private readonly string name = "Final Boss";
         public override string Name { get { return name; } }
 
         private int attack;
         public override int Attack { get { return attack; } set { attack = value; } }
-
-        private int speed;
-        public override int Speed {get {return speed; } set { speed = value; } }
+        private int speed; 
+        public override int Speed { get { return speed; } set { speed = value;  } }
         private int health;
         public override int Health { get { return health; } set { health = value; } }
 
@@ -24,46 +21,44 @@ namespace StarterGame
 
         private int playerExp;
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
+
         private int dropCount;
         public override int DropCount { get { return dropCount; } }
 
-        private I_Item[] list = { new RatTail(), new FirstAidKit(), new BandAid() };
-        private Dictionary<int, I_Item> drops;
+        private I_Item[] itemList = { new FirstAidKit(), new BandAid(), new SutureKit() };
+        private Dictionary<int, I_Item> drops; 
         public override Dictionary<int, I_Item> Drops { get { return drops; } }
-        public override I_Item getDrops(int num)
-        {
-            return Drops[num];
-        }
         private int killValue;
         public override int KillValue { get { return killValue; } set { killValue = value; } }
 
-        public InfectedNurse()
+        private int poisonProbability; 
+        public int PoisonProbability { get { return poisonProbability; } }
+
+        public FinalBoss()
         {
-            attack = 4;
-            speed = new Random().Next(1, 4);
-            health = 13;
-            hitProbability = 2;
-            playerExp = 5;
-            dropCount = 1;
-            killValue = 40;
+            attack = 30;
+            health = 1;
+            hitProbability = 3;
+            playerExp = 2500;
+            dropCount = 3;
             drops = new Dictionary<int, I_Item>();
-            for (int i = 0; i < list.Length; i++)
+            for (int i = 0; i < itemList.Length; i++)
             {
-                drops[i] = list[i];
+                drops[i] = itemList[i];
             }
         }
-
-        //When the player enters battle they are prompted with this greeting. 
-        public override string battleGreeting()
-        {
-            return "The Infected Nurse is coming at you!";
-        }
-
-        //Description of the Rat attacking the player to display. We can write more these in this method
-        //and make it so that random ones display each time. 
         public override string attackDescription()
         {
-            return "\nThe Infected Nurse stabs you with a nasty syringe!";
+            return "The luny mummy man flails his arms at you in craziness!"; 
+        }
+
+        public override string battleGreeting()
+        {
+            return "The final battle begins";
+        }
+      public override I_Item getDrops(int num)
+        {
+            return Drops[num];
         }
 
         public override void attackPlayer(Player player)

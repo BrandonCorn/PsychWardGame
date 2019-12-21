@@ -4,18 +4,19 @@ using System.Text;
 
 namespace StarterGame
 {
-    public class InfectedDoctor :IEnemy
+    public class SecurityGuard : IEnemy
     {
         //VIEW IENEMY INTERFACE FOR DESCRIPTIONS OF VARIABLES AND PROPERTIES
 
-        private readonly string name = "Infected Doctor";
+        private readonly string name = "Security Guard";
         public override string Name { get { return name; } }
 
         private int attack;
         public override int Attack { get { return attack; } set { attack = value; } }
 
-        private int speed; 
+        private int speed;
         public override int Speed { get { return speed; } set { speed = value; } }
+
         private int health;
         public override int Health { get { return health; } set { health = value; } }
 
@@ -27,8 +28,8 @@ namespace StarterGame
 
         private int dropCount;
         public override int DropCount { get { return dropCount; } }
-
-        private I_Item[] list = { new SutureKit(), new BandAid() };
+ 
+        private I_Item[] itemList = { new SutureKit(), new BandAid() };
         private Dictionary<int, I_Item> drops;
         public override Dictionary<int, I_Item> Drops { get { return drops; } }
         public override I_Item getDrops(int num)
@@ -38,33 +39,33 @@ namespace StarterGame
         private int killValue;
         public override int KillValue { get { return killValue; } set { killValue = value; } }
 
-        public InfectedDoctor()
+        public SecurityGuard()
         {
-            attack = 3;
-            speed = new Random().Next(1, 4);
+            attack = 4;
+            speed = new Random().Next(1, 6);
             health = 12;
             hitProbability = 2;
             playerExp = 4;
             dropCount = 1;
-            killValue = 45;
+            killValue = 60;
             drops = new Dictionary<int, I_Item>();
-            for (int i = 0; i < list.Length; i++)
+            for (int i = 0; i < itemList.Length; i++)
             {
-                drops[i] = list[i];
+                drops[i] = itemList[i];
             }
         }
 
         //When the player enters battle they are prompted with this greeting. 
         public override string battleGreeting()
         {
-            return "The Infected Doctor is running towards you!";
+            return "The psycho security guard is running at you with his batton!";
         }
 
         //Description of the Rat attacking the player to display. We can write more these in this method
         //and make it so that random ones display each time. 
         public override string attackDescription()
         {
-            return "\nThe Infected Doctor bites your arm!";
+            return "\nThe Security Guard swings at you!";
         }
 
         public override void attackPlayer(Player player)
@@ -76,6 +77,11 @@ namespace StarterGame
                 player.Health -= new Random().Next((Attack / 2), Attack + 1);
             }
             else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
+
+            if (!player.playerDefeated())
+            {
+                player.currentStats();
+            }
         }
     }
 }

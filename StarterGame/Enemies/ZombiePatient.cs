@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    public class FinalBoss : IEnemy
+    public class ZombiePatient :IEnemy
     {
-        private readonly string name = "Final Boss";
+        //VIEW IENEMY INTERFACE FOR DESCRIPTIONS OF VARIABLES AND PROPERTIES
+
+        private readonly string name = "Zombie Patient";
         public override string Name { get { return name; } }
 
         private int attack;
         public override int Attack { get { return attack; } set { attack = value; } }
+
+        private int speed;
+        public override int Speed { get { return speed; } set { speed = value; } }
+
         private int health;
         public override int Health { get { return health; } set { health = value; } }
 
@@ -22,41 +30,44 @@ namespace StarterGame
 
         private int dropCount;
         public override int DropCount { get { return dropCount; } }
-
-        private I_Item[] itemList = { new FirstAidKit(), new BandAid(), new SutureKit() };
-        private Dictionary<int, I_Item> drops; 
+    
+        private I_Item[] list = { new RatTail(), new FirstAidKit(), new BandAid() };
+        private Dictionary<int, I_Item> drops;
         public override Dictionary<int, I_Item> Drops { get { return drops; } }
+        public override I_Item getDrops(int num)
+        {
+            return Drops[num];
+        }
         private int killValue;
         public override int KillValue { get { return killValue; } set { killValue = value; } }
 
-        private int poisonProbability; 
-        public int PoisonProbability { get { return poisonProbability; } }
 
-        public FinalBoss()
+        public ZombiePatient()
         {
-            attack = 30;
-            health = 1;
-            hitProbability = 3;
-            playerExp = 2500;
-            dropCount = 3;
+            attack = 4;
+            speed = new Random().Next(2, 5);
+            health = 14;
+            hitProbability = 1;
+            playerExp = 5;
+            dropCount = 1;
+            killValue = 50;
             drops = new Dictionary<int, I_Item>();
-            for (int i = 0; i < itemList.Length; i++)
+            for (int i = 0; i < list.Length; i++)
             {
-                drops[i] = itemList[i];
+                drops[i] = list[i];
             }
         }
-        public override string attackDescription()
-        {
-            return "The luny mummy man flails his arms at you in craziness!"; 
-        }
 
+        //When the player enters battle they are prompted with this greeting. 
         public override string battleGreeting()
         {
-            return "The final battle begins";
+            return "A mummified zombie patient blindsides you out of no where!";
         }
-      public override I_Item getDrops(int num)
+
+        //Description of the enemy attacking the player
+        public override string attackDescription()
         {
-            return Drops[num];
+            return "\nThe Zombie leaps forward and bites you!";
         }
 
         public override void attackPlayer(Player player)
@@ -68,6 +79,12 @@ namespace StarterGame
                 player.Health -= new Random().Next((Attack / 2), Attack + 1);
             }
             else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
+
+            if (!player.playerDefeated())
+            {
+                player.currentStats();
+            }
         }
+
     }
 }

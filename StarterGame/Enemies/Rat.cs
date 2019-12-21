@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace StarterGame
 {
-    public class SecurityGuard : IEnemy
+    public class Rat: IEnemy
     {
         //VIEW IENEMY INTERFACE FOR DESCRIPTIONS OF VARIABLES AND PROPERTIES
 
-        private readonly string name = "Security Guard";
-        public override string Name { get { return name; } }
+        private readonly string name = "Rat";
+        public override string Name { get { return name;  } }
 
         private int attack;
         public override int Attack { get { return attack; } set { attack = value; } }
@@ -23,33 +25,35 @@ namespace StarterGame
         private int hitProbability;
         public override int HitProbability { get { return hitProbability; } }
 
-        private int playerExp;
+        private int playerExp; 
         public override int PlayerExp { get { return playerExp; } set { playerExp = value; } }
-
         private int dropCount;
         public override int DropCount { get { return dropCount; } }
- 
-        private I_Item[] itemList = { new LockPick(), new SutureKit(), new BandAid() };
-        private Dictionary<int, I_Item> drops;
-        public override Dictionary<int, I_Item> Drops { get { return drops; } }
+
+        private I_Item[] itemList = { new RatTail(), new FirstAidKit(), new BandAid() };
+        private Dictionary<int, I_Item> drops; 
+        public override Dictionary<int,I_Item> Drops { get { return drops; } }
         public override I_Item getDrops(int num)
         {
-            return Drops[num];
+            return Drops[num]; 
         }
         private int killValue;
         public override int KillValue { get { return killValue; } set { killValue = value; } }
-
-        public SecurityGuard()
+        /*public override int killValue()
         {
-            attack = 3;
+            return 50;
+        }*/
+        public Rat()
+        {
+            attack = 2;
             speed = new Random().Next(1, 4);
             health = 12;
             hitProbability = 2;
             playerExp = 4;
             dropCount = 1;
-            killValue = 60;
+            killValue = 30;
             drops = new Dictionary<int, I_Item>();
-            for (int i = 0; i < itemList.Length; i++)
+            for(int i = 0; i < itemList.Length; i++)
             {
                 drops[i] = itemList[i];
             }
@@ -58,14 +62,14 @@ namespace StarterGame
         //When the player enters battle they are prompted with this greeting. 
         public override string battleGreeting()
         {
-            return "The psycho security guard is running at you with his batton!";
+            return "A rabid Rat wants you dead. It lunges at you in fury!";
         }
 
         //Description of the Rat attacking the player to display. We can write more these in this method
         //and make it so that random ones display each time. 
         public override string attackDescription()
         {
-            return "\nThe Security Guard swings at you!";
+            return "\nThe Rat slices your face!";
         }
 
         public override void attackPlayer(Player player)
@@ -77,6 +81,11 @@ namespace StarterGame
                 player.Health -= new Random().Next((Attack / 2), Attack + 1);
             }
             else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
+
+            if (!player.playerDefeated())
+            {
+                player.currentStats();
+            }
         }
     }
 }

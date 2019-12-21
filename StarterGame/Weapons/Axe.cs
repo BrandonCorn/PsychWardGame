@@ -49,6 +49,7 @@ namespace StarterGame
         public void useItem(Player player)
         {
             player.outputMessage("Cannot use " + Name + " right now.\n");
+            player.addToBackpack(this);
         }
 
         public void useWeapon(Player player)
