@@ -35,9 +35,10 @@ namespace StarterGame
             //this.taskRoom = room;
             description = "This quest will give you a run down of playing the game, things ranging" +
             " from selecting commands to fighting enemies. \n\t Beat 2 enemies! \n\t Pick up an item!";
+            NotificationCenter.Instance.addObserver("FirstBattle", FirstBattle);
+            NotificationCenter.Instance.addObserver("FirstMerchantInteraction", FirstMerchantInteraction);
             NotificationCenter.Instance.addObserver("KilledEnemies", KilledEnemies);
             NotificationCenter.Instance.addObserver("PickedUpItem", PickedUpItem);
-            NotificationCenter.Instance.addObserver("FirstBattle", FirstBattle);
         }
 
         //Callback method to task that provides the player an explaination of how the combat system works. 
