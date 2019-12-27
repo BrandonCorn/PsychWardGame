@@ -165,7 +165,7 @@ namespace StarterGame
         public void TaskSet(Notification notification)
         {
             this.CurrentTask.TaskState = TaskState.Active;
-            Console.WriteLine("****************************************************");
+            Console.WriteLine("\n****************************************************");
             Console.WriteLine("A task has been set! (To view the task type \"task\")");
             Console.WriteLine("****************************************************\n");
         }

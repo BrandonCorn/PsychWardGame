@@ -74,6 +74,7 @@ namespace StarterGame
                     player.outputMessage("\n" + player.currentRoom.description());
                     return false;
                 }
+                else { enemy.currentStats(); }
 
             }
             return false;
