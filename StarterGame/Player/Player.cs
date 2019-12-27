@@ -122,9 +122,9 @@ namespace StarterGame
             return currentRoom.CurrentEnemy;
         }
 
-        public void useWeapon()
+        public void attackEnemy()
         {
-            this.outputMessage("\nYou swing abruptly at the player\n"); 
+            playerAttackDescription();
             int discount = new Random().Next(1, (Attack / 2) + 1);
             currentRoom.CurrentEnemy.Health -= (this.totalAttack()-discount);
             if (Weapon != null)
@@ -139,7 +139,7 @@ namespace StarterGame
             {
                 this.Weapon.useWeaponDescription(this);
             }
-            else { outputMessage("You punch aggressively at the enemy"); }
+            else { outputMessage("\nYou punch aggressively at the enemy"); }
         }
 
         public int totalAttack()

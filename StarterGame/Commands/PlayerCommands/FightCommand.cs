@@ -21,7 +21,7 @@ namespace StarterGame
             //Here the player's speed is higher than the enemy so they swing first. 
             if (player.Speed >= enemy.Speed)
             {
-                player.useWeapon();
+                player.attackEnemy();
                 if (player.defeatedEnemy(enemy))
                 {
                     NotificationCenter.Instance.postNotification(new Notification("BattleOver", player));
@@ -61,7 +61,7 @@ namespace StarterGame
 
                 Thread.Sleep(3000);
 
-                player.useWeapon();
+                player.attackEnemy();
                 if (player.defeatedEnemy(enemy))
                 {
                     NotificationCenter.Instance.postNotification(new Notification("BattleOver", player));
