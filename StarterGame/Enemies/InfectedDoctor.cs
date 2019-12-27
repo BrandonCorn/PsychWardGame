@@ -76,11 +76,6 @@ namespace StarterGame
                 player.Health -= new Random().Next((Attack / 2), Attack + 1);
             }
             else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
-
-            if (!player.playerDefeated())
-            {
-                player.currentStats();
-            }
         }
     }
 }

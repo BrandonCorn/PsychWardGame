@@ -48,7 +48,7 @@ namespace StarterGame
                 else { player.currentStats(); }
             }
 
-            //In this cirumstance the players speed is lower than that of the enemy. 
+            //In this circumstance the players speed is lower than that of the enemy. 
             else
             {
                 enemy.attackPlayer(player); 
@@ -76,8 +76,6 @@ namespace StarterGame
                 }
 
             }
-            //player.currentStats();
-            //enemy.currentStats();
             return false;
         }
     }

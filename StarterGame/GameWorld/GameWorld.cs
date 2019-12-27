@@ -34,7 +34,6 @@ namespace StarterGame
 
            
             // GameWorld subscribes to the notification PlayerEnteredRoom
-            NotificationCenter.Instance.addObserver("PlayerEnteredRoom", playerEnteredRoom);
             NotificationCenter.Instance.addObserver("Player has spoken", playerSpeak);
             NotificationCenter.Instance.addObserver("BattleSequence", battleSequence);
             NotificationCenter.Instance.addObserver("SpokeToMerchant", SpokeToMerchant);
@@ -117,21 +116,6 @@ namespace StarterGame
         }
 
 
-        // callback method for PlayerEnteredRoom
-        public void playerEnteredRoom(Notification notification)
-        {
-            Player player = (Player)notification.Object;
-
-            //Notifies the merchant when a player enters the room, a task is set by the merchant. The player
-            //is notified that they have received a task. An updated set of commands are given if they player 
-            //interacts with the merchant. 
-            //if (player.currentRoom == ladyMerchant.MerchantRoom)
-            {
-
-            }
-
-        }
-
         //callback method for player speak word, will be able to use for player answering riddles in tasks
         public void playerSpeak(Notification notification)
         {
@@ -152,12 +136,11 @@ namespace StarterGame
 
             if (player.currentRoom == bossBattleDoor)
             {
-                NotificationCenter.Instance.postNotification(new Notification("FirstBattle", this));
                 NotificationCenter.Instance.postNotification(new Notification("PushBattleCommands", this));
                 IEnemy enemy = new FinalBoss();
                 player.currentRoom.CurrentEnemy = enemy;
                 Console.WriteLine("\n****************************************************");
-                Console.WriteLine("\n" + enemy.battleGreeting() + "\n\nThe battle begins!\n");
+                Console.WriteLine("\n" + enemy.battleGreeting() + "\n\nThe final battle begins!\n");
                 player.currentStats();
                 enemy.currentStats();
             }
@@ -195,6 +178,7 @@ namespace StarterGame
             enemy.deadEnemyItems(player.currentRoom);
             player.receiveCoins(enemy.KillValue);
             player.currentRoom.CurrentEnemy = null;
+            player.PlayerState = PlayerState.Wandering; 
             
             NotificationCenter.Instance.postNotification(new Notification("PopCommands"));
             NotificationCenter.Instance.postNotification(new Notification("KilledEnemies",player));
@@ -205,7 +189,7 @@ namespace StarterGame
             Door door = gameBeginTrigger.getExit("main hall");
             door.Unlock();
             door.Closed = false;
-            Console.WriteLine("\n****************************************************");
+            Console.WriteLine("****************************************************");
             Console.WriteLine("The main hall door has been unlocked!!");
             Console.WriteLine("****************************************************");
             NotificationCenter.Instance.removeObserver("SpokeToMerchant", SpokeToMerchant);

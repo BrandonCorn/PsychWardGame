@@ -82,10 +82,6 @@ namespace StarterGame
             }
             else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
 
-            if (!player.playerDefeated())
-            {
-                player.currentStats();
-            }
         }
     }
 }
