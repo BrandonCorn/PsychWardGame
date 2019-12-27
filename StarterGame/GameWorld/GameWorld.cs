@@ -35,6 +35,7 @@ namespace StarterGame
            
             // GameWorld subscribes to the notification PlayerEnteredRoom
             NotificationCenter.Instance.addObserver("Player has spoken", playerSpeak);
+            NotificationCenter.Instance.addObserver("EnteredNpcRoom", EnteredNpcRoom);
             NotificationCenter.Instance.addObserver("BattleSequence", battleSequence);
             NotificationCenter.Instance.addObserver("SpokeToMerchant", SpokeToMerchant);
             NotificationCenter.Instance.addObserver("FinishedFirstTask", FinishedFirstTask);
@@ -184,6 +185,16 @@ namespace StarterGame
             NotificationCenter.Instance.postNotification(new Notification("KilledEnemies",player));
         }
 
+        //Player enter room with NPC for first time
+        public void EnteredNpcRoom(Notification notification)
+        {
+            Console.WriteLine("\n****************************************************");
+            Console.WriteLine("To interact with NPC's type \"interact\" and then the name of the NPC");
+            Console.WriteLine("****************************************************");
+            NotificationCenter.Instance.removeObserver("EnteredNpcRoom", EnteredNpcRoom);
+        }
+
+        //Unlock the main hall to allow the player to advance since they have now spoke with the merchant. 
         public void SpokeToMerchant(Notification notification)
         {
             Door door = gameBeginTrigger.getExit("main hall");

@@ -95,7 +95,7 @@ namespace StarterGame
                     this._currentRoom = door.room(this.currentRoom);
                     // Player posts a notification PlayerEnteredRoom
                     this.outputMessage("\n" + this._currentRoom.description());
-                    NotificationCenter.Instance.postNotification(new Notification("PlayerEnteredRoom", this));
+                    NotificationCenter.Instance.postNotification(new Notification("EnteredNpcRoom", this));
                     NotificationCenter.Instance.postNotification(new Notification("BattleSequence", this));
                 }
                 else
