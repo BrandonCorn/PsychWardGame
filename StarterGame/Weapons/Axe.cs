@@ -61,6 +61,11 @@ namespace StarterGame
             }
         }
 
+        public void useWeaponDescription(Player player)
+        {
+            player.outputMessage("\nYou slice the enemy with your axe\n"); 
+        }
+
         override
         public string ToString()
         {

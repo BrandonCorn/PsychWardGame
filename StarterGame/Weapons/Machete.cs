@@ -58,6 +58,12 @@ namespace StarterGame
             }
         }
 
+        public void useWeaponDescription(Player player)
+        {
+            player.outputMessage("\nYou slide your sword through the air to cut your enemy apart!\n");
+        }
+
+
         override
         public string ToString()
         {

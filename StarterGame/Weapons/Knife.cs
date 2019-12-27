@@ -58,6 +58,11 @@ namespace StarterGame
             }
         }
 
+        public void useWeaponDescription(Player player)
+        {
+            player.outputMessage("\nYou stab your knife at the enemy trying to gut them!\n");
+        }
+
         override
         public string ToString()
         {

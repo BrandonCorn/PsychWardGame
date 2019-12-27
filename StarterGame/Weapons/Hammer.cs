@@ -57,6 +57,10 @@ namespace StarterGame
                 player.Weapon = null;
             }
         }
+        public void useWeaponDescription(Player player)
+        {
+            player.outputMessage("\nYou thrust the hammmer down on the enemies head attempting to drill them in the ground!\n");
+        }
 
         override
         public string ToString()

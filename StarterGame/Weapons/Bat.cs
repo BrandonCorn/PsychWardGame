@@ -49,6 +49,11 @@ namespace StarterGame
             player.addToBackpack(this);
         }
 
+        public void useWeaponDescription(Player player)
+        {
+            player.outputMessage("\nYou swing your bat at the enemies head like a ball on a tee!\n");
+        }
+
         public void useWeapon(Player player)
         {
             Uses--;

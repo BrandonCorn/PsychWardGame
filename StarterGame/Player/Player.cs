@@ -124,12 +124,22 @@ namespace StarterGame
 
         public void useWeapon()
         {
+            this.outputMessage("\nYou swing abruptly at the player\n"); 
             int discount = new Random().Next(1, (Attack / 2) + 1);
             currentRoom.CurrentEnemy.Health -= (this.totalAttack()-discount);
             if (Weapon != null)
             {
                 Weapon.useWeapon(this);
             }
+        }
+
+        public void playerAttackDescription()
+        {
+            if (Weapon != null)
+            {
+                this.Weapon.useWeaponDescription(this);
+            }
+            else { outputMessage("You punch aggressively at the enemy"); }
         }
 
         public int totalAttack()
