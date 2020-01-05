@@ -115,17 +115,29 @@ namespace StarterGame
             }
         }
 
+        /**
+         * Method for output of spoken word by the player. Sends out notification that the player has spoken. 
+         * @params: String word is the message the player speaks provided for output. 
+         **/
         public void speak(String word)
         {
             outputMessage(word);
             NotificationCenter.Instance.postNotification(new Notification("Player has spoken", this));
         }
 
+        /**
+         *Method providing the current enemy of the player from the room they are in. 
+         * @return: (IEnemy) current enemy of the player. 
+         **/
         public IEnemy getEnemy()
         {
             return currentRoom.CurrentEnemy;
         }
 
+        /**
+         * Method performs an attack on the current enemy of the player. 
+         *
+         **/
         public void attackEnemy()
         {
             playerAttackDescription();
@@ -137,6 +149,9 @@ namespace StarterGame
             }
         }
 
+        /**
+         * Describes the attack of the player towards their enemy which varies based on whether they possess a weapon or not.
+         **/
         public void playerAttackDescription()
         {
             if (Weapon != null)
@@ -146,6 +161,10 @@ namespace StarterGame
             else { outputMessage("\nYou punch aggressively at the enemy"); }
         }
 
+        /**
+         * Provides the total attack of the player adding up their attack with that of their current weapon. 
+         * @return: (int) the total attack of the player. 
+         **/
         public int totalAttack()
         {
             if (weapon == null)
@@ -170,12 +189,18 @@ namespace StarterGame
             return false;
         }
 
+        /**
+         * Check to see if player is alive or defeated by enemy. 
+         * @return: (bool) whether the player is alive or not. 
+         **/
         public bool playerDefeated()
         {
             return Health <= 0;
         }
         
-        //A notification to the player that a task has been set. The task is then set to active. 
+        /**A notification to the player that a task has been set. The task is then set to active. 
+         * @params: (Notification) from merchant that task is set. 
+         **/
         public void TaskSet(Notification notification)
         {
             this.CurrentTask.TaskState = TaskState.Active;
@@ -184,26 +209,36 @@ namespace StarterGame
             Console.WriteLine("****************************************************\n");
         }
 
-        //Sets the task given to the player. 
+        /**Sets the task given to the player. 
+         * @params: (ITask) task to be set for player. 
+         **/
         public void setCurrentTask(ITask task)
         {   
                 this.currentTask = task; 
         }
 
+        /**
+         * outputs messages directly from the player. 
+         * @params: (String) message to be output from player. 
+         **/
         public void outputMessage(string message)
         {
             Console.WriteLine(message);
         }
 
-        //Current stats of player health, attack, and what weapon they possess. 
-        //****At the moment speed is accessed directly, will be altered once armor and items have an effect on speed. 
+        /**Current stats of player health, attack, and what weapon they possess. 
+        ****At the moment speed is accessed directly, will be altered once armor and items have an effect on speed. 
+        **/
         public void currentStats()
         {
             outputMessage("Player \nHealth: " + this.Health + (Weapon == null ? "\nNo Weapon" : "\nWeapon: " + Weapon.Name) +
                 "\nAttack: " + this.totalAttack() + "\nSpeed: " + this.Speed);
         }
 
-        //picks up an item to be placed in backpack if it will fit in the bag. 
+        /**
+         * Picks up an item to be placed in backpack if it will fit in the bag and notifies subscribers. 
+         * @params: (String) name of the item to be picked up. 
+         **/
         public void pickUpItem(string itemName)
         {
             I_Item item = currentRoom.takeItem(itemName);
@@ -229,19 +264,28 @@ namespace StarterGame
             }
         }
 
-        //Takes an item out of the backpack
+        /**
+         * Takes an item out of the backpack
+         * @params: (String) name of the item to be taken from backpack
+         **/
         public I_Item takeFromBackpack(string item)
         {
             return Backpack.takeItem(item);
         }
 
-        //Places item in the backpack
+        /**
+         * Places item in the backpack
+         * @param: (I_Item) item object to be placed in backpack. 
+         **/
         public void addToBackpack(I_Item item)
         {
             Backpack.giveItem(item);
         }
 
-        //All the changes to stats for player when they level up. 
+        /**
+         * All the changes to stats for player when they level up. 
+         * @params: experience earned from defeat of enemy. 
+         **/
         public void LevelUp(int experience)
         {
             Experience += experience;
@@ -259,7 +303,10 @@ namespace StarterGame
             
         }
 
-        //Returns whether a player has reached the next level or not. 
+        /**
+         * Returns whether a player has reached the next level or not.
+         * @return: (bool) value indicating whether next level achieved. 
+         **/
         public bool reachNextLevel()
         {
             if (Experience >= ExpNeeded)
@@ -269,19 +316,28 @@ namespace StarterGame
             return false;
         }
 
-        //Experience needed to get to next Level
+        /**
+         * Experience needed to get to next Level
+         * @return: (int) experience needed for next level. 
+         **/
         public int expToNextLvl()
         {
             return ExpNeeded - Experience;
         }
 
-        //Sets the players current weapon
+        /**
+         * Sets the players current weapon
+         * @params: (IWeapon) weapon to be set for player. 
+         **/
         public void setWeapon(IWeapon weapon)
         {
             Weapon = weapon; 
         }
 
-        //Takes players current weapon 
+        /**
+         * Takes players current weapon 
+         * @return: (IWeapon) weapon taken from player. 
+         **/
         public IWeapon takeWeapon()
         {
             IWeapon current = this.Weapon;
@@ -289,7 +345,11 @@ namespace StarterGame
             return current;
         }
 
-        //Player counts their coins to see if they have enough for item
+        /**
+         * Player counts their coins to see if they have enough for item
+         * @params: (I_Item) item player would like to purchase. Need access for value of item. 
+         * @return: (bool) player has enough coins for purchase of item. 
+         **/
         public bool hasEnoughCoins(I_Item item)
         {
             if (Coins < item.PurchasePrice)
@@ -300,13 +360,19 @@ namespace StarterGame
             return true;
         }
 
-        //Player uses their coins for item to purchase 
+        /**
+         * Player uses their coins for item to purchase 
+         * @params: (int) How much coin the player has spent on purhase. 
+         **/
         public void spendCoins(int amount)
         {
             this.Coins -= amount;
         }
 
-        //Player accepts coins 
+        /**
+         * Player accepts coins 
+         * @params: (int) amount coins to give to player
+         **/
         public void receiveCoins(int amount)
         {
             this.Coins += amount;
