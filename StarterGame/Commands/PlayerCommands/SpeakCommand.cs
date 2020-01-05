@@ -11,6 +11,11 @@ namespace StarterGame
             this.name = "speak";
         }
 
+        /**
+         * Command called by the current player to intiate speaking.  
+         * @params: (Player) current player of the game speaking. 
+         * @return: (bool) true/false value whether game is over or not. 
+         **/
         public override bool execute(Player player)
         {
             if (this.hasSecondWord())

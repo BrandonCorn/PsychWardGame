@@ -13,7 +13,11 @@ namespace StarterGame
             
         }
 
-
+        /**
+        * Command that tells player to end interaction with NPC/merchant.  
+        * @params: (Player) current player of the game.  
+        * @return: (bool) true/false value whether game is over or not. 
+        **/
         public override bool execute(Player player)
         {
             

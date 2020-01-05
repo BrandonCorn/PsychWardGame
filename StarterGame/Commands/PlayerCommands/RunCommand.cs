@@ -18,7 +18,12 @@ namespace StarterGame
             else if (choice == 2) { return "Player escapes a terrible fate!"; }
             else { return "Player has no options left. Peace Oooouuuuttt!"; }
         }
-        //The run command returns false so the player can exit the battle sequence
+
+        /**
+        * Command that allows the player to run away from the current enemy.  
+        * @params: (Player) current player of the game.  
+        * @return: (bool) true/false value whether game is over or not. 
+        **/
         public override bool execute(Player player)
         {
             if (this.Words.Count > 0)

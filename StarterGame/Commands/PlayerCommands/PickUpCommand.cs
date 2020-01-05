@@ -11,6 +11,12 @@ namespace StarterGame
         {
             this.name = "pick up";
         }
+
+        /**
+        * Command that tells the player to pick up an item.  
+        * @params: (Player) current player of the game.  
+        * @return: (bool) true/false value whether game is over or not. 
+        **/
         public override bool execute(Player player)
         {
             string item = "";

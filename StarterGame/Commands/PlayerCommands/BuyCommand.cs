@@ -12,6 +12,12 @@ namespace StarterGame
         {
             this.name = "buy";
         }
+
+        /**
+        * Command that allows player to purchase an item.  
+        * @params: (Player) current player of the game.  
+        * @return: (bool) true/false value whether game is over or not. 
+        **/
         public override bool execute(Player player)
         {
             if (this.Words.Count > 0)

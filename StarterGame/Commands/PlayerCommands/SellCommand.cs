@@ -11,6 +11,11 @@ namespace StarterGame
             this.name = "sell";
         }
 
+        /**
+        * Command that initiates sale of current player's chosen item to the merchant.  
+        * @params: (Player) current player of the game.  
+        * @return: (bool) true/false value whether game is over or not. 
+        **/
         public override bool execute(Player player)
         {
             string itemName = "";

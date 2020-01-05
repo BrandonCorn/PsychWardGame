@@ -11,9 +11,11 @@ namespace StarterGame
             this.name = "go";
         }
 
-        //this alternative execute makes it so that we don't need to keep adding if statements when 
-        //our locations have more and more words
-        
+        /**
+        * Command that initiates a player walking to a different room. 
+        * @params: (Player) current player of the game.  
+        * @return: (bool) true/false value whether game is over or not. 
+        **/
         public override bool execute(Player player)
         {
             string location = "";

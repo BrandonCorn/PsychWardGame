@@ -11,6 +11,12 @@ namespace StarterGame
         {
             this.name = "interact";
         }
+
+        /**
+         * Initiates an interaction between the player and an NPC.   
+         * @params: (Player) current player of the game speaking. 
+         * @return: (bool) true/false value whether game is over or not. 
+         **/
         public override bool execute(Player player)
         {
             string notify = "PlayerSpeak_";

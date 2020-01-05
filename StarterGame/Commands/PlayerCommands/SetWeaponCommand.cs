@@ -12,6 +12,11 @@ namespace StarterGame
             this.name = "set";
         }
 
+        /**
+        * Command that tells the player to call method setting the weapon of choice.  
+        * @params: (Player) current player of the game.  
+        * @return: (bool) true/false value whether game is over or not. 
+        **/
         public override bool execute(Player player)
         {
             string weaponName = ""; 

@@ -12,8 +12,13 @@ namespace StarterGame
             this.name = "fight";
             
         }
-        //If the player fights the enemy, if they kill the enemy then this returns false to exit the 
-        //battle sequence in the GameWorld, otherwise it remains true. 
+ 
+        /**
+        * Command where player fights the enemy and the enemy fights back. If they player dies it returns true to end game,
+        * otherwise it returns false. 
+        * @params: (Player) current player of the game.  
+        * @return: (bool) true/false value whether game is over or not. 
+        **/
         public override bool execute(Player player)
         {
             Thread.Sleep(2000);

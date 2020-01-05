@@ -11,6 +11,11 @@ namespace StarterGame
             this.name = "use";
         }
 
+        /**
+        * Command that tells the player to call method using specific item in their posession.  
+        * @params: (Player) current player of the game.  
+        * @return: (bool) true/false value whether game is over or not. 
+        **/
         public override bool execute(Player player)
         {
             //In this method will write how a player will use an item they have in their bag. 

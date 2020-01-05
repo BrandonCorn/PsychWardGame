@@ -12,6 +12,11 @@ namespace StarterGame
             this.name = "backpack";
         }
 
+        /**
+        * Player opens their backpack to interact with it for things such as using items or viewing inventory. 
+        * @params: (Player) current player of the game.  
+        * @return: (bool) true/false value whether game is over or not. 
+        **/
         public override bool execute(Player player)
         {
             if (player.Backpack != null)
