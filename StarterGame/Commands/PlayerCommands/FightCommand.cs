@@ -22,9 +22,8 @@ namespace StarterGame
             if (player.Speed >= enemy.Speed)
             {
                 player.attackEnemy();
-                if (player.defeatedEnemy(enemy))
+                if (player.defeatedEnemy(player,enemy))
                 {
-                    NotificationCenter.Instance.postNotification(new Notification("BattleOver", player));
                     player.outputMessage("You defeated the enemy!");
 
                     if (enemy.GetType() == typeof(FinalBoss))
@@ -62,9 +61,8 @@ namespace StarterGame
                 Thread.Sleep(3000);
 
                 player.attackEnemy();
-                if (player.defeatedEnemy(enemy))
+                if (player.defeatedEnemy(player,enemy))
                 {
-                    NotificationCenter.Instance.postNotification(new Notification("BattleOver", player));
 
                     if (enemy.GetType() == typeof(FinalBoss))
                     {

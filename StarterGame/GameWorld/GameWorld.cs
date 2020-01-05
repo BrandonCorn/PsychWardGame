@@ -16,8 +16,6 @@ namespace StarterGame
                 return _instance;
             }
         }
-        //static private Dictionary<int, IEnemy> allEnemies; 
-        //static public Dictionary<int,IEnemy> AllEnemies{ get { return allEnemies; } }
 
         private Room _entrance;
         public Room Entrance { get { return _entrance; } }
@@ -117,7 +115,9 @@ namespace StarterGame
         }
 
 
-        //callback method for player speak word, will be able to use for player answering riddles in tasks
+        /**callback method for player speak word, will be able to use for player answering riddles in tasks
+         * @params: Notification from class stating the player has spoken. 
+         **/
         public void playerSpeak(Notification notification)
         {
             Player player = (Player)notification.Object;
@@ -129,8 +129,10 @@ namespace StarterGame
         }
 
 
-        //This method is callback method from player entering a room, it will initiate and conduct a battle
-        //between a player and randomly generated enemy.
+        /**This method is callback method from player entering a room, it will initiate and conduct a battle
+        *between a player and randomly generated enemy.
+        * @params: Notification from the player that they have entered a new room and require a possible new battle sequence.
+        **/
         public void battleSequence(Notification notification)
         {
             Player player = (Player)notification.Object;
@@ -164,8 +166,10 @@ namespace StarterGame
                 }
             }
         }
-        //callback method to the game world, makes it known and allows the players level and stats be
-        //increased as well as the dead enemy give items to the room and coins to the player before dying.
+        /**callback method to the game world, notifies that battle is over and allows the players level and stats be
+        *increased as well as the dead enemy give items to the room and coins to the player before dying.
+        * @params: Notiication from the player that the battle is over. 
+        **/
         public void BattleOver(Notification notification)
         {
             Player player = (Player)notification.Object;
@@ -185,7 +189,9 @@ namespace StarterGame
             NotificationCenter.Instance.postNotification(new Notification("KilledEnemies",player));
         }
 
-        //Player enter room with NPC for first time
+        /**Player enter room with NPC for first time, lets the player know how to interact with them. 
+        * @params: Notification from the current player that they have entered their first room with an NPC. 
+        **/
         public void EnteredNpcRoom(Notification notification)
         {
             Console.WriteLine("\n****************************************************");
@@ -194,7 +200,11 @@ namespace StarterGame
             NotificationCenter.Instance.removeObserver("EnteredNpcRoom", EnteredNpcRoom);
         }
 
-        //Unlock the main hall to allow the player to advance since they have now spoke with the merchant. 
+        /** 
+        *Notifies the gameworld to unlock the main hall to allow the player to advance since they have now spoke
+        * with the merchant.
+        * @params: Notification from the merchant that the have spoke to the current player. 
+        **/
         public void SpokeToMerchant(Notification notification)
         {
             Door door = gameBeginTrigger.getExit("main hall");
@@ -206,6 +216,11 @@ namespace StarterGame
             NotificationCenter.Instance.removeObserver("SpokeToMerchant", SpokeToMerchant);
         }
 
+        /**
+         * Notification from the first task HowToPlay that the current player has completed it. Opens more locked doors
+         * for continued exploration by the player. 
+         * @params: Notification from the HowToPlay task. 
+         **/
         public void FinishedFirstTask (Notification notification)
         {
             Door door;

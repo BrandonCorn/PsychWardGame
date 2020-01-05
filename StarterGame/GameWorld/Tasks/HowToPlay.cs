@@ -98,7 +98,7 @@ namespace StarterGame
         }
 
         /**Checks whether the player has killed the number of enemies necessary to complete the task.
-         * return: Boolean value that player has killed num enemies necessary for task completion. 
+         *@return: Boolean value that player has killed num enemies necessary for task completion. 
          **/
         public bool hasKilledEnemies()
         {

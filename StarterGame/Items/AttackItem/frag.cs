@@ -46,9 +46,9 @@ namespace StarterGame
                 player.outputMessage("\nYou threw a frag at the enemy!!");
                 enemy.Health -= this.Damage;
                 Uses--;
-                if (player.defeatedEnemy(enemy))
+                if (player.defeatedEnemy(player,enemy))
                 {
-                    NotificationCenter.Instance.postNotification(new Notification("BattleOver", player));
+                    //NotificationCenter.Instance.postNotification(new Notification("BattleOver", player));
                 }
             }
             else

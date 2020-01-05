@@ -84,7 +84,11 @@ namespace StarterGame
             NotificationCenter.Instance.addObserver("TaskSet", TaskSet);
         }
 
-        //Method when player is walking to another room. 
+        /**
+         * Called each time the player walks to a new room. Notifies the gameworld so that possible battle may occur notifies
+         * that the room contains an NPC. 
+         * @params: String direction is name of room player is traveling to so that associated door can be retrieved.  
+         **/
         public void waltTo(string direction)
         {
             Door door = this._currentRoom.getExit(direction);
@@ -150,10 +154,20 @@ namespace StarterGame
             }
             return Weapon.getStrength(this);
         }
-
-        public bool defeatedEnemy(IEnemy enemy)
+        /**
+         * Determines if the current player has defeated their enemy. If true it notifies the GameWorld so that it can 
+         * note the progress. 
+         * @param: Player: The current player of the game. Enemy: The current enemy of the player. 
+         * @return: True/false value based on whether the enemy has been defeated. 
+         **/
+        public bool defeatedEnemy(Player player,IEnemy enemy)
         {
-            return enemy.Health <= 0;
+            if (enemy.Health <= 0)
+            {
+                NotificationCenter.Instance.postNotification(new Notification("BattleOver",player));
+                return true;
+            }
+            return false;
         }
 
         public bool playerDefeated()
