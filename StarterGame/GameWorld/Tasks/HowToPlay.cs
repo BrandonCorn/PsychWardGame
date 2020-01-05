@@ -41,7 +41,9 @@ namespace StarterGame
             NotificationCenter.Instance.addObserver("PickedUpItem", PickedUpItem);
         }
 
-        //Callback method to task that provides the player an explaination of how the combat system works. 
+        /**Callback method to task that provides the player an explaination of how the combat system works. 
+           @param: Notification from the GameWorld that this is the first battle
+        **/
         public void FirstBattle(Notification notification)
         {
             Console.WriteLine("\n\n****************************************************");
@@ -51,6 +53,10 @@ namespace StarterGame
             NotificationCenter.Instance.removeObserver("FirstBattle", FirstBattle);
         }
 
+        /**Callback method that notifies the task that the player has interacted with the merchant for the first time
+         * @param: Notification from the Interaction command that the first interaction has been initiated, this can only 
+         *  be the merchant due to the other rooms being closed and the merchant being the only NPC. 
+        **/
         public void FirstMerchantInteraction(Notification notification)
         {
             Console.WriteLine("\n****************************************************");
@@ -60,8 +66,9 @@ namespace StarterGame
             NotificationCenter.Instance.removeObserver("FirstMerchantInteraction", FirstMerchantInteraction);
         }
 
-        //Callback method notifies the task that enemies have been killed and contributed to the amount 
-        //the task requires. 
+        /**Callback method notifies the task that enemies have been killed and contributed to the amount the task requires. 
+         * @params: Notification from the GameWorld that the player has killed an enemy. 
+         **/
         public void KilledEnemies(Notification notification)
         {
             Player player = (Player)notification.Object;
@@ -74,6 +81,9 @@ namespace StarterGame
             }
         }
         
+        /**Callback method that notifies the task that the player has picked up their first item. 
+         * @params: Notification from the player that they have picked up an item. 
+         **/
         public void PickedUpItem(Notification notification)
         {
             Player player = (Player)notification.Object;
@@ -87,11 +97,18 @@ namespace StarterGame
             NotificationCenter.Instance.removeObserver("PickedUpItem", PickedUpItem);
         }
 
+        /**Checks whether the player has killed the number of enemies necessary to complete the task.
+         * return: Boolean value that player has killed num enemies necessary for task completion. 
+         **/
         public bool hasKilledEnemies()
         {
             return EnemiesKilled == enemiesToKill;
         }
 
+        /**Checks whether the challenges required for task completion have been fulfilled. Notifies the GameWorld the task
+         * has been completed to open the rooms doors for further exploration. 
+         * @return: Boolean value of task completion. 
+         **/
         public void TaskComplete()
         {
             if (pickedUpItem && hasKilledEnemies())
