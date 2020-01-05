@@ -41,18 +41,22 @@ namespace StarterGame
         public abstract Dictionary<int, I_Item> Drops { get; }
 
         public abstract int KillValue { get; set; }
-        //public abstract int killValue();
 
-        //Displays the enemies battle stats
+
+        /**
+         * Displays the enemies battle stats
+        **/
         public void currentStats()
         {
             Console.WriteLine("\n" + this.Name + "\nHealth: " + this.Health + "\nAttack: " +
                 this.Attack + "\nSpeed: " + this.Speed + "\n");
         }
 
-        //For all enemies, method updates the enemies stats relative to the players level to increase
-        //difficulty of game as player gets stronger. 
-        //Param: Player's current level
+        /**
+        *For all enemies, method updates the enemies stats relative to the players level to increase
+        *difficulty of game as player gets stronger. 
+        * @param: (int)Player's current level
+        **/
         public void statstoPlayerLevel(int level)
         {
             this.Attack = (int)(level * 1.3) * Attack;
@@ -62,8 +66,10 @@ namespace StarterGame
             this.KillValue = (int)(level * 1.2) * KillValue;
         }
 
-        //provides the room random items at the enemies death based on how many they can drop and what they are capable of dropping
-        //param: The current room being given items. 
+        /**
+        *provides the room random items at the enemies death based on how many they can drop and what they are capable of dropping
+        * @param: (Room)The current room being given items. 
+        **/
         public void deadEnemyItems(Room room)
         {
             for (int i = 0; i < DropCount; i++)
@@ -74,8 +80,11 @@ namespace StarterGame
             
         }
 
-        //This is the attack action by the rat. It will display the attack description and take away health
-        //from the player if the random number is 1.
+        /**
+        *This is the attack action by the rat. It will display the attack description and take away health
+        *from the player if the random number is 1.
+        * @params: (Player) current player to be attacked by enemy. 
+        **/
         public abstract void attackPlayer(Player player);
 
     }
