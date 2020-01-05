@@ -10,30 +10,6 @@ namespace StarterGame
         private Room roomB;
         private bool closed;
         private ILockable theLock;
-
-        /*public bool Closed
-        {
-            get
-            {
-                return closed;
-            }
-            set
-            {
-                closed = value; 
-            }
-        }
-        public bool Open
-        {
-            get
-            {
-                return !closed;
-            }
-            set
-            {
-                closed = !value;
-            }
-        } */
-
        
         public Door(Room roomA, Room roomB)
         {
