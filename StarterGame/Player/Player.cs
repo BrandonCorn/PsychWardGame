@@ -69,8 +69,8 @@ namespace StarterGame
         {
             _currentRoom = room;
             currentTask = null;
-            attack = 6;
-            speed = 1;
+            attack = new Random().Next(3,7);
+            speed = new Random().Next(1, 5);
             level = 1;
             maxHealth = 10;
             health = MaxHealth;
