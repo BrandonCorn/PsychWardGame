@@ -70,16 +70,35 @@ namespace StarterGame
             return "\nThe Zombie leaps forward and bites you!";
         }
 
+        /**
+        * Action by the enemy attacking player. Takes into account how much block they have when attacking. 
+        * @params: (Player) current player of the game so that damage may be applied to their health or block. 
+        * @return: void
+        **/
         public override void attackPlayer(Player player)
         {
             int chance = new Random().Next(1, HitProbability + 1);
             if (chance == 1 && this.Health > 0)
             {
                 Console.WriteLine("\n" + attackDescription() + "\n");
-                player.Health -= new Random().Next((Attack / 2), Attack + 1);
+                if (player.Block > 0)
+                {
+                    player.Block -= new Random().Next((Attack / 2), Attack + 1);
+                    if (player.Block < 0)
+                    {
+                        player.Health += player.Block;
+                        player.Block = 0;
+                    }
+                }
+                else
+                {
+                    player.Health -= new Random().Next((Attack / 2), Attack + 1);
+                }
             }
-            else { Console.WriteLine("\n" + Name + " missed the attack\n"); }
-
+            else
+            {
+                Console.WriteLine("\n" + Name + " missed the attack\n");
+            }
         }
 
     }

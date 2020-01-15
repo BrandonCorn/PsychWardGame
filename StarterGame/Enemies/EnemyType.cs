@@ -12,6 +12,7 @@ namespace StarterGame
         public Dictionary<int,IEnemy> AllEnemies { get { return allEnemies; } }
 
         private IEnemy[] enemyList = { new Rat(), new ZombiePatient(), new InfectedDoctor(), new InfectedNurse() }; 
+        //private IEnemy[] enemyList = { new SecurityGuard() }; 
         
         
         public EnemyType()

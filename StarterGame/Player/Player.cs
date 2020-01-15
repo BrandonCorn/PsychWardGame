@@ -17,6 +17,10 @@ namespace StarterGame
         private int speed; 
         public int Speed { get { return speed; } set { speed = value; } }
 
+        //player current defense
+        private int block; 
+        public int Block {  get { return block; } set { block = value;  } }
+
         //Is the players current health. 
         private int health; 
         public int Health { get { return health; } set { health = value; } }
@@ -71,6 +75,7 @@ namespace StarterGame
             currentTask = null;
             attack = new Random().Next(3,7);
             speed = new Random().Next(1, 5);
+            block = 0; 
             level = 1;
             maxHealth = 10;
             health = MaxHealth;
@@ -232,7 +237,7 @@ namespace StarterGame
         public void currentStats()
         {
             outputMessage("Player \nHealth: " + this.Health + (Weapon == null ? "\nNo Weapon" : "\nWeapon: " + Weapon.Name) +
-                "\nAttack: " + this.totalAttack() + "\nSpeed: " + this.Speed);
+                "\nAttack: " + this.totalAttack() + "\nSpeed: " + this.Speed + "\nBlock: " + this.Block);
         }
 
         /**
