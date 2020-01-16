@@ -28,7 +28,7 @@ namespace StarterGame
         */
 
         //How many times the item can be used. 
-        int Uses { get; }
+        int Uses { get; set; }
 
         //How much the item can be purchased for. 
         int PurchasePrice { get; set; }

@@ -9,23 +9,31 @@ namespace StarterGame
         private Room _currentRoom = null;
         public Room currentRoom { get { return _currentRoom; } set { _currentRoom = value; } }
 
-        //players current strength
+        //player's current strength
         private int attack; 
         public int Attack { get { return attack;} set { attack = value; } }
+        
+        //player's temporary attack increase 
+        private int tempAttack; 
+        public int TempAttack { get { return tempAttack; } set { tempAttack = value; } }
 
-        //players current speed
+        //player's current speed
         private int speed; 
         public int Speed { get { return speed; } set { speed = value; } }
+
+        //player's temporary speed increase
+        private int tempSpeed;
+        public int TempSpeed { get { return tempSpeed; } set { tempSpeed = value; } }
 
         //player current defense
         private int block; 
         public int Block {  get { return block; } set { block = value;  } }
 
-        //Is the players current health. 
+        //player's current health. 
         private int health; 
         public int Health { get { return health; } set { health = value; } }
 
-        //Is the players maximum health
+        //player's maximum health
         private int maxHealth; 
         public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
 
@@ -74,7 +82,9 @@ namespace StarterGame
             _currentRoom = room;
             currentTask = null;
             attack = new Random().Next(3,7);
+            tempAttack = 0;
             speed = new Random().Next(1, 5);
+            tempSpeed = 0;
             block = 0; 
             level = 1;
             maxHealth = 10;
@@ -123,6 +133,7 @@ namespace StarterGame
         /**
          * Method for output of spoken word by the player. Sends out notification that the player has spoken. 
          * @params: String word is the message the player speaks provided for output. 
+         * @returns: void
          **/
         public void speak(String word)
         {
@@ -132,6 +143,7 @@ namespace StarterGame
 
         /**
          *Method providing the current enemy of the player from the room they are in. 
+         * @params: None
          * @return: (IEnemy) current enemy of the player. 
          **/
         public IEnemy getEnemy()
@@ -140,8 +152,10 @@ namespace StarterGame
         }
 
         /**
-         * Method performs an attack on the current enemy of the player. 
-         *
+         * Method performs an attack on the current enemy of the player. Resets the players temp stat increases each attack as
+         * game will only have items that perform this increase for one use/attack
+         *@params: none
+         * @returns: void
          **/
         public void attackEnemy()
         {
@@ -152,10 +166,14 @@ namespace StarterGame
             {
                 Weapon.useWeapon(this);
             }
+            TempAttack = 0;
+            TempSpeed = 0; 
         }
 
         /**
          * Describes the attack of the player towards their enemy which varies based on whether they possess a weapon or not.
+         * @params: none
+         * @returns: void
          **/
         public void playerAttackDescription()
         {
@@ -174,10 +192,21 @@ namespace StarterGame
         {
             if (weapon == null)
             {
-                return this.Attack;
+                return playerAttack();
             }
             return Weapon.getStrength(this);
         }
+
+        /**
+         * The combined value of the player's attack the items they've used for temporary attack increase. 
+         * @params: none
+         * @return: (int) combined attack power
+         **/
+         public int playerAttack()
+        {
+            return this.Attack + tempAttack;
+        }
+
         /**
          * Determines if the current player has defeated their enemy. If true it notifies the GameWorld so that it can 
          * note the progress. 

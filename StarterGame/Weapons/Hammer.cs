@@ -41,7 +41,7 @@ namespace StarterGame
         }
         public int getStrength(Player player)
         {
-            return player.Attack + Attack;
+            return player.playerAttack() + Attack;
         }
 
         public void useItem(Player player)

@@ -36,6 +36,7 @@ namespace StarterGame
                 else
                 {
                     itemToUse.useItem(player);
+
                     //For player who is in battle 
                     IEnemy enemy = player.currentRoom.CurrentEnemy;
                     if (itemToUse.ItemTypes.Contains(ItemType.BattleItem) && enemy != null)

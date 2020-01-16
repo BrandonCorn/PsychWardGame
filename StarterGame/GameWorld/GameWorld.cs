@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
+using StarterGame.Items.StatItems;
 
 namespace StarterGame
 {
@@ -106,7 +107,7 @@ namespace StarterGame
             //Testing if items placed in room correctly. 
             entrance.giveItem(new frag());
             entrance.giveItem(new Bat());
-            entrance.giveItem(new Bat());
+            entrance.giveItem(new AttackPlus());
 
             maleShowers.giveItem(new Key());
             

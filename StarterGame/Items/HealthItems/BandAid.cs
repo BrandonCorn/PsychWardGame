@@ -31,7 +31,7 @@ namespace StarterGame
         public BandAid()
         {
             weight = 0.1f;
-            Uses = 1;
+            uses = 1;
             purchasePrice = 100;
             sellPrice = 50;
             itemTypes = new HashSet<ItemType>(types);
