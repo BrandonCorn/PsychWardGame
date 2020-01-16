@@ -8,7 +8,11 @@ Welcome to the PsychWard!
     FEATURES TO BE COMPLETED FOR THE GAME:
       1. Tasks with different puzzles and riddles for player's completion of the game. 
       2. Weapon upgrades, special attributes, and weapon repairs. 
+<<<<<<< HEAD
       3. Update 1/15/20: Have added speed to player and enemies, added block to just player 
+=======
+      3. Update 1/15/20: Have added speed to player and enemies, added block to just player. 
+>>>>>>> b892e0a6f4d359ad9813479a38d0a6ddd279a059
       4. Items for temporary stat increases. 
       5. Random placement of items and npc's. 
       6. Armour to contribute to stats. 
