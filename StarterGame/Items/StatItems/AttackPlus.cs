@@ -39,6 +39,8 @@ namespace StarterGame.Items.StatItems
         {
             weight = 0.4f;
             uses = 1;
+            purchasePrice = 150;
+            sellPrice = 75; 
             itemTypes = new HashSet<ItemType>(types); 
         }
         public void useItem(Player player)
