@@ -10,14 +10,14 @@ namespace StarterGame.Items.StatItems
         public float Weight { get { return weight; } set { weight = value; } }
 
         private readonly string name = "AttackMegaBoost"; 
-        public string Name { get { return Name; } }
+        public string Name { get { return name; } }
 
         private readonly string description = "An item that gives a large but temporary boost to attack power."; 
-        public string Description { get { return name; } }
+        public string Description { get { return description; } }
 
         private ItemType[] types = { ItemType.BattleItem }; 
-        private HashSet<ItemType> itemtypes; 
-        public HashSet<ItemType> ItemTypes { get { return ItemTypes; } set { ItemTypes = value; } }
+        private HashSet<ItemType> itemTypes; 
+        public HashSet<ItemType> ItemTypes { get { return itemTypes; } set { itemTypes = value; } }
 
         private int uses; 
         public int Uses { get { return uses; } set { uses = value; } }
@@ -28,7 +28,7 @@ namespace StarterGame.Items.StatItems
         private int sellPrice; 
         public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
-        private int attack; 
+        private readonly int attack = 4; 
         public int Attack { get { return attack; } }
 
         private int speed; 
@@ -43,7 +43,7 @@ namespace StarterGame.Items.StatItems
             uses = 1;
             purchasePrice = 250;
             sellPrice = 125;
-            itemtypes = new HashSet<ItemType>(types); 
+            itemTypes = new HashSet<ItemType>(types); 
         }
 
         public void useItem(Player player)

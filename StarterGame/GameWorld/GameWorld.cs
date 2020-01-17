@@ -107,7 +107,7 @@ namespace StarterGame
             //Testing if items placed in room correctly. 
             entrance.giveItem(new frag());
             entrance.giveItem(new Bat());
-            entrance.giveItem(new AttackPlus());
+            entrance.giveItem(new AttackMegaBoost());
 
             maleShowers.giveItem(new Key());
             
