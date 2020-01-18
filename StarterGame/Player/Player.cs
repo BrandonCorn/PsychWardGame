@@ -208,6 +208,16 @@ namespace StarterGame
         }
 
         /**
+         * Returns the combined value of the player's speed and the items they've used to increase that speed. 
+         * @params: void
+         * @returns: (int) combined speed
+         **/
+        public int totalSpeed()
+        {
+            return this.Speed + tempSpeed; 
+        }
+
+        /**
          * Determines if the current player has defeated their enemy. If true it notifies the GameWorld so that it can 
          * note the progress. 
          * @param: Player: The current player of the game. Enemy: The current enemy of the player. 
@@ -266,7 +276,7 @@ namespace StarterGame
         public void currentStats()
         {
             outputMessage("Player \nHealth: " + this.Health + (Weapon == null ? "\nNo Weapon" : "\nWeapon: " + Weapon.Name) +
-                "\nAttack: " + this.totalAttack() + "\nSpeed: " + this.Speed + "\nBlock: " + this.Block);
+                "\nAttack: " + this.totalAttack() + "\nSpeed: " + this.totalSpeed() + "\nBlock: " + this.Block);
         }
 
         /**
