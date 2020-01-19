@@ -25,7 +25,6 @@ namespace StarterGame.Commands.PlayerCommands
                 item += this.Words.Dequeue(); 
             }
             item.TrimEnd();
-            //IWeapon repairItem = (IWeapon)player.takeFromBackpack(item);
             if (player.Backpack.itemInBag(item))
             {
                 player.outputMessage("Which one would you like to repair(enter the weapon's number position)");
@@ -54,6 +53,10 @@ namespace StarterGame.Commands.PlayerCommands
                     player.outputMessage("You don't have enough money to repair that");
                     player.addToBackpack(repairWeapon);
                 }
+            }
+            else
+            {
+                player.outputMessage("That weapon is not in your bag!");
             }
             return false; 
         }

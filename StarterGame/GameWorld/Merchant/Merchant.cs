@@ -62,7 +62,7 @@ namespace StarterGame
             givePlayerTask(player);
             NotificationCenter.Instance.postNotification(new Notification("SpokeToMerchant", player));
             player.outputMessage("\nPlayer Coins: " + player.Coins);
-            Console.WriteLine("\nWould you like to: \n\tbuy goods" + "\n\tsell goods" + "\nrepair weapon");
+            Console.WriteLine("\nWould you like to: \n\tbuy goods" + "\n\tsell goods" + "\n\trepair weapon");
         }
         
         //Displays when interaction with merchent ends. 

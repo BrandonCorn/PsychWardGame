@@ -31,7 +31,7 @@ namespace StarterGame
 
         private int repairCost;
         public int RepairCost { get { return repairCost; } set { repairCost = value; } }
-        private int maxUse;
+        private int maxUse = 4;
         public int MaxUse { get { return maxUse; } set { maxUse = value; } }
 
         public Knife()
@@ -40,7 +40,6 @@ namespace StarterGame
             itemTypes = new HashSet<ItemType>(types);
             purchasePrice = 250;
             sellPrice = 125;
-            maxUse = 4;
             Uses = maxUse;
             Attack = 5;
             repairCost = 75;

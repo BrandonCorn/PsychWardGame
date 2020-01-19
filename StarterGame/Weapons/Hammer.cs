@@ -33,13 +33,12 @@ namespace StarterGame
 
         private int repairCost;
         public int RepairCost { get { return repairCost; } set { repairCost = value; } }
-        private int maxUse;
+        private int maxUse = 7;
         public int MaxUse { get { return maxUse; } set { maxUse = value; } }
         public Hammer()
         {
             Weight = 9.85f;
             itemTypes = new HashSet<ItemType>(types);
-            maxUse = 7;
             uses = maxUse;
             Attack = 8;
             purchasePrice = 350;
