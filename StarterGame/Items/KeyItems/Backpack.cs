@@ -35,8 +35,8 @@ namespace StarterGame
         private int capacity;
         public int Capacity { get { return capacity; } }
 
-        private Dictionary<string, LinkedList<I_Item>> inventory;
-        public Dictionary<string, LinkedList<I_Item>> Inventory { get { return inventory; } }
+        //private Dictionary<string, LinkedList<I_Item>> inventory;
+        //public Dictionary<string, LinkedList<I_Item>> Inventory { get { return inventory; } }
 
         private Dictionary<string, List<I_Item>> inventory2;
         public Dictionary<string, List<I_Item>> Inventory2 { get { return inventory2; } }
@@ -51,7 +51,7 @@ namespace StarterGame
             capacity = 30;
             description = "Pretty useful for holding items. \n\tCapacity: " + Capacity + "lbs";
             itemTypes = new HashSet<ItemType>(types);
-            inventory = new Dictionary<string, LinkedList<I_Item>>();
+            //inventory = new Dictionary<string, LinkedList<I_Item>>();
             inventory2 = new Dictionary<string, List<I_Item>>(); 
         }
         /*public void giveItem(I_Item item)
@@ -87,15 +87,15 @@ namespace StarterGame
 
         public I_Item takeItem(string item)
         {
-            LinkedList<I_Item> check = null;
-            Inventory.TryGetValue(item, out check);
+            List<I_Item> check = null;
+            Inventory2.TryGetValue(item, out check);
             if (check != null && check.Count != 0)
             {
-                I_Item temp = check.First.Value;
-                Inventory[item].Remove(temp);
-                if (Inventory[item].Count == 0)
+                I_Item temp = check.First();
+                Inventory2[item].Remove(temp);
+                if (Inventory2[item].Count == 0)
                 {
-                    Inventory.Remove(item);
+                    Inventory2.Remove(item);
                 }
                 return temp;
             }
@@ -131,8 +131,8 @@ namespace StarterGame
         public float weightInBag()
         {
             float temp = 0;
-            Dictionary<string, LinkedList<I_Item>>.ValueCollection values = inventory.Values;
-            foreach(LinkedList<I_Item> items in values)
+            Dictionary<string, List<I_Item>>.ValueCollection values = Inventory2.Values;
+            foreach(List<I_Item> items in values)
             {
                 foreach(I_Item item in items)
                 {

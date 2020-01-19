@@ -42,10 +42,18 @@ namespace StarterGame
             {
                 if (player.Backpack.checkItem(itemName).ItemTypes.Contains(ItemType.Weapon))
                 {
-                    player.outputMessage("Which weapon would you like to sell?\n");
+                    player.outputMessage("Which weapon would you like to sell? (Enter weapon's position number to sell, enter 0 to back)\n");
                     player.outputMessage(player.Backpack.displayWeapons(itemName));
                     int position = Console.Read();
-                    I_Item item = player.takeFromBackpack(itemName, position);
+                    I_Item item = null; 
+                    try
+                    {
+                        item = player.takeFromBackpack(itemName, position);
+                    }
+                    catch(Exception e) { 
+                        player.outputMessage("\nNot a valid weapon position"); 
+                        return false;  
+                    }
                     player.receiveCoins(item.SellPrice);
                     player.outputMessage("\nYou received " + item.SellPrice + " coins!");
                 }

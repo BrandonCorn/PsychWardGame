@@ -33,13 +33,12 @@ namespace StarterGame
                     weaponName += this.Words.Dequeue() + " ";
                 }
                 weaponName = weaponName.TrimEnd();
-                LinkedList<I_Item> weapon;
                 if (player.Weapon == null)
                 {
                     player.setWeapon((IWeapon)player.takeFromBackpack(weaponName));
                     player.outputMessage("\nYour new weapon has been set!\n");
                 }
-                else if (player.Backpack.Inventory.TryGetValue(weaponName, out weapon))
+                else if(player.Backpack.itemInBag(weaponName))
                 {
                     IWeapon takenWeapon = player.takeWeapon();
                     player.Backpack.giveItem(takenWeapon);
