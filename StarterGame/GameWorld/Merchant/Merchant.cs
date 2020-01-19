@@ -130,8 +130,8 @@ namespace StarterGame
 
         public void RepairWeapon(Notification notification)
         {
-            Player player = (Player)notification.Object;
-            player.Weapon.Uses += 10; 
+            IWeapon weapon = (IWeapon)notification.Object;
+            weapon.Uses = weapon.MaxUse; 
         }
     }
 }

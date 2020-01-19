@@ -31,15 +31,18 @@ namespace StarterGame
 
         private int repairCost;
         public int RepairCost { get { return repairCost; } set { repairCost = value; } }
+        private int maxUse;
+        public int MaxUse { get { return maxUse; } set { maxUse = value; } }
         public Machete()
         {
             Weight = 3.5f;
             purchasePrice = 600;
             sellPrice = 300;
             itemTypes = new HashSet<ItemType>(types);
-            Uses = 6;
+            maxUse = 6; 
+            uses = maxUse;
             Attack = 12;
-            repairCost = 200; 
+            repairCost = 200;
         }
         public int getStrength(Player player)
         {

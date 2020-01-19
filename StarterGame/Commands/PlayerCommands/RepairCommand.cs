@@ -25,13 +25,34 @@ namespace StarterGame.Commands.PlayerCommands
                 item += this.Words.Dequeue(); 
             }
             item.TrimEnd();
-            IWeapon repairItem = (IWeapon)player.takeFromBackpack(item);
-            if (repairItem != null)
+            //IWeapon repairItem = (IWeapon)player.takeFromBackpack(item);
+            if (player.Backpack.itemInBag(item))
             {
-                if (player.hasEnoughCoins(repairItem.RepairCost))
+                player.outputMessage("Which one would you like to repair(enter the weapon's number position)");
+                player.outputMessage(player.Backpack.displayWeapons(item));
+                int position;
+                IWeapon repairWeapon;
+                try
                 {
-                    player.spendCoins(repairItem.RepairCost);
-                    NotificationCenter.Instance.postNotification(new Notification("RepairWeapon", player));  
+                    position = Convert.ToInt32(Console.ReadLine());
+                    repairWeapon = (IWeapon)player.takeFromBackpack(item, position);
+                }
+                catch (Exception e)
+                {
+                    player.outputMessage("\nNot a valid weapon position");
+                    return false;
+                }
+                if (player.hasEnoughCoins(repairWeapon.RepairCost))
+                {
+                    player.spendCoins(repairWeapon.RepairCost);
+                    player.addToBackpack(repairWeapon);
+                    NotificationCenter.Instance.postNotification(new Notification("RepairWeapon", repairWeapon));
+                    player.outputMessage("Success, your weapon has been repaired!\n" + repairWeapon.ToString());
+                }
+                else
+                {
+                    player.outputMessage("You don't have enough money to repair that");
+                    player.addToBackpack(repairWeapon);
                 }
             }
             return false; 
