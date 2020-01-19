@@ -7,6 +7,7 @@ namespace StarterGame
     public interface IWeapon : I_Item
     {
         int Attack { get; set; }
+        int RepairCost { get; }
         int getStrength(Player player);
         new void useItem(Player player);
         void useWeaponDescription(Player player);

@@ -25,20 +25,36 @@ namespace StarterGame
             }
             itemName = itemName.TrimEnd();
 
-            I_Item item = player.takeFromBackpack(itemName); 
-            if (item.ItemTypes.Contains(ItemType.KeyItem))
+            //I_Item item = player.takeFromBackpack(itemName);
+            if (!player.Backpack.itemInBag(itemName))
+            {
+                player.outputMessage("\nYou don't have that item!");
+            }
+            else if (player.Backpack.checkItem(itemName).ItemTypes.Contains(ItemType.KeyItem))
             {
                 player.outputMessage("\nI wouldn't sell that, you may need it later!");
-                player.addToBackpack(item);
+                //player.addToBackpack(item);
             }
-            else if(item == null)
-            {
-                player.outputMessage("\nWhat do you want to sell!!!");
-            }
+
+            //Checks whether an item is a weapon or not, for weapons user may want to sell a specific one, for other items
+            //it does not matter. 
             else
             {
-                player.receiveCoins(item.SellPrice);
-                player.outputMessage("\nYou received " + item.SellPrice + " coins!");
+                if (player.Backpack.checkItem(itemName).ItemTypes.Contains(ItemType.Weapon))
+                {
+                    player.outputMessage("Which weapon would you like to sell?\n");
+                    player.outputMessage(player.Backpack.displayWeapons(itemName));
+                    int position = Console.Read();
+                    I_Item item = player.takeFromBackpack(itemName, position);
+                    player.receiveCoins(item.SellPrice);
+                    player.outputMessage("\nYou received " + item.SellPrice + " coins!");
+                }
+                else
+                {
+                    I_Item item = player.takeFromBackpack(itemName); 
+                    player.receiveCoins(item.SellPrice);
+                    player.outputMessage("\nYou received " + item.SellPrice + " coins!");
+                }
             }
 
             return false;

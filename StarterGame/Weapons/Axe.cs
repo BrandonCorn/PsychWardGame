@@ -31,14 +31,17 @@ namespace StarterGame
         private int attack;
         public int Attack { get { return attack; } set { attack = value; } }
 
+        private int repairCost;
+        public int RepairCost { get { return repairCost; } set { repairCost = value; } }
         public Axe()
         {
             attack = 11;
-            weight = 1.25f;
+            weight = 7.25f;
             itemTypes = new HashSet<ItemType>(types);
             uses = 10;
             purchasePrice = 850;
             sellPrice = 425;
+            repairCost = 250;
         }
 
         public int getStrength(Player player)
@@ -57,7 +60,7 @@ namespace StarterGame
             Uses--; 
             if (Uses <= 0)
             {
-                player.Weapon = null; 
+                player.addToBackpack(player.takeWeapon());
             }
         }
 

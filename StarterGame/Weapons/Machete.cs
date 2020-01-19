@@ -29,15 +29,17 @@ namespace StarterGame
         private int attack; 
         public int Attack { get { return attack; } set { attack = value; } }
 
-
+        private int repairCost;
+        public int RepairCost { get { return repairCost; } set { repairCost = value; } }
         public Machete()
         {
-            Weight = 2.5f;
+            Weight = 3.5f;
             purchasePrice = 600;
             sellPrice = 300;
             itemTypes = new HashSet<ItemType>(types);
             Uses = 6;
             Attack = 12;
+            repairCost = 200; 
         }
         public int getStrength(Player player)
         {

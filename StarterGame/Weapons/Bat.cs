@@ -28,14 +28,18 @@ namespace StarterGame
         private int attack;
         public int Attack { get { return attack; } set { attack = value; } }
 
+        private int repairCost;
+        public int RepairCost { get { return repairCost; } set { repairCost = value; } }
+
         public Bat()
         {
             attack = 10;
-            weight = 1.8f;
+            weight = 4.8f;
             itemTypes = new HashSet<ItemType>(types);
             uses = 6;
             purchasePrice = 500;
             sellPrice = 225;
+            repairCost = 150;
     }
 
         public int getStrength(Player player)

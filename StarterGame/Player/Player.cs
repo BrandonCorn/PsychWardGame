@@ -91,7 +91,7 @@ namespace StarterGame
             health = MaxHealth;
             experience = 0;
             expNeeded = 15;
-            coins = 0;
+            coins = 500;
             weapon = null;
             backpack = null; 
             hitProbability = 2;
@@ -317,9 +317,15 @@ namespace StarterGame
             return Backpack.takeItem(item);
         }
 
+        public I_Item takeFromBackpack(string item, int position)
+        {
+            return Backpack.takeItem(item, position); 
+        }
+
         /**
          * Places item in the backpack
          * @param: (I_Item) item object to be placed in backpack. 
+         * @returns: void
          **/
         public void addToBackpack(I_Item item)
         {
@@ -375,6 +381,11 @@ namespace StarterGame
          **/
         public void setWeapon(IWeapon weapon)
         {
+            if(weapon.Uses <= 0)
+            {
+                this.outputMessage("You cannot use this weapon anymore!!");
+                return; 
+            }
             Weapon = weapon; 
         }
 
@@ -394,11 +405,11 @@ namespace StarterGame
          * @params: (I_Item) item player would like to purchase. Need access for value of item. 
          * @return: (bool) player has enough coins for purchase of item. 
          **/
-        public bool hasEnoughCoins(I_Item item)
+        public bool hasEnoughCoins(float itemCost)
         {
-            if (Coins < item.PurchasePrice)
+            if (Coins < itemCost)
             {
-                this.outputMessage("\nYou don't have enough money for " + item);
+                this.outputMessage("\nYou don't have enough money for ");
                 return false;
             }
             return true;

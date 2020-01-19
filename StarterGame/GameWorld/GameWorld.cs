@@ -108,6 +108,8 @@ namespace StarterGame
             entrance.giveItem(new frag());
             entrance.giveItem(new Bat());
             entrance.giveItem(new SpeedPlus());
+            entrance.giveItem(new Axe());
+            entrance.giveItem(new Axe()); 
 
             maleShowers.giveItem(new Key());
             

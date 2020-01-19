@@ -37,7 +37,7 @@ namespace StarterGame
 
                     if (item != null)
                     {
-                        if (player.Backpack.spaceInBag(item) && player.hasEnoughCoins(item))
+                        if (player.Backpack.spaceInBag(item) && player.hasEnoughCoins(item.PurchasePrice))
                         {
                             player.spendCoins(item.PurchasePrice);
                             player.Backpack.giveItem(item);

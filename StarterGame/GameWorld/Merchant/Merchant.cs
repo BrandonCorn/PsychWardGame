@@ -43,6 +43,7 @@ namespace StarterGame
             NotificationCenter.Instance.addObserver("LeaveMerchant", LeaveMerchant);
             NotificationCenter.Instance.addObserver("ViewInventory", ViewInventory);
             NotificationCenter.Instance.addObserver("PlayerPurchaseMessage", PlayerPurchaseMessage);
+            NotificationCenter.Instance.addObserver("RepairWeapon", RepairWeapon);
 
         }
 
@@ -127,5 +128,10 @@ namespace StarterGame
             Console.WriteLine("Thank you for your purchase!");
         }
 
+        public void RepairWeapon(Notification notification)
+        {
+            Player player = (Player)notification.Object;
+            player.Weapon.Uses += 10; 
+        }
     }
 }

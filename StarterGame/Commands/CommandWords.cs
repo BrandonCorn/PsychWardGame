@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
+using StarterGame.Commands.PlayerCommands;
 
 namespace StarterGame
 {
@@ -17,7 +18,7 @@ namespace StarterGame
         //scenario in which the commands must be changed, the corresponding array of commands can be pushed
         //to the stack changing the available options. 
         public static Command[] merchantCommands = { new MerchandiseCommand(),new BuyCommand(), new SellCommand(), new WalkAwayCommand(),
-             new BackpackCommand() };
+             new BackpackCommand(), new RepairCommand() };
         public static Command[] battleCommands = { new FightCommand(), new BackpackCommand(), new RunCommand()};
         //Add command for viewing item description. 
         public static Command[] backpackCommands = { new UseCommand(), new SetWeaponCommand(), new BackCommand() };
