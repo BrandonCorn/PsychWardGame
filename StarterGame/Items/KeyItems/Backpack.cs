@@ -181,7 +181,10 @@ namespace StarterGame
         } */
 
 
-        //This displays every single weapon and it's stats at current time. 
+        /**This displays every single weapon and it's stats at current time. 
+         * @params: none
+         * @returns: (string) instance of all weapons in position. 
+         **/
         public string displayWeapons()
         {
             string list = "";
@@ -200,14 +203,22 @@ namespace StarterGame
             return list;
         }
 
+        /**
+         * Displays every instance of one type of weapon in inventory
+         * @params: (string) name of weapon
+         * @returns: (string) each instance of weapon of this kind in inventory (i.e all Axes if player has multiples)
+         **/
         public string displayWeapons(string name)
         {
-            string list = ""; 
-            List<I_Item> values = Inventory2[name];
+            string list = "";
+            List<I_Item> values = null;
+            Inventory2.TryGetValue(name, out values);
+            int count = 1;
             list += "Weapons: \n"; 
             foreach(IWeapon weapon in values)
             {
-                list += weapon.ToString(); 
+                list += count + ") " + weapon.ToString();
+                count++;
             }
             return list; 
         }

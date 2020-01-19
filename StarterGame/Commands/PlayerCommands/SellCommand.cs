@@ -25,7 +25,6 @@ namespace StarterGame
             }
             itemName = itemName.TrimEnd();
 
-            //I_Item item = player.takeFromBackpack(itemName);
             if (!player.Backpack.itemInBag(itemName))
             {
                 player.outputMessage("\nYou don't have that item!");
@@ -33,7 +32,6 @@ namespace StarterGame
             else if (player.Backpack.checkItem(itemName).ItemTypes.Contains(ItemType.KeyItem))
             {
                 player.outputMessage("\nI wouldn't sell that, you may need it later!");
-                //player.addToBackpack(item);
             }
 
             //Checks whether an item is a weapon or not, for weapons user may want to sell a specific one, for other items
@@ -44,10 +42,11 @@ namespace StarterGame
                 {
                     player.outputMessage("Which weapon would you like to sell? (Enter weapon's position number to sell, enter 0 to back)\n");
                     player.outputMessage(player.Backpack.displayWeapons(itemName));
-                    int position = Console.Read();
+                    int position; 
                     I_Item item = null; 
                     try
                     {
+                        position = Convert.ToInt32(Console.ReadLine()); 
                         item = player.takeFromBackpack(itemName, position);
                     }
                     catch(Exception e) { 

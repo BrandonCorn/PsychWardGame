@@ -36,6 +36,8 @@ namespace StarterGame
             uses = 1;
             damage = 4;
             itemTypes = new HashSet<ItemType>(types);
+            purchasePrice = 150;
+            sellPrice = 75; 
         }
 
         public void useItem(Player player)
