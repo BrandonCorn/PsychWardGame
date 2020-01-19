@@ -296,7 +296,7 @@ namespace StarterGame
                 }
                 else if (item.ItemTypes.Contains(ItemType.Weapon) && Weapon == null)       
                 {
-                    Weapon = (IWeapon)item;
+                    setWeapon((IWeapon)item);
                     Console.WriteLine("\nYour weapon has been set to the " + itemName + "!\n");
                 }
 

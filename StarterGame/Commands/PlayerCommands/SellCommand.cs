@@ -40,7 +40,7 @@ namespace StarterGame
             {
                 if (player.Backpack.checkItem(itemName).ItemTypes.Contains(ItemType.Weapon))
                 {
-                    player.outputMessage("Which weapon would you like to sell? (Enter weapon's position number to sell, enter 0 to back)\n");
+                    player.outputMessage("Which weapon would you like to sell? (Enter weapon's numbered position to sell)\n");
                     player.outputMessage(player.Backpack.displayWeapons(itemName));
                     int position; 
                     I_Item item = null; 

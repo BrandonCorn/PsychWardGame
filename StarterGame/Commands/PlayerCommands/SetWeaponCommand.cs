@@ -35,14 +35,39 @@ namespace StarterGame
                 weaponName = weaponName.TrimEnd();
                 if (player.Weapon == null)
                 {
-                    player.setWeapon((IWeapon)player.takeFromBackpack(weaponName));
+                    player.outputMessage(player.Backpack.displayWeapons(weaponName));
+                    player.outputMessage("\nWhich weapon would you like to use? (Enter the weapon's numbered position)\n");
+                    int position;
+                    try
+                    {
+                        position = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (Exception e)
+                    {
+                        player.outputMessage("\nThat is not a valid option");
+                        return false;
+                    }
+                    player.setWeapon((IWeapon)player.takeFromBackpack(weaponName,position));
                     player.outputMessage("\nYour new weapon has been set!\n");
                 }
+
                 else if(player.Backpack.itemInBag(weaponName))
                 {
+                    player.outputMessage(player.Backpack.displayWeapons(weaponName));
+                    player.outputMessage("\nWhich weapon would you like to use? (Enter the weapon's numbered position)\n");
+                    int position;
+                    try
+                    {
+                        position = Convert.ToInt32(Console.ReadLine()); 
+                    }
+                    catch(Exception e)
+                    {
+                        player.outputMessage("\nThat is not a valid option");
+                        return false; 
+                    }
                     IWeapon takenWeapon = player.takeWeapon();
                     player.Backpack.giveItem(takenWeapon);
-                    player.setWeapon((IWeapon)player.takeFromBackpack(weaponName));
+                    player.setWeapon((IWeapon)player.takeFromBackpack(weaponName,position));
                     player.outputMessage("\nYour new weapon has been set!"); 
                 }
                 else
