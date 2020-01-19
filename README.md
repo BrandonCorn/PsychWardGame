@@ -10,7 +10,7 @@ Welcome to the PsychWard!
       2. Weapon upgrades, special attributes, and weapon repairs. 
       3. Update 1/15/20: Have added speed to player and enemies, added block to just player 
 
-      4. Items for temporary stat increases. 
+      4. Update 1/19/20 Have added a few items for temp stat increases to test a	and see if I like how they work.  
       5. Random placement of items and npc's. 
       6. Armour to contribute to stats. 
       7. Different levels of difficulty. 
