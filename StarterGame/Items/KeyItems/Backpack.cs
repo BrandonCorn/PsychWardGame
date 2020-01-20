@@ -35,11 +35,10 @@ namespace StarterGame
         private int capacity;
         public int Capacity { get { return capacity; } }
 
-        //private Dictionary<string, LinkedList<I_Item>> inventory;
-        //public Dictionary<string, LinkedList<I_Item>> Inventory { get { return inventory; } }
 
-        private Dictionary<string, List<I_Item>> inventory2;
-        public Dictionary<string, List<I_Item>> Inventory2 { get { return inventory2; } }
+
+        private Dictionary<string, List<I_Item>> inventory;
+        public Dictionary<string, List<I_Item>> Inventory { get { return inventory; } }
 
 
         public Backpack()
@@ -51,51 +50,36 @@ namespace StarterGame
             capacity = 30;
             description = "Pretty useful for holding items. \n\tCapacity: " + Capacity + "lbs";
             itemTypes = new HashSet<ItemType>(types);
-            //inventory = new Dictionary<string, LinkedList<I_Item>>();
-            inventory2 = new Dictionary<string, List<I_Item>>(); 
+            inventory = new Dictionary<string, List<I_Item>>(); 
         }
-        /*public void giveItem(I_Item item)
-        {
-            LinkedList<I_Item> check = null;
-            Inventory.TryGetValue(item.Name, out check);
-            if (check == null)
-            {
-                Inventory[item.Name] = new LinkedList<I_Item>();
-                Inventory[item.Name].AddFirst(item);
-            }
-            else
-            {
-                Inventory[item.Name].AddLast(item);
-            }
-            
-        }*/
+
 
         public void giveItem(I_Item item)
         {
             List<I_Item> check = null;
-            Inventory2.TryGetValue(item.Name, out check); 
+            Inventory.TryGetValue(item.Name, out check); 
             if(check == null)
             {
-                Inventory2[item.Name] = new List<I_Item>();
-                Inventory2[item.Name].Add(item); 
+                Inventory[item.Name] = new List<I_Item>();
+                Inventory[item.Name].Add(item); 
             }
             else
             {
-                Inventory2[item.Name].Add(item); 
+                Inventory[item.Name].Add(item); 
             }
         }
 
         public I_Item takeItem(string item)
         {
             List<I_Item> check = null;
-            Inventory2.TryGetValue(item, out check);
+            Inventory.TryGetValue(item, out check);
             if (check != null && check.Count != 0)
             {
                 I_Item temp = check.First();
-                Inventory2[item].Remove(temp);
-                if (Inventory2[item].Count == 0)
+                Inventory[item].Remove(temp);
+                if (Inventory[item].Count == 0)
                 {
-                    Inventory2.Remove(item);
+                    Inventory.Remove(item);
                 }
                 return temp;
             }
@@ -109,14 +93,14 @@ namespace StarterGame
         public I_Item takeItem(string item, int position)
         {
             List<I_Item> check = null;
-            Inventory2.TryGetValue(item, out check); 
+            Inventory.TryGetValue(item, out check); 
             if(check != null && check.Count != 0)
             {
                 I_Item temp = check[position-1];
-                Inventory2[item].RemoveAt(position-1);
-                if(Inventory2[item].Count <= 0)
+                Inventory[item].RemoveAt(position-1);
+                if(Inventory[item].Count <= 0)
                 {
-                    Inventory2.Remove(item); 
+                    Inventory.Remove(item); 
                 }
                 return temp; 
             }
@@ -131,7 +115,7 @@ namespace StarterGame
         public float weightInBag()
         {
             float temp = 0;
-            Dictionary<string, List<I_Item>>.ValueCollection values = Inventory2.Values;
+            Dictionary<string, List<I_Item>>.ValueCollection values = Inventory.Values;
             foreach(List<I_Item> items in values)
             {
                 foreach(I_Item item in items)
@@ -155,7 +139,7 @@ namespace StarterGame
         public string displayItems()
         {
             string list = "";
-            Dictionary<string, List<I_Item>>.ValueCollection values = Inventory2.Values;
+            Dictionary<string, List<I_Item>>.ValueCollection values = Inventory.Values;
             list += "\nWeight in Bag: " + weightInBag() + "lbs\n\t";
             foreach (List<I_Item> item in values)
             {
@@ -163,22 +147,6 @@ namespace StarterGame
             }
             return list;
         }
-
-        /*public string displayWeapons()
-        {
-            string list = "";
-            Dictionary<string, LinkedList<I_Item>>.ValueCollection values = Inventory.Values;
-            list += "Weapons: \n\t"; 
-            foreach (LinkedList<I_Item> item in values)
-            {
-                if (item.First.Value.ItemTypes.Contains(ItemType.Weapon))
-                {
-                    //list += item.First.Value.Name + "\n"; 
-                    list += item.First.Value.ToString(); 
-                }
-            }
-            return list;
-        } */
 
 
         /**This displays every single weapon and it's stats at current time. 
@@ -188,7 +156,7 @@ namespace StarterGame
         public string displayWeapons()
         {
             string list = "";
-            Dictionary<string, List<I_Item>>.ValueCollection values = Inventory2.Values;
+            Dictionary<string, List<I_Item>>.ValueCollection values = Inventory.Values;
             list += "Weapons: \n\t";
             foreach (List<I_Item> item in values)
             {
@@ -212,7 +180,7 @@ namespace StarterGame
         {
             string list = "";
             List<I_Item> values = null;
-            Inventory2.TryGetValue(name, out values);
+            Inventory.TryGetValue(name, out values);
             int count = 1;
             list += "Weapons: \n"; 
             foreach(IWeapon weapon in values)
@@ -226,13 +194,13 @@ namespace StarterGame
         public bool itemInBag(string item)
         {
             List<I_Item> check = null;
-            Inventory2.TryGetValue(item, out check);
+            Inventory.TryGetValue(item, out check);
             return check != null; 
         }
 
         public I_Item checkItem(string item)
         {
-            return Inventory2[item].First<I_Item>(); 
+            return Inventory[item].First<I_Item>(); 
         }
 
         public void useItem(Player player)

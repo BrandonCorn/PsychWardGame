@@ -4,9 +4,10 @@ using System.Text;
 
 namespace StarterGame.Commands.PlayerCommands
 {
+    //Repair Command is used by player to repair their weapons after all uses. Can only be applied to weapons 
     public class RepairCommand : Command
     {
-        //*****Change the backpack Inventory to include items of same kind in Dictionary as opposed to LinkedList
+        
 
         public RepairCommand()
         {
