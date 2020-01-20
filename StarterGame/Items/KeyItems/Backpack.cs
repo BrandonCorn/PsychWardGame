@@ -53,7 +53,11 @@ namespace StarterGame
             inventory = new Dictionary<string, List<I_Item>>(); 
         }
 
-
+        /**
+         * Item is added to the backpacks inventory of individual items. 
+         * @params: (I_Item) item to be added to inventory
+         * @returns: void
+         **/
         public void giveItem(I_Item item)
         {
             List<I_Item> check = null;
@@ -69,6 +73,12 @@ namespace StarterGame
             }
         }
 
+        /**
+         * Takes an item from the backpacks inventory of that individual item. The first item in the list of that specific item 
+         * is removed. 
+         * @params: (string) The name of the item to be removed. 
+         * @returns: (I_Item) The item that was removed. 
+         **/
         public I_Item takeItem(string item)
         {
             List<I_Item> check = null;
@@ -90,6 +100,11 @@ namespace StarterGame
             }
         }
 
+        /**
+         * Takes an item from the backpacks inventory of that specific item. The name and position of that specific item are given. 
+         * @params: (string)The name of the item to remove, (position) The chosen item by the player to remove 
+         * @returns: (I_Item) The item that was to be removed. 
+         **/
         public I_Item takeItem(string item, int position)
         {
             List<I_Item> check = null;
@@ -112,6 +127,11 @@ namespace StarterGame
 
         }
 
+        /**
+         * The total weight of items in the bag. 
+         * @params: none
+         * @returns: (float) The total weight of all items in the backpack. 
+         **/
         public float weightInBag()
         {
             float temp = 0;
@@ -126,6 +146,11 @@ namespace StarterGame
             return temp; 
         }
 
+        /**
+         * Indicates whether there is sufficient space to add an item to the backpack. 
+         * @params: (I_Item) The item that we are checking space in backpack for. 
+         * @returns: (bool) Whether the item checked will fit in the backpack without going over capacity. 
+         **/
         public bool spaceInBag(I_Item item)
         {
             if (this.Weight + item.Weight > capacity)
@@ -136,6 +161,11 @@ namespace StarterGame
             return true;  
         }
 
+        /**
+         * Displays all of the items currently in the backpack and how many there are. 
+         * @params: none
+         * @returns: (string) neatly formatted string of all items in the backpack and how many. 
+         **/
         public string displayItems()
         {
             string list = "";
@@ -191,6 +221,11 @@ namespace StarterGame
             return list; 
         }
 
+        /**
+         * Given an item name, checks to see if that item is currently in the backpack
+         * @params: (string) The name of the item to look for. 
+         * @returns: (bool) True/False value whether that item is in the backpack. 
+         **/
         public bool itemInBag(string item)
         {
             List<I_Item> check = null;
@@ -198,11 +233,21 @@ namespace StarterGame
             return check != null; 
         }
 
+        /**
+         * Provides a copy of an item in the bag to check certain properties. 
+         * @params: (string) The name of the item to check
+         * @returns: (I_Item) Copy of the item to be checked. 
+         **/
         public I_Item checkItem(string item)
         {
             return Inventory[item].First<I_Item>(); 
         }
 
+        /**
+         * Lets the player know they cannot use the backpack with a command 
+         * @params: (Player) 
+         * @returns: void
+         **/
         public void useItem(Player player)
         {
             Console.WriteLine("Can't really do all that.");
