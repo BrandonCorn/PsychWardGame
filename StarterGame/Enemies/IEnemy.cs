@@ -34,7 +34,7 @@ namespace StarterGame
         public abstract string attackDescription();
 
         //Provides drops to the room from enemies death
-        //params: item number in the Dictionary of available drops of the enemy.  
+        //@params: item number in the Dictionary of available drops of the enemy.  
         public abstract I_Item getDrops(int num);
 
         //List of available items the enemy can drop. 
@@ -56,6 +56,7 @@ namespace StarterGame
         *For all enemies, method updates the enemies stats relative to the players level to increase
         *difficulty of game as player gets stronger. 
         * @param: (int)Player's current level
+        * @returns: void
         **/
         public void statstoPlayerLevel(int level)
         {
@@ -69,6 +70,7 @@ namespace StarterGame
         /**
         *provides the room random items at the enemies death based on how many they can drop and what they are capable of dropping
         * @param: (Room)The current room being given items. 
+        * @returns: void
         **/
         public void deadEnemyItems(Room room)
         {
@@ -84,6 +86,7 @@ namespace StarterGame
         *This is the attack action by the rat. It will display the attack description and take away health
         *from the player if the random number is 1.
         * @params: (Player) current player to be attacked by enemy. 
+        * @returns: void
         **/
         public abstract void attackPlayer(Player player);
 
